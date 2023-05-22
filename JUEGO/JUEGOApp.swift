@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 import GoogleSignIn
 
-let db = Firestore.firestore()
 
 @main
 struct JUEGOApp: App {
