@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var email = ""
     @State private var password = ""
     @StateObject private var vm = AuthenticationViewModel()
+    @State private var alertLogIn = false
+    @State private var errorLogIn = ""
     var body: some View {
         
         GeometryReader {geo in
@@ -50,15 +52,16 @@ struct ContentView: View {
                         
                         HStack{
                             Button("Log In") {
-                                //Log In
+                                logIn()
                             }
                             .frame(width: 200, height: 50)
                             .foregroundColor(.white)
                             .background(.black)
                             .cornerRadius(10)
                             .shadow(color:.gray,radius:4,x:0,y:2)
-                            
-                            
+                            .alert(isPresented: $alertLogIn) {
+                                Alert(title:Text(errorLogIn))
+                            }
                             
                             Text("OR")
                                 .padding()
@@ -72,10 +75,6 @@ struct ContentView: View {
                             
                         }
                         
-
-                        
-                    
-                        
                         Spacer()
                         
                         
@@ -87,8 +86,17 @@ struct ContentView: View {
                 .navigationViewStyle(StackNavigationViewStyle())
             }
         }
-
-        
+    }
+    
+    func logIn(){
+        Auth.auth().signIn(withEmail: email, password: password){result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+                errorLogIn=error!.localizedDescription
+            } else {
+                print("User Signed In!")
+            }
+        }
     }
 }
 
