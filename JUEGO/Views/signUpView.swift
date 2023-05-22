@@ -73,9 +73,11 @@ struct signUpView: View {
         }
         }
 
+
     
     
 }
+
 
 
 struct signUpView_Previews: PreviewProvider {

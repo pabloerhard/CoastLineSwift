@@ -13,7 +13,6 @@ import FirebaseCore
 import GoogleSignInSwift
 
 struct ContentView: View {
-    
     @State private var email = ""
     @State private var password = ""
     @StateObject private var vm = AuthenticationViewModel()
@@ -52,7 +51,13 @@ struct ContentView: View {
                         
                         HStack{
                             Button("Log In") {
-                                logIn()
+                                logIn(email: email, password: password) { error in
+                                    if let errorMessage = error {
+                                        errorLogIn = errorMessage
+                                        alertLogIn = true
+                                    }
+                                }
+                                
                             }
                             .frame(width: 200, height: 50)
                             .foregroundColor(.white)
@@ -87,15 +92,59 @@ struct ContentView: View {
             }
         }
     }
-    
-    func logIn(){
-        Auth.auth().signIn(withEmail: email, password: password){result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-                errorLogIn=error!.localizedDescription
-            } else {
-                print("User Signed In!")
+}
+
+func logIn(email: String, password: String, completion: @escaping (String?) -> Void) {
+    Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+        if let error = error {
+            let errorMessage = error.localizedDescription
+            print("Error signing in:", errorMessage)
+            completion(errorMessage)
+        } else {
+            print("User signed in successfully!")
+            if let currentUser = Auth.auth().currentUser {
+                getTutorInformation(user: currentUser)
+                getChildrenInformation(user: currentUser)
             }
+            completion(nil)
+        }
+    }
+}
+
+
+let db = Firestore.firestore()
+func getTutorInformation(user: User){
+    let userRef = db.collection("tutores").document(user.uid)
+    userRef.getDocument { (documentSnapshot, error) in
+        if let error = error {
+            print("Error fetching user document:", error)
+            return
+        }
+        
+        guard let userData = documentSnapshot?.data() else {
+            print("User document not found")
+            return
+        }
+        
+        // Access the user data here
+        print("User data:", userData)
+    }
+}
+
+func getChildrenInformation(user: User){
+    let childrenRef = db.collection("alumnos")
+    let query = childrenRef.whereField("Tutores", arrayContains: user.uid)
+    query.getDocuments { (querySnapshot, error) in
+        if let error = error {
+            print("Error fetching children documents:", error)
+            return
+        }
+        
+        // Process the query results
+        for document in querySnapshot!.documents {
+            let childData = document.data()
+            // Access child data here
+            print("Child data:", childData)
         }
     }
 }
