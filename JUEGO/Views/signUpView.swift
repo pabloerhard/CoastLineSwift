@@ -73,10 +73,28 @@ struct signUpView: View {
         }
         }
 
+
     
     
 }
 
+func getTutorInformation(user: User){
+    let userRef = db.collection("tutores").document(user.uid)
+    userRef.getDocument { (documentSnapshot, error) in
+        if let error = error {
+            print("Error fetching user document:", error)
+            return
+        }
+        
+        guard let userData = documentSnapshot?.data() else {
+            print("User document not found")
+            return
+        }
+        
+        // Access the user data here
+        print("User data:", userData)
+    }
+}
 
 struct signUpView_Previews: PreviewProvider {
     static var previews: some View {

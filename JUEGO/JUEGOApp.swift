@@ -9,6 +9,8 @@ import SwiftUI
 import Firebase
 import GoogleSignIn
 
+let db = Firestore.firestore()
+
 @main
 struct JUEGOApp: App {
     @StateObject var viewModel = AuthenticationViewModel()
@@ -29,6 +31,8 @@ class AppDelegate:NSObject,UIApplicationDelegate{
       return GIDSignIn.sharedInstance.handle(url)
     }
 }
+
+
 
 extension JUEGOApp{
     private func setupAuthentication(){
