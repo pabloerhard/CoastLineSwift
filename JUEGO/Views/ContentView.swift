@@ -22,6 +22,7 @@ struct ContentView: View {
     var body: some View {
         
         if !isLogIn{
+            HStack(spacing:0){
             GeometryReader {geo in
                 VStack {
                     NavigationView {
@@ -43,7 +44,7 @@ struct ContentView: View {
                                 .keyboardType(.emailAddress)
                                 .frame(width: geo.size.width * 0.5)
                             
-                            TextField("Inserta Usuario", text: $password)
+                            TextField("Inserta Contraseña", text: $password)
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(15)
@@ -57,6 +58,8 @@ struct ContentView: View {
                                         if let errorMessage = error {
                                             errorLogIn = errorMessage
                                             alertLogIn = true
+                                        }else{
+                                            isLogIn=true
                                         }
                                     }
                                     
@@ -80,6 +83,7 @@ struct ContentView: View {
                                 .frame(width: 200, height: 50)
                                 .cornerRadius(15)
                                 
+                                
                             }
                             
                             Spacer()
@@ -91,12 +95,26 @@ struct ContentView: View {
                         
                     }
                     .navigationViewStyle(StackNavigationViewStyle())
-                }
+                }.frame(width: UIScreen.main.bounds.width * 0.6)
             }
+                ZStack{
+                    Color.black
+                    VStack{
+                        Text("¡Bienvenidos a CoastLine!")
+                            .foregroundColor(.white)
+                            .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 0.4)
+                }
+                .ignoresSafeArea(.all)
+                
+        }
         }else{
             MenuView()
         }
+        
     }
+    
 }
 
 func logIn(email: String, password: String, completion: @escaping (String?) -> Void) {
@@ -106,12 +124,16 @@ func logIn(email: String, password: String, completion: @escaping (String?) -> V
             print("Error signing in:", errorMessage)
             completion(errorMessage)
         } else {
+
             print("User signed in successfully!")
             if let currentUser = Auth.auth().currentUser {
                 getTutorInformation(user: currentUser)
                 getChildrenInformation(user: currentUser)
             }
+    
             completion(nil)
+            
+            
         }
     }
 }
@@ -144,6 +166,7 @@ func getChildrenInformation(user: User){
             print("Error fetching children documents:", error)
             return
         }
+        
         
         // Process the query results
         for document in querySnapshot!.documents {
