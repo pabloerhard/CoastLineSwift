@@ -18,78 +18,83 @@ struct ContentView: View {
     @StateObject private var vm = AuthenticationViewModel()
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
+    @State private var isLogIn = false
     var body: some View {
         
-        GeometryReader {geo in
-            VStack {
-                NavigationView {
-                    VStack(alignment: .center){
-                       Spacer()
-                        Text("Log In")
-                            .font(Font.custom("HelveticaNeue-Thin", size: 48))
-                        
-                        NavigationLink(destination:signUpView()){
-                            Text("Crear Cuenta")
-                        }
-                        .padding()
-                        
-                        TextField("Inserta Email", text: $email)
+        if !isLogIn{
+            GeometryReader {geo in
+                VStack {
+                    NavigationView {
+                        VStack(alignment: .center){
+                            Spacer()
+                            Text("Log In")
+                                .font(Font.custom("HelveticaNeue-Thin", size: 48))
+                            
+                            NavigationLink(destination:signUpView()){
+                                Text("Crear Cuenta")
+                            }
                             .padding()
-                            .background(Color.white)
-                            .cornerRadius(15)
-                            .border(Color.black)
-                            .keyboardType(.emailAddress)
-                            .frame(width: geo.size.width * 0.5)
-                        
-                        TextField("Inserta Usuario", text: $password)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(15)
-                            .border(Color.black)
-                            .keyboardType(.default)
-                            .frame(width: geo.size.width * 0.5)
-                        
-                        HStack{
-                            Button("Log In") {
-                                logIn(email: email, password: password) { error in
-                                    if let errorMessage = error {
-                                        errorLogIn = errorMessage
-                                        alertLogIn = true
+                            
+                            TextField("Inserta Email", text: $email)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(15)
+                                .border(Color.black)
+                                .keyboardType(.emailAddress)
+                                .frame(width: geo.size.width * 0.5)
+                            
+                            TextField("Inserta Usuario", text: $password)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(15)
+                                .border(Color.black)
+                                .keyboardType(.default)
+                                .frame(width: geo.size.width * 0.5)
+                            
+                            HStack{
+                                Button("Log In") {
+                                    logIn(email: email, password: password) { error in
+                                        if let errorMessage = error {
+                                            errorLogIn = errorMessage
+                                            alertLogIn = true
+                                        }
                                     }
+                                    
+                                }
+                                .frame(width: 200, height: 50)
+                                .foregroundColor(.white)
+                                .background(.black)
+                                .cornerRadius(10)
+                                .shadow(color:.gray,radius:4,x:0,y:2)
+                                .alert(isPresented: $alertLogIn) {
+                                    Alert(title:Text(errorLogIn))
                                 }
                                 
-                            }
-                            .frame(width: 200, height: 50)
-                            .foregroundColor(.white)
-                            .background(.black)
-                            .cornerRadius(10)
-                            .shadow(color:.gray,radius:4,x:0,y:2)
-                            .alert(isPresented: $alertLogIn) {
-                                Alert(title:Text(errorLogIn))
+                                Text("OR")
+                                    .padding()
+                                    .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                
+                                GoogleSignInButton {
+                                    vm.signInWithGoogle()
+                                }
+                                .frame(width: 200, height: 50)
+                                .cornerRadius(15)
+                                
                             }
                             
-                            Text("OR")
-                                .padding()
-                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                            Spacer()
                             
-                            GoogleSignInButton {
-                                vm.signInWithGoogle()
-                            }
-                            .frame(width: 200, height: 50)
-                            .cornerRadius(15)
                             
                         }
-                        
-                        Spacer()
-                        
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .alignmentGuide(.leading) { _ in geo.size.height / 2 }
                         
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .alignmentGuide(.leading) { _ in geo.size.height / 2 }
-                
+                    .navigationViewStyle(StackNavigationViewStyle())
                 }
-                .navigationViewStyle(StackNavigationViewStyle())
             }
+        }else{
+            MenuView()
         }
     }
 }
