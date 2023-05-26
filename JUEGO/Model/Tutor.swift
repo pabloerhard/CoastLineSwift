@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
 
 struct Tutor: Codable{
-    var id: String
-    var nombre: String
-    var apellido: String
+    var Id: String!
+    var Nombre: String
+    var Apellido: String
 }
