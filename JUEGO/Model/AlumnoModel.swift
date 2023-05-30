@@ -2,14 +2,68 @@
 //  AlumnoModel.swift
 //  JUEGO
 //
-//  Created by Alumno on 22/05/23.
+//  Created by Alumno on 26/05/23.
 //
 
 import Foundation
+import FirebaseFirestore
 
-struct Alumno: Codable{
-    var id: String
-    var nombre: String
-    var apellido: String
-    var tutores: [String] = []
+class AlumnoModel : ObservableObject{
+    @Published var listaAlumnos = [Alumno]()
+    let _collection = Firestore.firestore().collection("alumnos")
+
+    init()
+    {
+        Task {
+            if let alumnos = await getAlumno(){
+                DispatchQueue.main.async {
+                    self.listaAlumnos = alumnos
+                }
+            }
+        }
+    }
+    
+    func addAlumno(alumno: Alumno, completion: @escaping (String) -> Void){
+        let data = [
+            "Nombre" : alumno.Nombre,
+            "Apellido": alumno.Apellido,
+            "Nivel": alumno.Nivel,
+            "Pictogramas" : alumno.Pictogramas,
+            "Tutores": alumno.Tutores
+        ]
+        _collection.addDocument(data){ error in
+            if let error = error {
+                let errorMessage = error.localizedDescription
+                print("Error creating user : \(errorMessage)")
+                completion(error.localizedDescription)
+            }
+            else {
+                completion("OK")
+            }
+        }
+    }
+    
+    func getAlumno() async  -> [Alumno]?{
+        do {
+            let querySnapshot = try await _collection.getDocuments()
+            var alumnos = [Alumno]()
+            for document in querySnapshot.documents {
+                let data = document.data()
+                let nombre = data["Nombre"] as? String
+                let apellido = data["Apellido"] as? String
+                let nivel = data["Nivel"] as? Int
+                let tutores = data["Tutores"] as? [Tutor]
+                let pictogramas = data["Pictogramas"] as? [Pictograma]
+                let ident = document.documentID
+                let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: <#T##Int#>)
+                equipos.append(miEquipo)
+            }
+            return equipos
+        }
+        catch {
+            print("Error al traer los datos")
+        }
+        return nil
+    }
+    
 }
