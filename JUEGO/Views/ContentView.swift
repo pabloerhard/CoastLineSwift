@@ -110,7 +110,7 @@ struct ContentView: View {
                 
         }
         }else{
-            MenuView()
+            PerfilesView()
         }
         
     }

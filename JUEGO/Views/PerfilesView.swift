@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct PerfilesView: View {
-    @State private var mostrarAgregar =  false
-    @StateObject var equipos = ModeloEquipos()
+    //@State private var mostrarAgregar =  false
+    //@StateObject var equipos = ModeloEquipos()
     var body: some View {
-        NavigationView {
+        VStack{
+            Text("Lista de Perfiles")
+        }
+        /*NavigationView {
             List {
                 ForEach(equipos.listaEquipos, id: \.self){
                     equipo in
@@ -36,7 +39,7 @@ struct PerfilesView: View {
                 }
 
             }
-        }
+        }*/
         
     }
 }
