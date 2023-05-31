@@ -34,7 +34,7 @@ struct PerfilesView: View {
                          Image(systemName: "plus")
                      }
                     .sheet(isPresented: $mostrarAgregar){
-                        AgregarAlumno(alumnos: alumnos)
+                        AddAlumno(alumnos: alumnos)
                     }
                     Button {
                         mostrarMenu = true

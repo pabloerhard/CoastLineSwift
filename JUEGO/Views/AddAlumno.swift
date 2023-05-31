@@ -14,9 +14,9 @@ struct AddAlumno: View {
     @ObservedObject var alumnos : AlumnoModel
     @State private var nombre : String = ""
     @State private var apellido : String = ""
-    private var nivel : Int = 1
-    private var tutor : String = Auth.auth().currentUser!.uid
-    //private var pictogramas : Pictograma = Pictograma(Nombre: "", Url: "")
+    var nivel : Int = 1
+    var tutor : String = Auth.auth().currentUser!.uid
+    var pictogramas : Pictograma = Pictograma(Nombre: "", Url: "")
     
     var body: some View {
         Form{
@@ -24,14 +24,18 @@ struct AddAlumno: View {
                 .font(.largeTitle)
                 .bold()
                 .padding(.bottom)
-            TextField("Nombre", text: $nombre)
-                .padding()
+            Section(header: Text("Datos personales")){
+                TextField("Nombre", text: $nombre)
+                    .padding()
+            }
             TextField("Apellido", text: $apellido)
                 .padding()
-            Text("Nivel", text: nivel)
+            TextField("Nivel", text: .constant("\(nivel)"))
                 .padding()
-            Text("Tutor", text: tutor)
+                .disabled(true)
+            TextField("Tutor", text: .constant(tutor))
                 .padding()
+                .disabled(true)
             Button("Agregar"){
                 let alumno = Alumno(Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: [tutor])
                 alumnos.addAlumno(alumno: alumno) { error in
@@ -61,7 +65,3 @@ struct AddAlumno_Previews: PreviewProvider {
         AddAlumno(alumnos: AlumnoModel())
     }
 }
-
-
-
-
