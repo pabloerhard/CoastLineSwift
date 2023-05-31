@@ -23,6 +23,7 @@ struct ContentView: View {
         
         if !isLogIn{
             HStack(spacing:0){
+        
             GeometryReader {geo in
                 VStack {
                     NavigationView {
@@ -95,18 +96,21 @@ struct ContentView: View {
                         
                     }
                     .navigationViewStyle(StackNavigationViewStyle())
-                }.frame(width: UIScreen.main.bounds.width * 0.6)
-            }
-                ZStack{
-                    Color.black
-                    VStack{
-                        Text("¡Bienvenidos a CoastLine!")
-                            .foregroundColor(.white)
-                            .font(Font.custom("HelveticaNeue-Thin", size: 30))
-                    }
-                    .frame(width: UIScreen.main.bounds.width * 0.4)
                 }
-                .ignoresSafeArea(.all)
+            }
+                
+                VStack {
+                    ZStack{
+                        Color.black
+                        VStack{
+                            Text("¡Bienvenidos a CoastLine!")
+                                .foregroundColor(.white)
+                                .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                        }
+                        
+                    }
+                    .ignoresSafeArea(.all)
+                }
                 
         }
         }else{

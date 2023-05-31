@@ -94,7 +94,7 @@ struct signUpView: View {
                 .alignmentGuide(.leading) { _ in geo.size.height / 2 }
             }
         }else{
-            MenuView()
+            ContentView()
         }
     }
 }
