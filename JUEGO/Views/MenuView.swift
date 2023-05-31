@@ -20,6 +20,18 @@ struct MenuView: View {
                             .font(.system(size:40))
                             .padding()
                         Spacer()
+                        
+                        Toggle(isOn: $isToggled) {
+                            HStack{
+                                Spacer()
+                                Text("Tamaño")
+                            }
+                                    }
+                                    .onChange(of: isToggled) { newValue in
+                                        columns = newValue ? 4 : 2
+                                    }
+                                    .toggleStyle(SwitchToggleStyle(tint: .red))
+                                    .padding()
                     }
                     Text("Menu Principal")
                         .font(Font.custom("HelveticaNeue-Thin", size: fontSize))
@@ -27,13 +39,7 @@ struct MenuView: View {
                             debugPrint("Size Category:", sizeCategory)
                                   }
                 }
-                Toggle(isOn: $isToggled) {
-                                Text("Toggle")
-                            }
-                            .onChange(of: isToggled) { newValue in
-                                columns = newValue ? 4 : 2
-                            }
-                            .toggleStyle(SwitchToggleStyle(tint: .red))
+                
             
             }
             
@@ -52,7 +58,7 @@ struct MenuView: View {
                                             RoundedRectangle(cornerRadius: 10)
                                                 .foregroundColor(.blue)
                                                 .overlay(
-                                                    Text("Nivel: \(index)")
+                                                    Text("Nivel: \(index+1)")
                                                         .foregroundColor(.white)
                                                         .font(Font.custom("HelveticaNeue-Thin", size: fontSize*1.5))
                                                     
