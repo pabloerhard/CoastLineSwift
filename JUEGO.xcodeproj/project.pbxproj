@@ -16,7 +16,6 @@
 		BA160FBF2A09ABA5002751F6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FBE2A09ABA5002751F6 /* FirebaseDatabaseSwift */; };
 		BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FC02A09ABA5002751F6 /* FirebaseFirestore */; };
 		BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA160FC42A09AD5A002751F6 /* SignUpView.swift */; };
-		FB4735D42A157BCB00C075C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB4735D32A157BCB00C075C7 /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* ContentView.swift */; };
 		FB4909DC29F9D772008A4451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4909DB29F9D772008A4451 /* Assets.xcassets */; };
@@ -29,6 +28,7 @@
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
 		FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */; };
+		FBBA46FB2A27D55E00F616D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */; };
 		FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */; };
 		FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AD2A1C259E009883E9 /* MenuView.swift */; };
 /* End PBXBuildFile section */
@@ -39,7 +39,6 @@
 		BA0070312A271059004A5772 /* Alumno.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alumno.swift; sourceTree = "<group>"; };
 		BA0070332A271216004A5772 /* PerfilesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilesView.swift; sourceTree = "<group>"; };
 		BA160FC42A09AD5A002751F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		FB4735D32A157BCB00C075C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
 		FB4909D929F9D771008A4451 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
+		FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Users/Alumno/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +107,7 @@
 				FB4F3DA12A181DC00072476B /* Components */,
 				FB4F3D972A180F4D0072476B /* Model */,
 				FB4F3D942A180EE80072476B /* Info.plist */,
-				FB4735D32A157BCB00C075C7 /* GoogleService-Info.plist */,
+				FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */,
 				BA160FB72A08BEBB002751F6 /* Views */,
 				FB4909D729F9D771008A4451 /* JUEGOApp.swift */,
 				FB4909DB29F9D772008A4451 /* Assets.xcassets */,
@@ -227,7 +227,7 @@
 			files = (
 				FB4909DF29F9D772008A4451 /* Preview Assets.xcassets in Resources */,
 				FB4909DC29F9D772008A4451 /* Assets.xcassets in Resources */,
-				FB4735D42A157BCB00C075C7 /* GoogleService-Info.plist in Resources */,
+				FBBA46FB2A27D55E00F616D1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
