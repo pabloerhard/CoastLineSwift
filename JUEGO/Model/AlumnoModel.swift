@@ -52,7 +52,7 @@ class AlumnoModel : ObservableObject{
                 let nombre = data["Nombre"] as? String ?? "Sin nombre"
                 let apellido = data["Apellido"] as? String ?? "Sin apellido"
                 let nivel = data["Nivel"] as? Int ?? -1
-                let tutores = data["Tutores"] as? [Tutor] ?? []
+                let tutores = data["Tutores"] as? [String] ?? []
                 let pictogramas = data["Pictogramas"] as? [Pictograma] ?? []
                 let ident = document.documentID
                 let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: nivel,  Tutores: tutores, Pictogramas: pictogramas)
