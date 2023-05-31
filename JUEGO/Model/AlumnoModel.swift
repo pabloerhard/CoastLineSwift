@@ -5,7 +5,7 @@
 //  Created by Alumno on 26/05/23.
 //
 
-import Foundation
+/*import Foundation
 import FirebaseFirestore
 
 class AlumnoModel : ObservableObject{
@@ -55,10 +55,10 @@ class AlumnoModel : ObservableObject{
                 let tutores = data["Tutores"] as? [Tutor]
                 let pictogramas = data["Pictogramas"] as? [Pictograma]
                 let ident = document.documentID
-                let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: <#T##Int#>)
-                equipos.append(miEquipo)
+                let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: nivel)
+                alumnos.append(alumno)
             }
-            return equipos
+            return alumnos
         }
         catch {
             print("Error al traer los datos")
@@ -66,4 +66,4 @@ class AlumnoModel : ObservableObject{
         return nil
     }
     
-}
+}*/
