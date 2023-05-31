@@ -8,38 +8,45 @@
 import SwiftUI
 
 struct PerfilesView: View {
-    //@State private var mostrarAgregar =  false
-    //@StateObject var equipos = ModeloEquipos()
+    @State private var mostrarAgregar =  false
+    @State private var mostrarMenu =  false
+    @StateObject var alumnos = AlumnoModel()
     var body: some View {
-        VStack{
-            Text("Lista de Perfiles")
-        }
-        /*NavigationView {
-            List {
-                ForEach(equipos.listaEquipos, id: \.self){
-                    equipo in
-                    VStack(alignment: .leading) {
-                        Text(equipo.nombre)
-                            .font(.title3)
-                            .bold()
-                        Text(equipo.ciudad)
+        if !mostrarMenu{
+            NavigationView {
+                List {
+                    ForEach(alumnos.listaAlumnos, id: \.self){
+                        alumno in
+                        VStack(alignment: .leading) {
+                            Text(alumno.Nombre)
+                                .font(.title3)
+                                .bold()
+                            Text(alumno.Apellido)
+                        }
+                        .padding()
                     }
-                    .padding()
+                }
+                .navigationTitle("Lista de alumnos")
+                .toolbar {
+                    Button {
+                        mostrarAgregar = true
+                     } label: {
+                         Image(systemName: "plus")
+                     }
+                    .sheet(isPresented: $mostrarAgregar){
+                        AgregarAlumno(alumnos: alumnos)
+                    }
+                    Button {
+                        mostrarMenu = true
+                    } label: {
+                        Image(systemName: "checkerboard.rectangle")
+                    }
                 }
             }
-            .navigationTitle("Lista de Equipos")
-            .toolbar {
-                Button {
-                    mostrarAgregar = true
-                } label: {
-                    Image(systemName: "plus")
-                }
-                .sheet(isPresented: $mostrarAgregar){
-                    AgregarEquipo(equipos: equipos)
-                }
-
-            }
-        }*/
+        }
+        else{
+            MenuView()
+        }
         
     }
 }

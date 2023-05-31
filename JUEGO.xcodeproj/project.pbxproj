@@ -29,6 +29,7 @@
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
 		FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */; };
 		FBBA46FB2A27D55E00F616D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */; };
+		FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */; };
 		FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */; };
 		FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AD2A1C259E009883E9 /* MenuView.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
 		FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Users/Alumno/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlumno.swift; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 				BA0070332A271216004A5772 /* PerfilesView.swift */,
 				BA160FC42A09AD5A002751F6 /* SignUpView.swift */,
 				FBEBB0AD2A1C259E009883E9 /* MenuView.swift */,
+				FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */,
 				BA00702E2A27104C004A5772 /* Tutor.swift in Sources */,
 				FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */,
+				FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

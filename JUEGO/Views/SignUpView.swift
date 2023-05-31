@@ -129,7 +129,7 @@ func InsertUser(tutor: Tutor){
         if let error = error {
             print("Error inserting document: \(error.localizedDescription)")
         } else {
-            print("Document inserted with ID: \(tutor.Id)")
+            print("Document inserted with ID: \(tutor.Id ?? "error with id")")
         }
     }
 }
