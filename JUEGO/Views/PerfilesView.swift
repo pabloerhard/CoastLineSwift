@@ -28,7 +28,7 @@ struct PerfilesView: View {
                 }
                 .navigationTitle("Lista de alumnos")
                 .toolbar {
-                    Button {
+                    Button{
                         mostrarAgregar = true
                      } label: {
                          Image(systemName: "plus")
