@@ -52,7 +52,7 @@
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
-		FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Users/Alumno/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FBBA46FA2A27D55E00F616D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = GoogleService-Info.plist; sourceTree = "<group>"; };
 		FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlumno.swift; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
