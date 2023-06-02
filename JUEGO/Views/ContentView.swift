@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
     @State private var isLogIn = false
+    @State var curTutor: Tutor?
     var body: some View {
         
         if !isLogIn{
@@ -131,7 +132,13 @@ func logIn(email: String, password: String, completion: @escaping (String?) -> V
 
             print("User signed in successfully!")
             if let currentUser = Auth.auth().currentUser {
-                getTutorInformation(user: currentUser)
+                /*getTutorInformation(user: Auth.auth().currentUser) { tutor in
+                                if let tutor = tutor {
+                                    curTutor = tutor
+                                } else {
+                                    print("Tutor information not found")
+                                }
+                            }*/
                 getChildrenInformation(user: currentUser)
             }
     
@@ -144,23 +151,33 @@ func logIn(email: String, password: String, completion: @escaping (String?) -> V
 
 
 let db = Firestore.firestore()
-func getTutorInformation(user: User){
+func getTutorInformation(user: User, completion: @escaping (Tutor?) -> Void) {
     let userRef = db.collection("tutores").document(user.uid)
     userRef.getDocument { (documentSnapshot, error) in
         if let error = error {
             print("Error fetching user document:", error)
+            completion(nil)
             return
         }
         
         guard let userData = documentSnapshot?.data() else {
             print("User document not found")
+            completion(nil)
             return
         }
         
-        // Access the user data here
-        print("User data:", userData)
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: userData, options: [])
+            let decoder = JSONDecoder()
+            let tutor = try decoder.decode(Tutor.self, from: jsonData)
+            completion(tutor)
+        } catch {
+            print("Failed to decode tutor data:", error)
+            completion(nil)
+        }
     }
 }
+
 
 func getChildrenInformation(user: User){
     let childrenRef = db.collection("alumnos")

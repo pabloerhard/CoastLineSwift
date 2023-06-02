@@ -15,7 +15,9 @@ struct AddAlumno: View {
     @State private var nombre : String = ""
     @State private var apellido : String = ""
     var nivel : Int = 1
+    
     var tutor : String = Auth.auth().currentUser!.uid
+    //var tutor : Tutor = Tutor(Id: curTutor , Nombre: <#T##String#>, Apellido: <#T##String#>)
     var pictogramas : Pictograma = Pictograma(Nombre: "", Url: "")
     
     var body: some View {
@@ -25,17 +27,28 @@ struct AddAlumno: View {
                 .bold()
                 .padding(.bottom)
             Section(header: Text("Datos personales")){
-                TextField("Nombre", text: $nombre)
+                TextField(text: $nombre, prompt: Text("Nombre")){
+                    Text("Nombre")
+                }
+                    .padding()
+                TextField(text: $apellido, prompt: Text("Apellido")){
+                    Text("Apellido")
+                }
                     .padding()
             }
-            TextField("Apellido", text: $apellido)
+            Section(header: Text("Informacion Predeterminada")){
+                TextField(text: .constant("\(nivel)")){
+                    Text("Nivel")
+                }
                 .padding()
-            TextField("Nivel", text: .constant("\(nivel)"))
-                .padding()
+                .fontWeight(.ultraLight)
                 .disabled(true)
-            TextField("Tutor", text: .constant(tutor))
-                .padding()
-                .disabled(true)
+                TextField(text: .constant(tutor)){
+                    Text("Tutor:")
+                }
+                    .padding()
+                    .disabled(true)
+            }
             Button("Agregar"){
                 let alumno = Alumno(Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: [tutor])
                 alumnos.addAlumno(alumno: alumno) { error in
