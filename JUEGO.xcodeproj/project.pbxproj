@@ -18,7 +18,7 @@
 		BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA160FC42A09AD5A002751F6 /* SignUpView.swift */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
-		FB4909DA29F9D771008A4451 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* ContentView.swift */; };
+		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
 		FB4909DC29F9D772008A4451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4909DB29F9D772008A4451 /* Assets.xcassets */; };
 		FB4909DF29F9D772008A4451 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4909DE29F9D772008A4451 /* Preview Assets.xcassets */; };
 		FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F3D9A2A1811120072476B /* AuthenticationViewModel.swift */; };
@@ -44,7 +44,7 @@
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
-		FB4909D929F9D771008A4451 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FB4909D929F9D771008A4451 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		FB4909DB29F9D772008A4451 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB4909DE29F9D772008A4451 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB4F3D942A180EE80072476B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				FBAEF0C52A2152B500E50D16 /* ViewsJuegos */,
-				FB4909D929F9D771008A4451 /* ContentView.swift */,
+				FB4909D929F9D771008A4451 /* SignInView.swift */,
 				BA0070332A271216004A5772 /* PerfilesView.swift */,
 				BA160FC42A09AD5A002751F6 /* SignUpView.swift */,
 				FBEBB0AD2A1C259E009883E9 /* MenuView.swift */,
@@ -257,7 +257,7 @@
 				FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */,
 				FB4F3DA32A181DD20072476B /* Application.swift in Sources */,
 				FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */,
-				FB4909DA29F9D771008A4451 /* ContentView.swift in Sources */,
+				FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */,
 				FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */,
 				FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */,
 				BA0070302A271053004A5772 /* Pictograma.swift in Sources */,
