@@ -19,7 +19,7 @@ struct ContentView: View {
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
     @State private var isLogIn = false
-    @State var curTutor: Tutor?
+    @State private var curTutor: Tutor?
     let repository = FirebaseService()
     var body: some View {
         
@@ -62,6 +62,19 @@ struct ContentView: View {
                                             case .success(let uid):
                                                 isLogIn = true
                                                 print("User signed in with uid: \(uid)")
+                                                repository.getTutor(documentId: uid) { result in
+                                                    switch result {
+                                                    case .success(let tutor):
+                                                        curTutor = tutor
+                                                        print(uid)
+                                                        curTutor?.Id = uid
+                                                        print("Tutor information: \(String(describing: curTutor))")
+                                                    case .failure(let error):
+                                                        print("Error retriving tutor information: \(error)")
+                                                        errorLogIn = "\(error.localizedDescription)"
+                                                        alertLogIn = true
+                                                    }
+                                                }
                                             case .failure(let error):
                                                 print("Error signing in: \(error)")
                                                 errorLogIn = "\(error.localizedDescription)"
@@ -88,8 +101,6 @@ struct ContentView: View {
                                     }
                                     .frame(width: 200, height: 50)
                                     .cornerRadius(15)
-                                    
-                                    
                                 }
                                 Spacer()
                             }
