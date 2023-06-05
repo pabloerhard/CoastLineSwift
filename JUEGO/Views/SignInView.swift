@@ -68,7 +68,7 @@ struct ContentView: View {
                                                         curTutor = tutor
                                                         print(uid)
                                                         curTutor?.Id = uid
-                                                        print("Tutor information: \($curTutor)")
+                                                        print("Tutor information: \(String(describing: curTutor))")
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"
