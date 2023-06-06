@@ -12,7 +12,7 @@ import GoogleSignIn
 import FirebaseCore
 import GoogleSignInSwift
 
-struct ContentView: View {
+struct SignInView: View {
     @State private var email = ""
     @State private var password = ""
     @StateObject private var vm = AuthenticationViewModel()
@@ -135,8 +135,8 @@ struct ContentView: View {
 
 
 
-struct ContentView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SignInView()
     }
 }
