@@ -19,7 +19,8 @@ struct JUEGOApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SignInView()
+                .preferredColorScheme(.light)
         }
     }
 }

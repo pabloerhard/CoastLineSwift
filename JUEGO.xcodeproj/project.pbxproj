@@ -26,6 +26,7 @@
 		FB4F3D9E2A1814610072476B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FB4F3D9D2A1814610072476B /* GoogleSignIn */; };
 		FB4F3DA02A1814610072476B /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB4F3D9F2A1814610072476B /* GoogleSignInSwift */; };
 		FB4F3DA32A181DD20072476B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F3DA22A181DD20072476B /* Application.swift */; };
+		FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55E4DC2A2EC0A900A0F07C /* UserData.swift */; };
 		FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */; };
 		FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */; };
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
@@ -53,6 +54,7 @@
 		FB4F3D942A180EE80072476B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FB4F3D9A2A1811120072476B /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		FB4F3DA22A181DD20072476B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		FB55E4DC2A2EC0A900A0F07C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoUno.swift; sourceTree = "<group>"; };
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 		FB4909D629F9D771008A4451 /* JUEGO */ = {
 			isa = PBXGroup;
 			children = (
-				FB92101E2A2A7B5D005E0F76 /* Services */,
+				FB92101E2A2A7B5D005E0F76 /* Domain */,
 				FB4F3DA12A181DC00072476B /* Components */,
 				FB4F3D972A180F4D0072476B /* Model */,
 				FB4F3D942A180EE80072476B /* Info.plist */,
@@ -156,12 +158,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		FB92101E2A2A7B5D005E0F76 /* Services */ = {
+		FB92101E2A2A7B5D005E0F76 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */,
+				FB55E4DC2A2EC0A900A0F07C /* UserData.swift */,
 			);
-			path = Services;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		FBAEF0C52A2152B500E50D16 /* ViewsJuegos */ = {
@@ -276,6 +279,7 @@
 				BA00702E2A27104C004A5772 /* Tutor.swift in Sources */,
 				FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */,
 				FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */,
+				FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */,
 				FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
