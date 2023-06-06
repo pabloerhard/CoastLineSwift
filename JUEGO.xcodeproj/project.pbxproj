@@ -16,6 +16,7 @@
 		BA160FBF2A09ABA5002751F6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FBE2A09ABA5002751F6 /* FirebaseDatabaseSwift */; };
 		BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FC02A09ABA5002751F6 /* FirebaseFirestore */; };
 		BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA160FC42A09AD5A002751F6 /* SignUpView.swift */; };
+		BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA40EED12A2E90510048545A /* MenuPictogramasView.swift */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
@@ -30,6 +31,7 @@
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
 		FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */; };
+		FBB006012A2AA30C00F738C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB006002A2AA30C00F738C4 /* SettingsView.swift */; };
 		FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */; };
 		FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */; };
 		FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AD2A1C259E009883E9 /* MenuView.swift */; };
@@ -41,7 +43,8 @@
 		BA0070312A271059004A5772 /* Alumno.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alumno.swift; sourceTree = "<group>"; };
 		BA0070332A271216004A5772 /* PerfilesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilesView.swift; sourceTree = "<group>"; };
 		BA160FC42A09AD5A002751F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoogleService-Info.plist; sourceTree = "<group>"; };
+		BA40EED12A2E90510048545A /* MenuPictogramasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPictogramasView.swift; sourceTree = "<group>"; };
+		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
 		FB4909D929F9D771008A4451 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
+		FBB006002A2AA30C00F738C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlumno.swift; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				BA160FC42A09AD5A002751F6 /* SignUpView.swift */,
 				FBEBB0AD2A1C259E009883E9 /* MenuView.swift */,
 				FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */,
+				FBB006002A2AA30C00F738C4 /* SettingsView.swift */,
+				BA40EED12A2E90510048545A /* MenuPictogramasView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */,
 				BA0070322A271059004A5772 /* Alumno.swift in Sources */,
 				FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */,
+				FBB006012A2AA30C00F738C4 /* SettingsView.swift in Sources */,
 				FB4F3DA32A181DD20072476B /* Application.swift in Sources */,
 				FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */,
 				FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */,
@@ -263,6 +270,7 @@
 				BA0070302A271053004A5772 /* Pictograma.swift in Sources */,
 				BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */,
 				FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */,
+				BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */,
 				BA0070342A271217004A5772 /* PerfilesView.swift in Sources */,
 				FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */,
 				BA00702E2A27104C004A5772 /* Tutor.swift in Sources */,
