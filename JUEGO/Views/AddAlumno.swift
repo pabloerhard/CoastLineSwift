@@ -8,13 +8,17 @@
 import SwiftUI
 import Firebase
 
+
 struct AddAlumno: View {
     
     @Environment(\.dismiss) var dismiss
     @ObservedObject var alumnos : AlumnoModel
+    @EnvironmentObject var userData : UserData
     @State private var nombre : String = ""
     @State private var apellido : String = ""
     var nivel : Int = 1
+    @State private var agregarPictograma = false
+    @State private var pictogramaFields: [PictogramaField] = []
     
     var tutor : String = Auth.auth().currentUser!.uid
     //var tutor : Tutor = Tutor(Id: curTutor , Nombre: <#T##String#>, Apellido: <#T##String#>)
@@ -25,29 +29,54 @@ struct AddAlumno: View {
             Text("Agrega alumno")
                 .font(.largeTitle)
                 .bold()
-                .padding(.bottom)
-            Section(header: Text("Datos personales")){
-                TextField(text: $nombre, prompt: Text("Nombre")){
-                    Text("Nombre")
+                .padding()
+            Section(header: Text("Datos Personales")){
+                LabeledContent {
+                    TextField("Nombre", text: $nombre)
+                } label: {
+                    Text("Nombre: ")
                 }
-                    .padding()
-                TextField(text: $apellido, prompt: Text("Apellido")){
-                    Text("Apellido")
+                LabeledContent {
+                    TextField("Apellido", text: $apellido)
+                } label: {
+                    Text("Apellido: ")
                 }
-                    .padding()
             }
             Section(header: Text("Informacion Predeterminada")){
-                TextField(text: .constant("\(nivel)")){
-                    Text("Nivel")
+                LabeledContent {
+                    TextField("Nivel", text: .constant("\(nivel)"))
+                        .foregroundColor(.gray)
+                        .disabled(true)
+                } label: {
+                    Text("Nivel Inicial: ")
                 }
-                .padding()
-                .fontWeight(.ultraLight)
-                .disabled(true)
-                TextField(text: .constant(tutor)){
-                    Text("Tutor:")
+                
+                LabeledContent {
+                    TextField("Tutor", text: .constant("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido) - (Tutor Actual)"))
+                        .foregroundColor(.gray)
+                        .disabled(true)
+                } label: {
+                    Text("Tutor de \(nombre.count > 4 ? nombre : "Alumno"): ")
                 }
-                    .padding()
-                    .disabled(true)
+            }
+            Section(header: Text("Agregar pictograma")) {
+                Button(action: {
+                    agregarPictograma.toggle()
+                    
+                    if agregarPictograma {
+                        pictogramaFields.append(PictogramaField())
+                    } else {
+                        pictogramaFields.removeAll()
+                    }
+                }) {
+                    Text(agregarPictograma ? "Cerrar" : "Agregar")
+                }
+                
+                if agregarPictograma {
+                    ForEach(pictogramaFields.indices, id: \.self) { index in
+                        PictogramaView(pictogramaFields: $pictogramaFields, index: index)
+                    }
+                }
             }
             Button("Agregar"){
                 let alumno = Alumno(Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: [tutor])
@@ -68,6 +97,31 @@ struct AddAlumno: View {
                 }
             }
             font(.title)
+        }
+    }
+}
+
+struct PictogramaField: Identifiable {
+    let id = UUID()
+    var nombre: String = ""
+    var link: String = ""
+}
+
+struct PictogramaView: View {
+    @Binding var pictogramaFields: [PictogramaField]
+    let index: Int
+    
+    var body: some View {
+        VStack {
+            TextField("Nombre", text: $pictogramaFields[index].nombre)
+            
+            TextField("Link", text: $pictogramaFields[index].link)
+            
+            Button(action: {
+                pictogramaFields.remove(at: index)
+            }) {
+                Text("Remove")
+            }
         }
     }
 }
