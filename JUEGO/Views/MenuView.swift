@@ -144,6 +144,9 @@ struct MenuView: View {
         
     func destinationView(for index: Int) -> some View {
         print(index)
+        if index == 0 {
+            return AnyView(MenuPictogramasView())
+        }
         if index == 1 {
             return AnyView(JuegoDos())
         } else {
