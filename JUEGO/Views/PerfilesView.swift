@@ -16,6 +16,9 @@ struct PerfilesView: View {
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16)
     ]
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         if !mostrarMenu{
             NavigationView {
@@ -35,15 +38,19 @@ struct PerfilesView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-                    .sheet(isPresented: $mostrarAgregar) {
+                    .sheet(isPresented: $mostrarAgregar, onDismiss: {
+                        // Handle data from the sheet here if needed
+                    }) {
                         AddAlumno(alumnos: alumnos)
                     }
+
                     Button {
                         mostrarMenu = true
                     } label: {
                         Image(systemName: "checkerboard.rectangle")
                     }
                 }
+                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(alumnos.listaAlumnos, id: \.self) { alumno in
@@ -59,8 +66,8 @@ struct PerfilesView: View {
         else{
             MenuView()
         }
-        
     }
+    
 }
 
 struct ProfileView: View {
