@@ -13,16 +13,16 @@ import FirebaseCore
 import GoogleSignInSwift
 
 struct SignInView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @State private var email = "admin@a.com"
+    @State private var password = "123456"
     @StateObject private var vm = AuthenticationViewModel()
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
     @State private var isLogIn = false
     @State private var curTutor: Tutor?
+    @EnvironmentObject var userData : UserData
     let repository = FirebaseService()
     var body: some View {
-        
         if !isLogIn{
             HStack(spacing:0){
                 
@@ -65,10 +65,9 @@ struct SignInView: View {
                                                 repository.getTutor(documentId: uid) { result in
                                                     switch result {
                                                     case .success(let tutor):
-                                                        curTutor = tutor
-                                                        print(uid)
-                                                        curTutor?.Id = uid
-                                                        print("Tutor information: \(String(describing: curTutor))")
+                                                        userData.curTutor = tutor
+                                                        userData.curTutor.Id = uid
+                                                        print("Tutor information: \(userData.curTutor)")
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"
@@ -128,9 +127,7 @@ struct SignInView: View {
         }else{
             PerfilesView()
         }
-        
     }
-    
 }
 
 
