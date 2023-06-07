@@ -18,12 +18,11 @@ struct SignInView: View {
     @StateObject private var vm = AuthenticationViewModel()
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
-    @State private var isLogIn = false
     @State private var curTutor: Tutor?
     @EnvironmentObject var userData : UserData
     let repository = FirebaseService()
     var body: some View {
-        if !isLogIn{
+        if !userData.isLogIn{
             HStack(spacing:0){
                 
                 GeometryReader {geo in
@@ -60,7 +59,7 @@ struct SignInView: View {
                                         repository.signIn(email: email, password: password) { result in
                                             switch result {
                                             case .success(let uid):
-                                                isLogIn = true
+                                                userData.isLogIn = true
                                                 print("User signed in with uid: \(uid)")
                                                 repository.getTutor(documentId: uid) { result in
                                                     switch result {
