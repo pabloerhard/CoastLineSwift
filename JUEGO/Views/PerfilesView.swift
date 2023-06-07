@@ -8,7 +8,6 @@
 import SwiftUI
 struct PerfilesView: View {
     @State private var mostrarAgregar =  false
-    @State private var mostrarMenu =  false
     @StateObject var alumnos = AlumnoModel()
     @EnvironmentObject var userData : UserData
     let columns: [GridItem] = [
@@ -20,16 +19,13 @@ struct PerfilesView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        if !mostrarMenu{
+        if !userData.mostrarMenu{
             NavigationView {
                 VStack {
                     Section(header: Text("Tus Datos Personales:")){
                         Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
                     }
                     .padding()
-//                    Section(header: Text("Tus Datos Personales:")){
-//                        Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
-//                    }
                 }
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
                 .toolbar {
@@ -45,12 +41,11 @@ struct PerfilesView: View {
                     }
 
                     Button {
-                        mostrarMenu = true
+                        userData.mostrarMenu = true
                     } label: {
                         Image(systemName: "checkerboard.rectangle")
                     }
                 }
-                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(alumnos.listaAlumnos, id: \.self) { alumno in
@@ -62,7 +57,6 @@ struct PerfilesView: View {
             }
 
         }
-        
         else{
             MenuView()
         }
@@ -72,20 +66,29 @@ struct PerfilesView: View {
 
 struct ProfileView: View {
     let alumno: Alumno
-    
+    @EnvironmentObject var userData : UserData
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(alumno.Nombre)
-                .font(.title3)
-                .bold()
-            Text(alumno.Apellido)
+        Button {
+            userData.curAlumno = alumno
+            userData.mostrarMenu = true
+        }label: {
+            VStack(alignment: .leading) {
+                Text(alumno.Nombre)
+                    .font(.title3)
+                    .bold()
+                Text(alumno.Apellido)
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 2)
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 2)
+        
     }
 }
+
+
+
 
 
 struct PerfilesView_Previews: PreviewProvider {

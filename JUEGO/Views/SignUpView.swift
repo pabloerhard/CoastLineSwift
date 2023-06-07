@@ -70,7 +70,8 @@ struct signUpView: View {
                                 switch result {
                                 case .success(let uid):
                                     isLogIn = true
-                                    print("User registered in with uid: \(uid)")
+                                    print("Tutor registered in with uid: \(uid)")
+                                    repository.insertTutor(tutor: Tutor(Nombre: nombre, Apellido: apellido))
                                 case .failure(let error):
                                     print("Error registering user in: \(error)")
                                     errorLogIn = "\(error.localizedDescription)"
