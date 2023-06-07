@@ -24,10 +24,10 @@ struct MenuView: View {
     let repository = FirebaseService()
     
     var body: some View {
-        if userData.isLogIn{
+        if userData.mostrarMenu{
             NavigationView {
                 VStack {
-                    Text("Hola \(userData.curAlumno.Nombre)")
+            
                     VStack{
                         ZStack {
                             HStack {
@@ -51,6 +51,7 @@ struct MenuView: View {
                                         Button {
                                             if Int(respuesta) == num1 + num2{
                                                 isCorrect=true
+                                                sheetPresented = false
                                             }else{
                                                 showAlert=true
                                             }
@@ -64,55 +65,7 @@ struct MenuView: View {
                                                 showAlert=false
                                             })
                                         }
-                                        .sheet(isPresented: $isCorrect) {
-                                            
-                                            GeometryReader {geo in
-                                                VStack(alignment: .center, spacing: 16) {
-                                                    Text ("Ajustes de Cuenta")
-                                                        .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                                                    
-                                                    Button {
-                                                        do{
-                                                            try repository.signOut()
-                                                            userData.isLogIn = false
-                                                            
-                                                        }catch{
-                                                            showSignOutAlert = true
-                                                        }
-                                                    } label: {
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .foregroundColor(.black)
-                                                            .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
-                                                            .overlay(Text("Sign Out"))
-                                                            .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                                                            .foregroundColor(.white)
-                                                        
-                                                    }
-                                                    .alert(isPresented: $showSignOutAlert) {
-                                                        Alert(title: Text("Error"),message:Text("Error haciendo el SignOut"),
-                                                              dismissButton: .default(Text("OK")){
-                                                            showSignOutAlert=false
-                                                        })
-                                                    }
-                                                    
-                                                    Button {
-                                                        //
-                                                    } label: {
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .foregroundColor(.black)
-                                                            .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
-                                                            .overlay(Text("Sign Out"))
-                                                            .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                                                            .foregroundColor(.white)
-                                                    }
-
-                                                    
-                                                }
-                                                .padding()
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                            }
-                                            
-                                        }
+                                        
                                         
                                         
                                     }
@@ -137,17 +90,67 @@ struct MenuView: View {
                                 
                                 
                             }
+                            .sheet(isPresented: $isCorrect) {
+                                
+                                GeometryReader {geo in
+                                    VStack(alignment: .center, spacing: 16) {
+                                        Text ("Ajustes de Cuenta")
+                                            .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                        
+                                        Button {
+                                            do{
+                                                
+                                                try repository.signOut()
+                                                userData.mostrarMenu = false
+                                                isCorrect=false
+                                                userData.isLogIn = false
+                                                
+                                            }catch{
+                                                showSignOutAlert = true
+                                            }
+                                        } label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(.black)
+                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                                                .overlay(Text("Sign Out"))
+                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                                .foregroundColor(.white)
+                                            
+                                        }
+                                        .alert(isPresented: $showSignOutAlert) {
+                                            Alert(title: Text("Error"),message:Text("Error haciendo el SignOut"),
+                                                  dismissButton: .default(Text("OK")){
+                                                showSignOutAlert=false
+                                            })
+                                        }
+                                        Button {
+                                            isCorrect = false
+                                            userData.mostrarMenu = false
+                                        } label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(.black)
+                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                                                .overlay(Text("Perfiles"))
+                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                                .foregroundColor(.white)
+                                        }
+                                  
+                                            
+                                
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                }
+                                
+                            }
                             
-                            Text("Menu Principal")
+                            Text("Bienvenido \(userData.curAlumno.Nombre)")
                                 .font(Font.custom("HelveticaNeue-Thin", size: fontSize))
                                 .onAppear {
                                     debugPrint("Size Category:", sizeCategory)
                                 }
                         }
-                        
-                        
                     }
-                    
                     
                     VStack {
                         GeometryReader { geometry in
@@ -161,13 +164,22 @@ struct MenuView: View {
                                             RoundedRectangle(cornerRadius: 10)
                                                 .foregroundColor(.blue)
                                                 .overlay(
-                                                    Text("Nivel: \(index+1)")
-                                                        .foregroundColor(.white)
-                                                        .font(Font.custom("HelveticaNeue-Thin", size: fontSize*1.5))
+                                                    Group {
+                                                        if index >= userData.curAlumno.Nivel {
+                                                              Image(systemName: "lock")
+                                                                  .foregroundColor(.white)
+                                                                  .font(.system(size: fontSize * 1.5))
+                                                          } else {
+                                                              Text("Nivel: \(index+1)")
+                                                                  .foregroundColor(.white)
+                                                                  .font(Font.custom("HelveticaNeue-Thin", size: fontSize * 1.5))
+                                                           }
+                                                         }
                                                     
                                                 )
                                                 .frame(width: itemWidth,height: itemHeigth)
                                         }
+                                        .disabled(index >= userData.curAlumno.Nivel)
                                         
                                     }
                                 }
@@ -184,8 +196,9 @@ struct MenuView: View {
             }
             .navigationViewStyle(.stack)
         } else {
-            SignInView()
+            PerfilesView()
         }
+       
     }
     
     

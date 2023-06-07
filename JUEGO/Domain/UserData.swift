@@ -12,6 +12,5 @@ class UserData: ObservableObject {
     @Published var curTutor: Tutor = Tutor(Nombre: "", Apellido: "")
     @Published var curAlumno: Alumno = Alumno(Nombre: "", Apellido: "", Nivel: 0, Tutores: [""])
     @Published var isLogIn : Bool = false
-    @Published var isMenuView : Bool = false
     @Published var mostrarMenu : Bool = false
 }

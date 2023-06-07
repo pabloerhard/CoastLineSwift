@@ -40,11 +40,7 @@ struct PerfilesView: View {
                         AddAlumno(alumnos: alumnos)
                     }
 
-                    Button {
-                        userData.mostrarMenu = true
-                    } label: {
-                        Image(systemName: "checkerboard.rectangle")
-                    }
+    
                 }
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
