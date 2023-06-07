@@ -12,6 +12,7 @@ import GoogleSignIn
 
 @main
 struct JUEGOApp: App {
+    @StateObject var userData = UserData()
     @StateObject var viewModel = AuthenticationViewModel()
     init(){
         setupAuthentication()
@@ -21,6 +22,7 @@ struct JUEGOApp: App {
         WindowGroup {
             SignInView()
                 .preferredColorScheme(.light)
+                .environmentObject(userData)
         }
     }
 }
