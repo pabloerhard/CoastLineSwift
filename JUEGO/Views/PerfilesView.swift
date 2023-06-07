@@ -27,9 +27,6 @@ struct PerfilesView: View {
                         Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
                     }
                     .padding()
-//                    Section(header: Text("Tus Datos Personales:")){
-//                        Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
-//                    }
                 }
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
                 .toolbar {
@@ -50,7 +47,6 @@ struct PerfilesView: View {
                         Image(systemName: "checkerboard.rectangle")
                     }
                 }
-                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(alumnos.listaAlumnos, id: \.self) { alumno in
@@ -62,7 +58,6 @@ struct PerfilesView: View {
             }
 
         }
-        
         else{
             MenuView()
         }
@@ -72,20 +67,37 @@ struct PerfilesView: View {
 
 struct ProfileView: View {
     let alumno: Alumno
-    
+    @EnvironmentObject var userData : UserData
+    @State private var show = false
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(alumno.Nombre)
-                .font(.title3)
-                .bold()
-            Text(alumno.Apellido)
+        if !show {
+            Button {
+                show=true
+                userData.curAlumno = alumno
+            } label: {
+                VStack(alignment: .leading) {
+                    Text(alumno.Nombre)
+                        .font(.title3)
+                        .bold()
+                    Text(alumno.Apellido)
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 2)
+            }
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 2)
+        else{
+            MenuView()
+        }
+        
+
+        
     }
 }
+
+
+
 
 
 struct PerfilesView_Previews: PreviewProvider {

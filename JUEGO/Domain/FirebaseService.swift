@@ -54,7 +54,6 @@ class FirebaseService{
         }
     }
     func getTutor(documentId: String, completion: @escaping (Result<Tutor, Error>) -> Void) {
-        let db = Firestore.firestore()
         let docRef = db.collection("tutores").document(documentId)
 
         docRef.getDocument { (document, error) in
@@ -79,36 +78,6 @@ class FirebaseService{
         }
     }
 
-
-
-    /*func getTutor(user: User, completion: @escaping (Tutor?) -> Void) {
-        let userRef = db.collection("tutores").document(user.uid)
-        userRef.getDocument { (documentSnapshot, error) in
-            if let error = error {
-                print("Error fetching user document:", error)
-                completion(nil)
-                return
-            }
-            
-            guard let userData = documentSnapshot?.data() else {
-                print("User document not found")
-                completion(nil)
-                return
-            }
-            
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: userData, options: [])
-                let decoder = JSONDecoder()
-                let tutor = try decoder.decode(Tutor.self, from: jsonData)
-                completion(tutor)
-            } catch {
-                print("Failed to decode tutor data:", error)
-                completion(nil)
-            }
-        }
-    }*/
-
-
     func getChildrenInformation(user: User){
         let childrenRef = db.collection("alumnos")
         let query = childrenRef.whereField("Tutores", arrayContains: user.uid)
@@ -117,8 +86,6 @@ class FirebaseService{
                 print("Error fetching children documents:", error)
                 return
             }
-            
-            
             // Process the query results
             for document in querySnapshot!.documents {
                 let childData = document.data()

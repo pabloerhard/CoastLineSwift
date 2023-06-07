@@ -15,7 +15,7 @@ class AlumnoModel : ObservableObject{
     init()
     {
         Task {
-            if let alumnos = await getAlumno(){
+            if let alumnos = await getAlumnos(){
                 DispatchQueue.main.async {
                     self.listaAlumnos = alumnos
                 }
@@ -43,7 +43,7 @@ class AlumnoModel : ObservableObject{
         }
     }
     
-    func getAlumno() async  -> [Alumno]?{
+    func getAlumnos() async  -> [Alumno]?{
         do {
             let querySnapshot = try await _collection.getDocuments()
             var alumnos = [Alumno]()
