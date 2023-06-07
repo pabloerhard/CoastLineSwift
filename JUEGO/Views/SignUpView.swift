@@ -17,7 +17,7 @@ struct signUpView: View {
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
     @State private var isLogIn=false
-    
+    let repository = FirebaseService()
     
     var body: some View {
         if !isLogIn{
@@ -66,12 +66,16 @@ struct signUpView: View {
                     .padding()
                     VStack {
                         Button(action: {
-                            Register(email: email, password: password, nombre: nombre, apellido: apellido) { error in
-                                if let errorMessage = error {
-                                    errorLogIn = errorMessage
-                                    alertLogIn = true
-                                } else {
+                            repository.register(email: email, password: password, nombre: nombre, apellido: apellido) { result in
+                                switch result {
+                                case .success(let uid):
                                     isLogIn = true
+                                    print("Tutor registered in with uid: \(uid)")
+                                    repository.insertTutor(tutor: Tutor(Nombre: nombre, Apellido: apellido))
+                                case .failure(let error):
+                                    print("Error registering user in: \(error)")
+                                    errorLogIn = "\(error.localizedDescription)"
+                                    alertLogIn = true
                                 }
                             }
                         }) {
@@ -94,46 +98,10 @@ struct signUpView: View {
                 .alignmentGuide(.leading) { _ in geo.size.height / 2 }
             }
         }else{
-            MenuView()
+            SignInView()
         }
     }
 }
-
-
-func Register(email: String, password: String, nombre: String, apellido: String, completion: @escaping (String?) -> Void) {
-    Auth.auth().createUser(withEmail: email, password: password) { result, error in
-        if let error = error {
-            let errorMessage = error.localizedDescription
-            print("Error creating user : \(errorMessage)")
-            completion(errorMessage)
-            return
-        }
-        print("User registered successfully!")
-        guard let user = result?.user else {
-            return
-        }
-        let userId = user.uid
-        let newTutor = Tutor(Id: userId, Nombre: nombre, Apellido: apellido)
-        InsertUser(tutor: newTutor)
-        completion(nil)
-    }
-}
-            
-func InsertUser(tutor: Tutor){
-    let tutorRef = Firestore.firestore().collection("tutores")
-    let data = [
-        "Nombre": tutor.Nombre,
-        "Apellido": tutor.Apellido
-    ]
-    tutorRef.document(tutor.Id).setData(data) { error in
-        if let error = error {
-            print("Error inserting document: \(error.localizedDescription)")
-        } else {
-            print("Document inserted with ID: \(tutor.Id)")
-        }
-    }
-}
-
 
 struct signUpView_Previews: PreviewProvider {
     static var previews: some View {

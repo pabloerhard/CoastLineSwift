@@ -5,7 +5,7 @@
 //  Created by Alumno on 26/05/23.
 //
 
-/*import Foundation
+import Foundation
 import FirebaseFirestore
 
 class AlumnoModel : ObservableObject{
@@ -15,7 +15,7 @@ class AlumnoModel : ObservableObject{
     init()
     {
         Task {
-            if let alumnos = await getAlumno(){
+            if let alumnos = await getAlumnos(){
                 DispatchQueue.main.async {
                     self.listaAlumnos = alumnos
                 }
@@ -30,8 +30,8 @@ class AlumnoModel : ObservableObject{
             "Nivel": alumno.Nivel,
             "Pictogramas" : alumno.Pictogramas,
             "Tutores": alumno.Tutores
-        ]
-        _collection.addDocument(data){ error in
+        ] as [String : Any]
+        _collection.addDocument(data: data){ error in
             if let error = error {
                 let errorMessage = error.localizedDescription
                 print("Error creating user : \(errorMessage)")
@@ -43,19 +43,19 @@ class AlumnoModel : ObservableObject{
         }
     }
     
-    func getAlumno() async  -> [Alumno]?{
+    func getAlumnos() async  -> [Alumno]?{
         do {
             let querySnapshot = try await _collection.getDocuments()
             var alumnos = [Alumno]()
             for document in querySnapshot.documents {
                 let data = document.data()
-                let nombre = data["Nombre"] as? String
-                let apellido = data["Apellido"] as? String
-                let nivel = data["Nivel"] as? Int
-                let tutores = data["Tutores"] as? [Tutor]
-                let pictogramas = data["Pictogramas"] as? [Pictograma]
+                let nombre = data["Nombre"] as? String ?? "Sin nombre"
+                let apellido = data["Apellido"] as? String ?? "Sin apellido"
+                let nivel = data["Nivel"] as? Int ?? -1
+                let tutores = data["Tutores"] as? [String] ?? []
+                let pictogramas = data["Pictogramas"] as? [Pictograma] ?? []
                 let ident = document.documentID
-                let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: nivel)
+                let alumno = Alumno(Id: ident, Nombre: nombre, Apellido: apellido, Nivel: nivel,  Tutores: tutores, Pictogramas: pictogramas)
                 alumnos.append(alumno)
             }
             return alumnos
@@ -66,4 +66,4 @@ class AlumnoModel : ObservableObject{
         return nil
     }
     
-}*/
+}
