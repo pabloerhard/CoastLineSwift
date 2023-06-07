@@ -27,6 +27,7 @@ struct MenuView: View {
         if userData.isLogIn{
             NavigationView {
                 VStack {
+                    Text("Hola \(userData.curAlumno.Nombre)")
                     VStack{
                         ZStack {
                             HStack {

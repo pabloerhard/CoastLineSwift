@@ -8,7 +8,6 @@
 import SwiftUI
 struct PerfilesView: View {
     @State private var mostrarAgregar =  false
-    @State private var mostrarMenu =  false
     @StateObject var alumnos = AlumnoModel()
     @EnvironmentObject var userData : UserData
     let columns: [GridItem] = [
@@ -20,7 +19,7 @@ struct PerfilesView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        if !mostrarMenu{
+        if !userData.mostrarMenu{
             NavigationView {
                 VStack {
                     Section(header: Text("Tus Datos Personales:")){
@@ -42,7 +41,7 @@ struct PerfilesView: View {
                     }
 
                     Button {
-                        mostrarMenu = true
+                        userData.mostrarMenu = true
                     } label: {
                         Image(systemName: "checkerboard.rectangle")
                     }
@@ -68,30 +67,22 @@ struct PerfilesView: View {
 struct ProfileView: View {
     let alumno: Alumno
     @EnvironmentObject var userData : UserData
-    @State private var show = false
     var body: some View {
-        if !show {
-            Button {
-                show=true
-                userData.curAlumno = alumno
-            } label: {
-                VStack(alignment: .leading) {
-                    Text(alumno.Nombre)
-                        .font(.title3)
-                        .bold()
-                    Text(alumno.Apellido)
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 2)
+        Button {
+            userData.curAlumno = alumno
+            userData.mostrarMenu = true
+        }label: {
+            VStack(alignment: .leading) {
+                Text(alumno.Nombre)
+                    .font(.title3)
+                    .bold()
+                Text(alumno.Apellido)
             }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 2)
         }
-        else{
-            MenuView()
-        }
-        
-
         
     }
 }
