@@ -27,12 +27,16 @@ struct PerfilesView: View {
                     }
                     .padding()
                     List {
-                        ForEach(userData.allAlumnos, id: \.self) { alumno in
+                        ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
                             Text(alumno.Nombre)
+                                .swipeActions {
+                                    Button("Añadir"){
+                                        userData.tutorAlumnos.insert(alumno)
+                                        userData.otherAlumnos.remove(alumno)
+                                    }
+                                    .tint(.green)
+                                }
                         }
-                        //.onDelete(perform: print("Delete"))
-                        
-                        
                     }
 
                 }
@@ -51,7 +55,7 @@ struct PerfilesView: View {
                 }
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(userData.tutorAlumnos, id: \.self) { alumno in
+                        ForEach(Array(userData.tutorAlumnos), id: \.self) { alumno in
                             
                             ProfileView(alumno: alumno)
                         }
@@ -94,6 +98,7 @@ struct ProfileView: View {
                     return tutorAlumno.Id != alumno.Id
                 }
                 userData.tutorAlumnos = filteredAlumnos
+                userData.otherAlumnos.insert(alumno)
             }) {
                 Label("Eliminar", systemImage: "trash")
             }

@@ -81,78 +81,67 @@ class FirebaseService{
         }
     }
     
-    func getTutorAlumnos(tutorId: String, completion: @escaping (Result<[Alumno], Error>) -> Void) {
+    func getTutorAlumnos(tutorId: String) async throws -> Set<Alumno> {
         let alumnosRef = db.collection("alumnos")
         let query = alumnosRef.whereField("Tutores", arrayContains: tutorId)
-        query.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            var alumnos = [Alumno]()
-            for document in querySnapshot!.documents {
-                let data = document.data()
+        let querySnapshot = try await query.getDocuments()
+        let documents = querySnapshot.documents
+        var alumnos = Set<Alumno>()
+        
+        for document in documents {
+            let data = document.data()
+            if  let nombre = data["Nombre"] as? String,
+                let apellido = data["Apellido"] as? String,
+                let nivel = data["Nivel"] as? Int,
+                let tutores = data["Tutores"] as? [String],
+                let pictogramas = data["Pictogramas"] as? [[String: String]] {
                 
-                if  let nombre = data["Nombre"] as? String,
-                    let apellido = data["Apellido"] as? String,
-                    let nivel = data["Nivel"] as? Int,
-                    let tutores = data["Tutores"] as? [String],
-                    let pictogramas = data["Pictogramas"] as? [[String: String]] {
-                    
-                    var pictos = [Pictograma]()
-                    pictogramas.forEach { pictoData in
-                        if let nombre = pictoData["Nombre"],
-                           let url = pictoData["Url"] {
-                            let picto = Pictograma(Nombre: nombre, Url: url)
-                            pictos.append(picto)
-                            print(picto)
-                        }
+                var pictos = [Pictograma]()
+                pictogramas.forEach { pictoData in
+                    if let nombre = pictoData["Nombre"],
+                       let url = pictoData["Url"] {
+                        let picto = Pictograma(Nombre: nombre, Url: url)
+                        pictos.append(picto)
+                        print(picto)
                     }
-                    
-                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
-                    alumnos.append(alumno)
                 }
+                let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
+                alumnos.insert(alumno)
             }
-            completion(.success(alumnos))
         }
+        return alumnos
     }
     
-    func getAlumnos(completion: @escaping (Result<[Alumno], Error>) -> Void) {
+    func getAlumnos() async throws -> Set<Alumno> {
         let alumnosRef = db.collection("alumnos")
-        alumnosRef.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            var alumnos = [Alumno]()
-            for document in querySnapshot!.documents {
-                let data = document.data()
-                if  let nombre = data["Nombre"] as? String,
-                    let apellido = data["Apellido"] as? String,
-                    let nivel = data["Nivel"] as? Int,
-                    let tutores = data["Tutores"] as? [String],
-                    let pictogramas = data["Pictogramas"] as? [[String: String]] {
-    
-                    var pictos = [Pictograma]()
-                    pictogramas.forEach { pictoData in
-                        if let nombre = pictoData["Nombre"],
-                           let url = pictoData["Url"] {
-                            let picto = Pictograma(Nombre: nombre, Url: url)
-                            pictos.append(picto)
-                            print(picto)
-                        }
+        let querySnapshot = try await alumnosRef.getDocuments()
+        let documents = querySnapshot.documents
+        var alumnos = Set<Alumno>()
+        
+        for document in documents {
+            let data = document.data()
+            if  let nombre = data["Nombre"] as? String,
+                let apellido = data["Apellido"] as? String,
+                let nivel = data["Nivel"] as? Int,
+                let tutores = data["Tutores"] as? [String],
+                let pictogramas = data["Pictogramas"] as? [[String: String]] {
+                
+                var pictos = [Pictograma]()
+                pictogramas.forEach { pictoData in
+                    if let nombre = pictoData["Nombre"],
+                       let url = pictoData["Url"] {
+                        let picto = Pictograma(Nombre: nombre, Url: url)
+                        pictos.append(picto)
+                        print(picto)
                     }
-                    
-                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
-
-                    alumnos.append(alumno)
                 }
+                let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
+                alumnos.insert(alumno)
             }
-            completion(.success(alumnos))
         }
+        return alumnos
     }
+    
     
     func signOut() throws {
             try Auth.auth().signOut()
