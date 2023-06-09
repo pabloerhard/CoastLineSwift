@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+
 
 struct JuegoUno: View {
     let items: [String] // Assuming the array contains String items
@@ -14,8 +17,10 @@ struct JuegoUno: View {
         self.items = items
     }
     
+    
     @State private var isToggled = false
     @State private var sizePictogramas = 200
+    @StateObject private var speechSynthesizer = SpeechSynthesizer()
     
     var body: some View {
         VStack {
@@ -42,10 +47,16 @@ struct JuegoUno: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(height: CGFloat(sizePictogramas))
                             .padding(.vertical, 5)
+                            .onTapGesture {
+                                speechSynthesizer.speak(text: "\(item)")
+                            }
                     }
                 }
             }
         }
+        .ignoresSafeArea()
+        .background(Color(red:245/255,green:239/255,blue:237/255))
+        
     }
     
 }
