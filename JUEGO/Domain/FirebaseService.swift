@@ -133,9 +133,19 @@ class FirebaseService{
                     let apellido = data["Apellido"] as? String,
                     let nivel = data["Nivel"] as? Int,
                     let tutores = data["Tutores"] as? [String],
-                    let pictogramas = data["Pictogramas"] as? [Pictograma] {
+                    let pictogramas = data["Pictogramas"] as? [[String: String]] {
     
-                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictogramas)
+                    var pictos = [Pictograma]()
+                    pictogramas.forEach { pictoData in
+                        if let nombre = pictoData["Nombre"],
+                           let url = pictoData["Url"] {
+                            let picto = Pictograma(Nombre: nombre, Url: url)
+                            pictos.append(picto)
+                            print(picto)
+                        }
+                    }
+                    
+                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
 
                     alumnos.append(alumno)
                 }

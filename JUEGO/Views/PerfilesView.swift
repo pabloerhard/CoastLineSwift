@@ -26,6 +26,15 @@ struct PerfilesView: View {
                         Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
                     }
                     .padding()
+                    List {
+                        ForEach(userData.allAlumnos, id: \.self) { alumno in
+                            Text(alumno.Nombre)
+                        }
+                        //.onDelete(perform: print("Delete"))
+                        
+                        
+                    }
+
                 }
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
                 .toolbar {
@@ -61,13 +70,13 @@ struct PerfilesView: View {
 
 struct ProfileView: View {
     let alumno: Alumno
-    @EnvironmentObject var userData : UserData
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
-        
-        Button {
+        Button(action: {
             userData.curAlumno = alumno
             userData.mostrarMenu = true
-        }label: {
+        }) {
             VStack(alignment: .leading) {
                 Text(alumno.Nombre)
                     .font(.title3)
@@ -78,9 +87,23 @@ struct ProfileView: View {
             .background(Color.white)
             .cornerRadius(10)
             .shadow(radius: 2)
-            
         }
-        
+        .contextMenu {
+            Button(action: {
+                let filteredAlumnos = userData.tutorAlumnos.filter { tutorAlumno in
+                    return tutorAlumno.Id != alumno.Id
+                }
+                userData.tutorAlumnos = filteredAlumnos
+            }) {
+                Label("Eliminar", systemImage: "trash")
+            }
+            /*Button(action: {
+                // Perform action 2
+            }) {
+                Label("Action 2", systemImage: "heart")
+            }
+            // Add more buttons for additional actions as needed*/
+        }
     }
 }
 
