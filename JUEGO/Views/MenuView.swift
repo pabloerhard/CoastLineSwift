@@ -195,6 +195,7 @@ struct MenuView: View {
                 }
             }
             .navigationViewStyle(.stack)
+            .navigationBarBackButtonHidden(true)
         } else {
             PerfilesView()
         }
