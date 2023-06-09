@@ -110,7 +110,7 @@ struct MenuView: View {
                                             }
                                         } label: {
                                             RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                                 .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
                                                 .overlay(Text("Sign Out"))
                                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
@@ -128,7 +128,7 @@ struct MenuView: View {
                                             userData.mostrarMenu = false
                                         } label: {
                                             RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(.black)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                                 .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
                                                 .overlay(Text("Perfiles"))
                                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
