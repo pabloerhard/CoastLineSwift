@@ -67,6 +67,24 @@ struct SignInView: View {
                                                         userData.curTutor = tutor
                                                         userData.curTutor.Id = uid
                                                         print("Tutor information: \(userData.curTutor)")
+                                                        repository.getTutorAlumnos(tutorId: uid) { result in
+                                                            switch result {
+                                                            case .success(let alumnos):
+                                                                userData.tutorAlumnos = alumnos
+                                                                print("Todos alumnos del tutor extraidos correctamente")
+                                                            case .failure(let error):
+                                                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                                                            }
+                                                        }
+                                                        repository.getAlumnos() { result in
+                                                            switch result {
+                                                            case .success(let alumnos):
+                                                                userData.allAlumnos = alumnos
+                                                                print("Todos alumnos extraidos correctamente: \n \(alumnos)")
+                                                            case .failure(let error):
+                                                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                                                            }
+                                                        }
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"

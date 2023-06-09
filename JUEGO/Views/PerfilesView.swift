@@ -8,13 +8,13 @@
 import SwiftUI
 struct PerfilesView: View {
     @State private var mostrarAgregar =  false
-    @StateObject var alumnos = AlumnoModel()
     @EnvironmentObject var userData : UserData
     let columns: [GridItem] = [
         GridItem(spacing: 16),
         GridItem(spacing: 16),
         GridItem(spacing: 16)
     ]
+    //var alumnos : [Alumno]
     
     @Environment(\.dismiss) var dismiss
     
@@ -53,7 +53,7 @@ struct PerfilesView: View {
                     .sheet(isPresented: $mostrarAgregar, onDismiss: {
                         // Handle data from the sheet here if needed
                     }) {
-                        AddAlumno(alumnos: alumnos)
+                        //AddAlumno(alumnos: alumnos)
                     }
                 }
                 ScrollView {
@@ -61,7 +61,8 @@ struct PerfilesView: View {
                         .font(Font.custom("HelveticaNeue-Thin", size: 50))
                         
                     LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(alumnos.listaAlumnos, id: \.self) { alumno in
+                        ForEach(userData.tutorAlumnos, id: \.self) { alumno in
+                            
                             ProfileView(alumno: alumno)
                         }
                     }
@@ -84,6 +85,7 @@ struct ProfileView: View {
     let alumno: Alumno
     @EnvironmentObject var userData : UserData
     var body: some View {
+        
         Button {
             userData.curAlumno = alumno
             userData.mostrarMenu = true
