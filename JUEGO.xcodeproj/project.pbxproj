@@ -17,6 +17,25 @@
 		BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FC02A09ABA5002751F6 /* FirebaseFirestore */; };
 		BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA160FC42A09AD5A002751F6 /* SignUpView.swift */; };
 		BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA40EED12A2E90510048545A /* MenuPictogramasView.swift */; };
+		BA5B66BC2A327AD100D7640A /* CS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66A92A327AD100D7640A /* CS_piano.wav */; };
+		BA5B66BD2A327AD100D7640A /* F_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AA2A327AD100D7640A /* F_piano.wav */; };
+		BA5B66BE2A327AD100D7640A /* FS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AB2A327AD100D7640A /* FS_piano.wav */; };
+		BA5B66BF2A327AD100D7640A /* AS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AC2A327AD100D7640A /* AS_piano.wav */; };
+		BA5B66C02A327AD100D7640A /* A_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AD2A327AD100D7640A /* A_piano.wav */; };
+		BA5B66C12A327AD100D7640A /* G_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AE2A327AD100D7640A /* G_piano.wav */; };
+		BA5B66C22A327AD100D7640A /* DS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AF2A327AD100D7640A /* DS_piano.wav */; };
+		BA5B66C32A327AD100D7640A /* B_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B02A327AD100D7640A /* B_piano.wav */; };
+		BA5B66C42A327AD100D7640A /* A.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B12A327AD100D7640A /* A.wav */; };
+		BA5B66C52A327AD100D7640A /* C.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B22A327AD100D7640A /* C.wav */; };
+		BA5B66C62A327AD100D7640A /* GS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B32A327AD100D7640A /* GS_piano.wav */; };
+		BA5B66C72A327AD100D7640A /* B.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B42A327AD100D7640A /* B.wav */; };
+		BA5B66C82A327AD100D7640A /* F.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B52A327AD100D7640A /* F.wav */; };
+		BA5B66C92A327AD100D7640A /* G.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B62A327AD100D7640A /* G.wav */; };
+		BA5B66CA2A327AD100D7640A /* D_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B72A327AD100D7640A /* D_piano.wav */; };
+		BA5B66CB2A327AD100D7640A /* E.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B82A327AD100D7640A /* E.wav */; };
+		BA5B66CC2A327AD100D7640A /* D.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B92A327AD100D7640A /* D.wav */; };
+		BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BA2A327AD100D7640A /* C_piano.wav */; };
+		BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BB2A327AD100D7640A /* E_piano.wav */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
@@ -45,6 +64,25 @@
 		BA0070332A271216004A5772 /* PerfilesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilesView.swift; sourceTree = "<group>"; };
 		BA160FC42A09AD5A002751F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BA40EED12A2E90510048545A /* MenuPictogramasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPictogramasView.swift; sourceTree = "<group>"; };
+		BA5B66A92A327AD100D7640A /* CS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AA2A327AD100D7640A /* F_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = F_piano.wav; sourceTree = "<group>"; };
+		BA5B66AB2A327AD100D7640A /* FS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AC2A327AD100D7640A /* AS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AD2A327AD100D7640A /* A_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A_piano.wav; sourceTree = "<group>"; };
+		BA5B66AE2A327AD100D7640A /* G_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = G_piano.wav; sourceTree = "<group>"; };
+		BA5B66AF2A327AD100D7640A /* DS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DS_piano.wav; sourceTree = "<group>"; };
+		BA5B66B02A327AD100D7640A /* B_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B_piano.wav; sourceTree = "<group>"; };
+		BA5B66B12A327AD100D7640A /* A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A.wav; sourceTree = "<group>"; };
+		BA5B66B22A327AD100D7640A /* C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C.wav; sourceTree = "<group>"; };
+		BA5B66B32A327AD100D7640A /* GS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GS_piano.wav; sourceTree = "<group>"; };
+		BA5B66B42A327AD100D7640A /* B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B.wav; sourceTree = "<group>"; };
+		BA5B66B52A327AD100D7640A /* F.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = F.wav; sourceTree = "<group>"; };
+		BA5B66B62A327AD100D7640A /* G.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = G.wav; sourceTree = "<group>"; };
+		BA5B66B72A327AD100D7640A /* D_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D_piano.wav; sourceTree = "<group>"; };
+		BA5B66B82A327AD100D7640A /* E.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E.wav; sourceTree = "<group>"; };
+		BA5B66B92A327AD100D7640A /* D.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D.wav; sourceTree = "<group>"; };
+		BA5B66BA2A327AD100D7640A /* C_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C_piano.wav; sourceTree = "<group>"; };
+		BA5B66BB2A327AD100D7640A /* E_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E_piano.wav; sourceTree = "<group>"; };
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
@@ -96,6 +134,33 @@
 				BA40EED12A2E90510048545A /* MenuPictogramasView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BA5B66A82A327AD100D7640A /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B66A92A327AD100D7640A /* CS_piano.wav */,
+				BA5B66AA2A327AD100D7640A /* F_piano.wav */,
+				BA5B66AB2A327AD100D7640A /* FS_piano.wav */,
+				BA5B66AC2A327AD100D7640A /* AS_piano.wav */,
+				BA5B66AD2A327AD100D7640A /* A_piano.wav */,
+				BA5B66AE2A327AD100D7640A /* G_piano.wav */,
+				BA5B66AF2A327AD100D7640A /* DS_piano.wav */,
+				BA5B66B02A327AD100D7640A /* B_piano.wav */,
+				BA5B66B12A327AD100D7640A /* A.wav */,
+				BA5B66B22A327AD100D7640A /* C.wav */,
+				BA5B66B32A327AD100D7640A /* GS_piano.wav */,
+				BA5B66B42A327AD100D7640A /* B.wav */,
+				BA5B66B52A327AD100D7640A /* F.wav */,
+				BA5B66B62A327AD100D7640A /* G.wav */,
+				BA5B66B72A327AD100D7640A /* D_piano.wav */,
+				BA5B66B82A327AD100D7640A /* E.wav */,
+				BA5B66B92A327AD100D7640A /* D.wav */,
+				BA5B66BA2A327AD100D7640A /* C_piano.wav */,
+				BA5B66BB2A327AD100D7640A /* E_piano.wav */,
+			);
+			name = sounds;
+			path = ../../../../../Downloads/music_game/sounds;
 			sourceTree = "<group>";
 		};
 		FB4909CB29F9D771008A4451 = {
@@ -153,6 +218,7 @@
 		FB4F3DA12A181DC00072476B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BA5B66A82A327AD100D7640A /* sounds */,
 				FB4F3DA22A181DD20072476B /* Application.swift */,
 			);
 			path = Components;
@@ -248,9 +314,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5B66BC2A327AD100D7640A /* CS_piano.wav in Resources */,
+				BA5B66C22A327AD100D7640A /* DS_piano.wav in Resources */,
+				BA5B66BF2A327AD100D7640A /* AS_piano.wav in Resources */,
+				BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */,
+				BA5B66C12A327AD100D7640A /* G_piano.wav in Resources */,
 				FB4909DF29F9D772008A4451 /* Preview Assets.xcassets in Resources */,
+				BA5B66C32A327AD100D7640A /* B_piano.wav in Resources */,
+				BA5B66C92A327AD100D7640A /* G.wav in Resources */,
+				BA5B66C72A327AD100D7640A /* B.wav in Resources */,
+				BA5B66C82A327AD100D7640A /* F.wav in Resources */,
+				BA5B66C52A327AD100D7640A /* C.wav in Resources */,
+				BA5B66C42A327AD100D7640A /* A.wav in Resources */,
 				FB4909DC29F9D772008A4451 /* Assets.xcassets in Resources */,
 				FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */,
+				BA5B66C62A327AD100D7640A /* GS_piano.wav in Resources */,
+				BA5B66BD2A327AD100D7640A /* F_piano.wav in Resources */,
+				BA5B66CA2A327AD100D7640A /* D_piano.wav in Resources */,
+				BA5B66C02A327AD100D7640A /* A_piano.wav in Resources */,
+				BA5B66CC2A327AD100D7640A /* D.wav in Resources */,
+				BA5B66CB2A327AD100D7640A /* E.wav in Resources */,
+				BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */,
+				BA5B66BE2A327AD100D7640A /* FS_piano.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
