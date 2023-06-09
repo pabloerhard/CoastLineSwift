@@ -27,13 +27,13 @@ struct MenuPictogramasView: View {
                         NavigationLink(destination:JuegoUno(items: animalArray)){
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
+                                    .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4)
                                 Image(systemName: "pawprint.fill")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                         }
                         
                         }
@@ -41,33 +41,36 @@ struct MenuPictogramasView: View {
                             ZStack {
                                 
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
+                                    .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4)
                                 Image(systemName: "figure.2.and.child.holdinghands")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                             }
                         }
                         NavigationLink(destination:JuegoUno(items: diasArray)){
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
+                                    .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4)
                                 Image(systemName: "calendar")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                             }
                         }
                         Spacer()
                     }
                     Spacer()
                 }
+                .ignoresSafeArea()
+                .background(Color(red:245/255,green:239/255,blue:237/255))
         }
         }
+        
         .navigationViewStyle(.stack)
     }
     

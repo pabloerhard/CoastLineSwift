@@ -21,9 +21,19 @@ struct PerfilesView: View {
     var body: some View {
         if !userData.mostrarMenu{
             NavigationView {
+            ZStack{
+                
+                Color(red:175/255,green:208/255,blue:213/255)
+                
                 VStack {
-                    Section(header: Text("Tus Datos Personales:")){
-                        Text("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido)")
+                    Section(header: Text("Tus Datos Personales:")
+                        .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                    ){
+                        Text("Nombre: \(userData.curTutor.Nombre)")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                        Text("Apellido: \(userData.curTutor.Apellido)")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                        //Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count) ")
                     }
                     .padding()
                     List {
@@ -40,7 +50,12 @@ struct PerfilesView: View {
                     }
 
                 }
+                .background(Color.clear)
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
+                
+            }
+            .ignoresSafeArea()
+            
                 .toolbar {
                     Button {
                         mostrarAgregar = true
@@ -54,16 +69,22 @@ struct PerfilesView: View {
                     }
                 }
                 ScrollView {
+                    Text("Lista de Alumnos de: \(userData.curTutor.Nombre)")
+                        .font(Font.custom("HelveticaNeue-Thin", size: 50))
+                        
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(userData.tutorAlumnos), id: \.self) { alumno in
                             
                             ProfileView(alumno: alumno)
                         }
                     }
+                    .background(Color.clear)
                     .padding(16)
                 }
+                .background(Color(red:245/255,green:239/255,blue:237/255))
             }
 
+            
         }
         else{
             MenuView()
@@ -77,18 +98,27 @@ struct ProfileView: View {
     @EnvironmentObject var userData: UserData
     
     var body: some View {
-        Button(action: {
+        Button {
             userData.curAlumno = alumno
             userData.mostrarMenu = true
-        }) {
-            VStack(alignment: .leading) {
+        }label: {
+            VStack(alignment: .center) {
                 Text(alumno.Nombre)
-                    .font(.title3)
-                    .bold()
+                    .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                    .foregroundColor(.white)
+                    
                 Text(alumno.Apellido)
+                    .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                    .foregroundColor(.white)
+                    
+                Text("Nivel: \(alumno.Nivel)")
+                    .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                    .foregroundColor(.white)
+                    
             }
             .padding()
-            .background(Color.white)
+            .frame(minWidth: 50,maxWidth: .infinity,minHeight:30,maxHeight:.infinity)
+            .background(Color(red:34/255,green:146/255,blue:164/255))
             .cornerRadius(10)
             .shadow(radius: 2)
         }

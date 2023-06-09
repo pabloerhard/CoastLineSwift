@@ -27,7 +27,7 @@ struct MenuView: View {
         if userData.mostrarMenu{
             NavigationView {
                 VStack {
-            
+                    
                     VStack{
                         ZStack {
                             HStack {
@@ -134,9 +134,9 @@ struct MenuView: View {
                                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
                                                 .foregroundColor(.white)
                                         }
-                                  
-                                            
-                                
+                                        
+                                        
+                                        
                                     }
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -156,49 +156,51 @@ struct MenuView: View {
                         GeometryReader { geometry in
                             let itemWidth = geometry.size.width / CGFloat(columns)
                             let itemHeigth = geometry.size.height / 3
-                            
                             ScrollView(.vertical) {
                                 LazyVGrid(columns: CreateGridColumns(itemWidth: itemWidth,itemHeight:itemHeigth), spacing: 10) {
                                     ForEach(Array(0..<columns*6), id: \.self) { index in
                                         NavigationLink(destination:destinationView(for: index)){
                                             RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(.blue)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
                                                 .overlay(
                                                     Group {
                                                         if index >= userData.curAlumno.Nivel {
-                                                              Image(systemName: "lock")
-                                                                  .foregroundColor(.white)
-                                                                  .font(.system(size: fontSize * 1.5))
-                                                          } else {
-                                                              Text("Nivel: \(index+1)")
-                                                                  .foregroundColor(.white)
-                                                                  .font(Font.custom("HelveticaNeue-Thin", size: fontSize * 1.5))
-                                                           }
-                                                         }
+                                                            Image(systemName: "lock")
+                                                                .foregroundColor(.white)
+                                                                .font(.system(size: fontSize * 1.5))
+                                                        } else {
+                                                            Text("Nivel: \(index+1)")
+                                                                .foregroundColor(.white)
+                                                                .font(Font.custom("HelveticaNeue-Thin", size: fontSize * 1.5))
+                                                        }
+                                                    }
                                                     
                                                 )
                                                 .frame(width: itemWidth,height: itemHeigth)
+                                                .padding()
                                         }
                                         .disabled(index >= userData.curAlumno.Nivel)
                                         
                                     }
+                                    
                                 }
                                 
                             }
                             
                         }
                         
-                    }
+                    }.padding()
                     
                     
                     
                 }
             }
             .navigationViewStyle(.stack)
+            .navigationBarBackButtonHidden(true)
         } else {
             PerfilesView()
         }
-       
+        
     }
     
     
@@ -221,7 +223,7 @@ struct MenuView: View {
         if index == 3{
             return AnyView(JuegoCuatro())
         }else {
-
+            
             return AnyView(MenuView())
         }
     }
