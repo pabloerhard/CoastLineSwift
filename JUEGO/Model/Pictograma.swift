@@ -8,7 +8,6 @@
 import Foundation
 
 struct Pictograma: Codable{
-    var Id: String!
     var Nombre: String
     var Url: String
 }

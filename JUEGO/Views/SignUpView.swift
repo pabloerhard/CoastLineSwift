@@ -76,7 +76,9 @@ struct signUpView: View {
                                         isLogIn = true
                                         showRegisterSuccess=true
                                         print("Tutor registered in with uid: \(uid)")
-                                        repository.insertTutor(tutor: Tutor(Nombre: nombre, Apellido: apellido))
+                                        let tut = Tutor(Id:uid, Nombre: nombre, Apellido: apellido)
+                                        repository.insertTutor(tutor: tut)
+                                        userData.curTutor = tut
                                     case .failure(let error):
                                         print("Error registering user in: \(error)")
                                         errorLogIn = "\(error.localizedDescription)"
