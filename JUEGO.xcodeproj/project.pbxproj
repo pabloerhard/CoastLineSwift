@@ -160,7 +160,7 @@
 				BA5B66BB2A327AD100D7640A /* E_piano.wav */,
 			);
 			name = sounds;
-			path = ../../../../../Downloads/music_game/sounds;
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		FB4909CB29F9D771008A4451 = {
