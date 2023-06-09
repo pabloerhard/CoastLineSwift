@@ -215,8 +215,14 @@ struct MenuView: View {
         }
         if index == 1 {
             return AnyView(JuegoDos())
-        } else {
-            // Return the default destination view if index doesn't match any specific condition
+        }
+        if index == 2{
+            return AnyView(JuegoTres())
+        }
+        if index == 3{
+            return AnyView(JuegoCuatro())
+        }else {
+
             return AnyView(MenuView())
         }
     }

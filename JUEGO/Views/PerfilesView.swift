@@ -39,8 +39,6 @@ struct PerfilesView: View {
                     }) {
                         AddAlumno(alumnos: alumnos)
                     }
-
-    
                 }
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {

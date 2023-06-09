@@ -45,11 +45,13 @@ class FirebaseService{
             "Nombre": tutor.Nombre,
             "Apellido": tutor.Apellido
         ]
-        tutorRef.document(tutor.Id).setData(data) { error in
-            if let error = error {
-                print("Error inserting document: \(error.localizedDescription)")
-            } else {
-                print("Document inserted with ID: \(tutor.Id ?? "error with id")")
+        if let tutorId = tutor.Id {
+            tutorRef.document(tutorId).setData(data) { error in
+                if let error = error {
+                    print("Error inserting document: \(error.localizedDescription)")
+                } else {
+                    print("Document inserted with ID: \(tutorId ?? "error with id")")
+                }
             }
         }
     }
