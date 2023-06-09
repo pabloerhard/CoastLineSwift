@@ -50,11 +50,12 @@ class FirebaseService{
                 if let error = error {
                     print("Error inserting document: \(error.localizedDescription)")
                 } else {
-                    print("Document inserted with ID: \(tutorId ?? "error with id")")
+                    print("Document inserted with ID: \(tutorId)")
                 }
             }
         }
     }
+    	
     func getTutor(documentId: String, completion: @escaping (Result<Tutor, Error>) -> Void) {
         let docRef = db.collection("tutores").document(documentId)
 
@@ -79,21 +80,67 @@ class FirebaseService{
             }
         }
     }
-
-    func getChildrenInformation(user: User){
-        let childrenRef = db.collection("alumnos")
-        let query = childrenRef.whereField("Tutores", arrayContains: user.uid)
+    
+    func getTutorAlumnos(tutorId: String, completion: @escaping (Result<[Alumno], Error>) -> Void) {
+        let alumnosRef = db.collection("alumnos")
+        let query = alumnosRef.whereField("Tutores", arrayContains: tutorId)
         query.getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error fetching children documents:", error)
+                completion(.failure(error))
                 return
             }
-            // Process the query results
+
+            var alumnos = [Alumno]()
             for document in querySnapshot!.documents {
-                let childData = document.data()
-                // Access child data here
-                print("Child data:", childData)
+                let data = document.data()
+                
+                if  let nombre = data["Nombre"] as? String,
+                    let apellido = data["Apellido"] as? String,
+                    let nivel = data["Nivel"] as? Int,
+                    let tutores = data["Tutores"] as? [String],
+                    let pictogramas = data["Pictogramas"] as? [[String: String]] {
+                    
+                    var pictos = [Pictograma]()
+                    pictogramas.forEach { pictoData in
+                        if let nombre = pictoData["Nombre"],
+                           let url = pictoData["Url"] {
+                            let picto = Pictograma(Nombre: nombre, Url: url)
+                            pictos.append(picto)
+                            print(picto)
+                        }
+                    }
+                    
+                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
+                    alumnos.append(alumno)
+                }
             }
+            completion(.success(alumnos))
+        }
+    }
+    
+    func getAlumnos(completion: @escaping (Result<[Alumno], Error>) -> Void) {
+        let alumnosRef = db.collection("alumnos")
+        alumnosRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            var alumnos = [Alumno]()
+            for document in querySnapshot!.documents {
+                let data = document.data()
+                if  let nombre = data["Nombre"] as? String,
+                    let apellido = data["Apellido"] as? String,
+                    let nivel = data["Nivel"] as? Int,
+                    let tutores = data["Tutores"] as? [String],
+                    let pictogramas = data["Pictogramas"] as? [Pictograma] {
+    
+                    let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictogramas)
+
+                    alumnos.append(alumno)
+                }
+            }
+            completion(.success(alumnos))
         }
     }
     
