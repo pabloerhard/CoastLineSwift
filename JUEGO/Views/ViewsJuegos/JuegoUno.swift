@@ -54,7 +54,8 @@ struct JuegoUno: View {
                 }
             }
         }
-        .ignoresSafeArea()
+        
+        .navigationBarBackButtonHidden(true)
         .background(Color(red:245/255,green:239/255,blue:237/255))
         
     }

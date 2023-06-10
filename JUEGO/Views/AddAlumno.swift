@@ -109,7 +109,7 @@ struct AddAlumno: View {
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Alert"),
-                    message: Text("This is the alert message."),
+                    message: Text("All the fields are required"),
                     dismissButton: .default(Text("OK"))
                 )
             }

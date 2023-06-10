@@ -116,7 +116,7 @@ struct SignInView: View {
                                     }
                                     .frame(width: 200, height: 50)
                                     .foregroundColor(.white)
-                                    .background(.black)
+                                    .background(Color(red:34/255,green:146/255,blue:164/255))
                                     .cornerRadius(10)
                                     .shadow(color:.gray,radius:4,x:0,y:2)
                                     .alert(isPresented: $alertLogIn) {
@@ -145,8 +145,12 @@ struct SignInView: View {
                 
                 VStack {
                     ZStack{
-                        Color.black
+                        Color(red:175/255,green:208/255,blue:213/255)
                         VStack{
+                            Image(systemName: "sunrise.fill")
+                                .resizable()
+                                .frame(width:200,height:150)
+                                .foregroundColor(.white)
                             Text("¡Bienvenidos a CoastLine!")
                                 .foregroundColor(.white)
                                 .font(Font.custom("HelveticaNeue-Thin", size: 30))
@@ -156,6 +160,8 @@ struct SignInView: View {
                     .ignoresSafeArea(.all)
                 }
             }
+            .ignoresSafeArea()
+            .background(Color(red:245/255,green:239/255,blue:237/255))
         }else{
             PerfilesView()
         }
