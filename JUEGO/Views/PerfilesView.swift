@@ -10,9 +10,9 @@ struct PerfilesView: View {
     @State private var mostrarAgregar =  false
     @EnvironmentObject var userData : UserData
     let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
+        GridItem(spacing: 16),
+        GridItem(spacing: 16),
+        GridItem(spacing: 16)
     ]
     //var alumnos : [Alumno]
     
@@ -22,9 +22,7 @@ struct PerfilesView: View {
         if !userData.mostrarMenu{
             NavigationView {
             ZStack{
-                
                 Color(red:175/255,green:208/255,blue:213/255)
-                
                 VStack {
                     Section(header: Text("Tus Datos Personales:")
                         .font(Font.custom("HelveticaNeue-Thin", size: 20))
@@ -33,26 +31,28 @@ struct PerfilesView: View {
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
                         Text("Apellido: \(userData.curTutor.Apellido)")
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
-                        //Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count) ")
+                        Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count)")
+                    }
+                }
+                List{
+                    ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
+                        HStack {
+                            Text(alumno.Nombre)
+                                .foregroundColor(.primary)
+                            Button(action: {
+                                userData.tutorAlumnos.insert(alumno)
+                                userData.otherAlumnos.remove(alumno)
+                            }) {
+                                Image(systemName: "plus")
+                            }
+                            .foregroundColor(.green)
+                        }
+                        
                     }
                     .padding()
-                    List {
-                        ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
-                            Text(alumno.Nombre)
-                                .swipeActions {
-                                    Button("Añadir"){
-                                        userData.tutorAlumnos.insert(alumno)
-                                        userData.otherAlumnos.remove(alumno)
-                                    }
-                                    .tint(.green)
-                                }
-                        }
-                    }
-
                 }
                 .background(Color.clear)
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
-                
             }
             .ignoresSafeArea()
             
@@ -132,12 +132,12 @@ struct ProfileView: View {
             }) {
                 Label("Eliminar", systemImage: "trash")
             }
-            /*Button(action: {
+            Button(action: {
                 // Perform action 2
             }) {
-                Label("Action 2", systemImage: "heart")
+                Label("Editar", systemImage: "pencil")
             }
-            // Add more buttons for additional actions as needed*/
+            // Add more buttons for additional actions as needed
         }
     }
 }
