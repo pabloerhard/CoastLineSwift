@@ -20,7 +20,11 @@ struct MenuView: View {
     @EnvironmentObject var userData : UserData
     @State private var showSignOutAlert = false
     @State private var showPerfilesView = false
-    
+    @State private var image: Image? = Image("pinguino")
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionScheet = false
+    @State private var shouldPresentCamera = false
+    @State private var shouldSheetAlumno = false
     let repository = FirebaseService()
     
     var body: some View {
@@ -135,8 +139,43 @@ struct MenuView: View {
                                                 .foregroundColor(.white)
                                         }
                                         
+                                        Button {
+                                            //self.shouldPresentActionScheet = true
+                                            shouldSheetAlumno=true
+                                        }label:{
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                                                .overlay(Text("Cuenta del Alumno"))
+                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                                .foregroundColor(.white)
+                                        }
                                         
                                         
+                                    }
+                                    .sheet(isPresented: $shouldSheetAlumno){
+                                        Button{
+                                            self.shouldPresentActionScheet = true
+                                        } label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                                                .overlay(Text("Pictogramas"))
+                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                                .foregroundColor(.white)
+                                        }
+                                        .sheet(isPresented: $shouldPresentImagePicker) {
+                                            SUImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                                        }
+                                        .actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                                            ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                                                self.shouldPresentImagePicker = true
+                                                self.shouldPresentCamera = true
+                                            }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                                                self.shouldPresentImagePicker = true
+                                                self.shouldPresentCamera = false
+                                            }), ActionSheet.Button.cancel()])
+                                        }
                                     }
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -217,10 +256,10 @@ struct MenuView: View {
         if index == 1 {
             return AnyView(JuegoDos())
         }
-        if index == 2{
+        if index == 3{
             return AnyView(JuegoTres())
         }
-        if index == 3{
+        if index == 2{
             return AnyView(JuegoCuatro())
         }else {
             
