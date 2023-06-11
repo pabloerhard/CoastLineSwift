@@ -47,11 +47,12 @@
 		FB4F3DA32A181DD20072476B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F3DA22A181DD20072476B /* Application.swift */; };
 		FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55E4DC2A2EC0A900A0F07C /* UserData.swift */; };
 		FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */; };
+		FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */; };
 		FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */; };
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
 		FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */; };
-		FBB006012A2AA30C00F738C4 /* SUImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB006002A2AA30C00F738C4 /* SUImagePickerView.swift */; };
+		FBB006012A2AA30C00F738C4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */; };
 		FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */; };
 		FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */; };
 		FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AD2A1C259E009883E9 /* MenuView.swift */; };
@@ -94,11 +95,12 @@
 		FB4F3DA22A181DD20072476B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		FB55E4DC2A2EC0A900A0F07C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictogramaView.swift; sourceTree = "<group>"; };
 		FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoUno.swift; sourceTree = "<group>"; };
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
-		FBB006002A2AA30C00F738C4 /* SUImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUImagePickerView.swift; sourceTree = "<group>"; };
+		FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlumno.swift; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -130,8 +132,9 @@
 				BA160FC42A09AD5A002751F6 /* SignUpView.swift */,
 				FBEBB0AD2A1C259E009883E9 /* MenuView.swift */,
 				FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */,
-				FBB006002A2AA30C00F738C4 /* SUImagePickerView.swift */,
+				FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */,
 				BA40EED12A2E90510048545A /* MenuPictogramasView.swift */,
+				FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,7 +351,7 @@
 				FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */,
 				BA0070322A271059004A5772 /* Alumno.swift in Sources */,
 				FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */,
-				FBB006012A2AA30C00F738C4 /* SUImagePickerView.swift in Sources */,
+				FBB006012A2AA30C00F738C4 /* ImagePickerView.swift in Sources */,
 				FB4F3DA32A181DD20072476B /* Application.swift in Sources */,
 				FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */,
 				FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */,
@@ -365,6 +368,7 @@
 				FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */,
 				FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */,
 				FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */,
+				FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

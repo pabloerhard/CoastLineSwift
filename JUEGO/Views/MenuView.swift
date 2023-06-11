@@ -25,13 +25,14 @@ struct MenuView: View {
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
     @State private var shouldSheetAlumno = false
+    @State private var nombre : String = ""
+    @State private var apellido : String = ""
     let repository = FirebaseService()
     
     var body: some View {
         if userData.mostrarMenu{
             NavigationView {
                 VStack {
-                    
                     VStack{
                         ZStack {
                             HStack {
@@ -154,28 +155,7 @@ struct MenuView: View {
                                         
                                     }
                                     .sheet(isPresented: $shouldSheetAlumno){
-                                        Button{
-                                            self.shouldPresentActionScheet = true
-                                        } label: {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
-                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
-                                                .overlay(Text("Pictogramas"))
-                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                                                .foregroundColor(.white)
-                                        }
-                                        .sheet(isPresented: $shouldPresentImagePicker) {
-                                            SUImagePickerView(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
-                                        }
-                                        .actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
-                                            ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
-                                                self.shouldPresentImagePicker = true
-                                                self.shouldPresentCamera = true
-                                            }), ActionSheet.Button.default(Text("Photo Library"), action: {
-                                                self.shouldPresentImagePicker = true
-                                                self.shouldPresentCamera = false
-                                            }), ActionSheet.Button.cancel()])
-                                        }
+                                        EditAlumnoView(geo: geo)
                                     }
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -283,6 +263,104 @@ struct MenuView: View {
     }
     
 }
+
+struct EditAlumnoView: View {
+    @EnvironmentObject var userData: UserData
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentCamera = false
+    @State private var shouldPresentActionSheet = false
+    @State private var shouldShowImagePicker = false
+    @State private var isAddingPicto = false
+    @State var image : UIImage?
+    @State private var pictogramas = [PictogramaDto]()
+    @State private var usedNames: Set<String> = []
+    var geo: GeometryProxy
+//    @State private var image: Image?
+
+    var body: some View {
+        VStack {
+            Form {
+                Text("Editar Alumno")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+
+                Section(header: Text("Datos Personales")) {
+                    LabeledContent {
+                        TextField("Nombre", text: $userData.curAlumno.Nombre)
+                    } label: {
+                        Text("Nombre: ")
+                    }
+                    LabeledContent {
+                        TextField("Apellido", text: $userData.curAlumno.Apellido)
+                    } label: {
+                        Text("Apellido: ")
+                    }
+                }
+
+                Section(header: Text("Informacion General")) {
+                    LabeledContent {
+                        Picker("", selection: $userData.curAlumno.Nivel) {
+                            ForEach(1...6, id: \.self) { nivel in
+                                Text("\(nivel)")
+                            }
+                        }
+                    } label: {
+                        Text("Nivel Actual: ")
+                    }
+                    
+                    LabeledContent {
+                        TextField("Tutor", text: .constant("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido) - (Tutor Actual)"))
+                            .foregroundColor(.gray)
+                            .disabled(true)
+                    } label: {
+                        Text("Tutor de \(userData.curAlumno.Nombre): ")
+                    }
+                }
+
+                Section(header: Text("Agregar pictograma")) {
+                    Button{
+                        isAddingPicto.toggle()
+                    } label: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                            .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                            .overlay(Text("Pictogramas"))
+                            .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                            .foregroundColor(.white)
+                    }
+                }
+                List {
+                    ForEach(pictogramas) { picto in
+                        VStack{
+                            Text(picto.Nombre)
+                        }
+                    }
+                    .onDelete{ indexSet in
+                        for index in indexSet {
+                            let nombre = pictogramas[index].Nombre
+                            deletePictograma(at: indexSet, nombre: nombre)
+                        }
+                    }
+                }
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $shouldShowImagePicker) {
+            ImagePicker(image: $image)
+        }
+        .sheet(isPresented: $isAddingPicto){
+            AddPictogramaView(pictogramas: $pictogramas, usedNames: $usedNames, geo: geo)
+        }
+    }
+    private func deletePictograma(at offsets: IndexSet, nombre: String) {
+        pictogramas.remove(atOffsets: offsets)
+        usedNames.remove(nombre)
+    }
+    
+}
+
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {

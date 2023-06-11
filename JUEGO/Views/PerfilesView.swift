@@ -21,40 +21,37 @@ struct PerfilesView: View {
     var body: some View {
         if !userData.mostrarMenu{
             NavigationView {
-            ZStack{
-                Color(red:175/255,green:208/255,blue:213/255)
-                VStack {
+                    
+                VStack(spacing: 0) {
                     Section(header: Text("Tus Datos Personales:")
                         .font(Font.custom("HelveticaNeue-Thin", size: 20))
-                    ){
+                    ) {
                         Text("Nombre: \(userData.curTutor.Nombre)")
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
                         Text("Apellido: \(userData.curTutor.Apellido)")
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
                         Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count)")
                     }
-                }
-                List{
-                    ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
-                        HStack {
-                            Text(alumno.Nombre)
-                                .foregroundColor(.primary)
-                            Button(action: {
-                                userData.tutorAlumnos.insert(alumno)
-                                userData.otherAlumnos.remove(alumno)
-                            }) {
-                                Image(systemName: "plus")
+                    List {
+                        ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
+                            HStack {
+                                Text(alumno.Nombre)
+                                    .foregroundColor(.primary)
+                                Button(action: {
+                                    userData.tutorAlumnos.insert(alumno)
+                                    userData.otherAlumnos.remove(alumno)
+                                }) {
+                                    Image(systemName: "plus")
+                                }
+                                .foregroundColor(.green)
                             }
-                            .foregroundColor(.green)
                         }
-                        
                     }
-                    .padding()
                 }
-                .background(Color.clear)
+                .background(Color(red: 175/255, green: 208/255, blue: 213/255))
+                //.background(Color.clear)
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
-            }
-            .ignoresSafeArea()
+                
             
                 .toolbar {
                     Button {
