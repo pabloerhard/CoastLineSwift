@@ -19,30 +19,39 @@ struct PerfilesView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
         if !userData.mostrarMenu{
             NavigationView {
-            ZStack{
-                
-                Color(red:175/255,green:208/255,blue:213/255)
-                
-                VStack {
+                    
+                VStack(spacing: 0) {
                     Section(header: Text("Tus Datos Personales:")
                         .font(Font.custom("HelveticaNeue-Thin", size: 20))
-                    ){
+                    ) {
                         Text("Nombre: \(userData.curTutor.Nombre)")
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
                         Text("Apellido: \(userData.curTutor.Apellido)")
                             .font(Font.custom("HelveticaNeue-Thin", size: 30))
-                        //Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count) ")
+                        Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count)")
                     }
-                    .padding()
+                    List {
+                        ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
+                            HStack {
+                                Text(alumno.Nombre)
+                                    .foregroundColor(.primary)
+                                Button(action: {
+                                    userData.tutorAlumnos.insert(alumno)
+                                    userData.otherAlumnos.remove(alumno)
+                                }) {
+                                    Image(systemName: "plus")
+                                }
+                                .foregroundColor(.green)
+                            }
+                        }
+                    }
                 }
-                .background(Color.clear)
+                .background(Color(red: 175/255, green: 208/255, blue: 213/255))
+                //.background(Color.clear)
                 .navigationTitle("Hola, \(userData.curTutor.Nombre)!")
                 
-            }
-            .ignoresSafeArea()
             
                 .toolbar {
                     Button {
@@ -61,7 +70,7 @@ struct PerfilesView: View {
                         .font(Font.custom("HelveticaNeue-Thin", size: 50))
                         
                     LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(userData.tutorAlumnos, id: \.self) { alumno in
+                        ForEach(Array(userData.tutorAlumnos), id: \.self) { alumno in
                             
                             ProfileView(alumno: alumno)
                         }
@@ -83,9 +92,9 @@ struct PerfilesView: View {
 
 struct ProfileView: View {
     let alumno: Alumno
-    @EnvironmentObject var userData : UserData
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
-        
         Button {
             userData.curAlumno = alumno
             userData.mostrarMenu = true
@@ -109,9 +118,24 @@ struct ProfileView: View {
             .background(Color(red:34/255,green:146/255,blue:164/255))
             .cornerRadius(10)
             .shadow(radius: 2)
-            
         }
-        
+        .contextMenu {
+            Button(action: {
+                let filteredAlumnos = userData.tutorAlumnos.filter { tutorAlumno in
+                    return tutorAlumno.Id != alumno.Id
+                }
+                userData.tutorAlumnos = filteredAlumnos
+                userData.otherAlumnos.insert(alumno)
+            }) {
+                Label("Eliminar", systemImage: "trash")
+            }
+            Button(action: {
+                // Perform action 2
+            }) {
+                Label("Editar", systemImage: "pencil")
+            }
+            // Add more buttons for additional actions as needed
+        }
     }
 }
 

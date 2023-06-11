@@ -67,24 +67,39 @@ struct SignInView: View {
                                                         userData.curTutor = tutor
                                                         userData.curTutor.Id = uid
                                                         print("Tutor information: \(userData.curTutor)")
-                                                        repository.getTutorAlumnos(tutorId: uid) { result in
-                                                            switch result {
-                                                            case .success(let alumnos):
-                                                                userData.tutorAlumnos = alumnos
-                                                                print("Todos alumnos del tutor extraidos correctamente")
-                                                            case .failure(let error):
+                                                        Task {
+                                                            do {
+                                                                let alumnos = try await repository.getAlumnos()
+                                                                DispatchQueue.main.async {
+                                                                    userData.allAlumnos = alumnos
+                                                                }
+                                                                let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                                    return alumno.Tutores.contains(uid)
+                                                                }
+                                                                userData.tutorAlumnos = filteredTutorAlumnos
+                                                                print("Alumnos de tutor extraidos correctamente \n")
+                                                                print("\(userData.tutorAlumnos) \n ")
+                                                                let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                                    return !alumno.Tutores.contains(uid)
+                                                                }
+                                                                userData.otherAlumnos = filteredOtherAlumnos
+                                                                print("Resto de alumnos \n")
+                                                                print("\(userData.otherAlumnos) \n ")
+                                                            } catch {
                                                                 print("Error al obtener alumnos: \(error.localizedDescription)")
                                                             }
                                                         }
-                                                        repository.getAlumnos() { result in
-                                                            switch result {
-                                                            case .success(let alumnos):
-                                                                userData.allAlumnos = alumnos
-                                                                print("Todos alumnos extraidos correctamente: \n \(alumnos)")
-                                                            case .failure(let error):
+                                                        /*Task {
+                                                            do {
+                                                                let alumnos = try await repository.getAlumnos()
+                                                                DispatchQueue.main.async {
+                                                                    userData.allAlumnos = alumnos
+                                                                }
+                                                                print("Todos alumnos extraidos correctamente: \n (alumnos)")
+                                                            } catch {
                                                                 print("Error al obtener alumnos: \(error.localizedDescription)")
                                                             }
-                                                        }
+                                                        }*/
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"
