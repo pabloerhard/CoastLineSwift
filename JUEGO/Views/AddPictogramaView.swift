@@ -14,7 +14,6 @@ struct AddPictogramaView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showAlert = false
     let imagenes = ["Predeterminado", "Papá", "Mamá", "Herman@1", "Herman@2","Mascota1","Mascota2"]
-    var geo: GeometryProxy
     @State private var shouldShowImagePicker = false
     @State private var isAddingPicto = false
     @State var image : UIImage?
@@ -24,18 +23,19 @@ struct AddPictogramaView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Añadir pictogramas")) {
-                    Picker("Nombre", selection: $nombre) {
-                        ForEach(imagenes, id: \.self) { imagen in
-                            if !usedNames.contains(imagen){
-                                Text(imagen)
+            GeometryReader { geo in
+                Form {
+                    Section(header: Text("Añadir pictogramas")) {
+                        Picker("Nombre", selection: $nombre) {
+                            ForEach(imagenes, id: \.self) { imagen in
+                                if !usedNames.contains(imagen){
+                                    Text(imagen)
+                                }
                             }
                         }
+                        
                     }
-                    
-                }
-                if let imagen = image {
+                    if let imagen = image {
                         Section(header: Text("pictograma Elegido")) {
                             VStack{
                                 Text(nombre)
@@ -52,40 +52,29 @@ struct AddPictogramaView: View {
                                     Spacer()
                                 }
                             }
-                    }
-                }
-                Section(header: Text("Agregar pictograma")) {
-                    HStack{
-                        Spacer()
-                        Button{
-                            shouldShowImagePicker.toggle()
-                        } label: {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(Color(red:34/255,green:100/255,blue:164/255))
-                                .frame(height: geo.size.height * 0.1)
-                                .overlay(Text("seleccionar Imagen"))
-                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                                .foregroundColor(.white)
                         }
-                        Spacer()
+                    }
+                    Section(header: Text("Agregar pictograma")) {
+                        HStack{
+                            Spacer()
+                            Button{
+                                shouldShowImagePicker.toggle()
+                            } label: {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color(red:34/255,green:100/255,blue:164/255))
+                                    .frame(height: geo.size.height * 0.1)
+                                    .overlay(Text("seleccionar Imagen"))
+                                    .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                    .foregroundColor(.white)
+                            }
+                            Spacer()
+                        }
                     }
                 }
             }
             .navigationBarItems(trailing: Button(action: {
                 if isValidForm(){
                     addPictograma()
-                    /*repository.addImageToStorage(image: image!) { result in
-                        switch result {
-                        case .success(let urlString):
-                            print("Image uploaded successfully. URL: \(urlString)")
-                            // Handle success case
-                        case .failure(let error):
-                            errorMessage = "Error subiendo imagen a base de datos. Intente de nuevo"
-                            showAlert = true
-                            print("Error uploading image: \(error.localizedDescription)")
-                            // Handle failure case
-                        }
-                    }*/
                     dismiss()
                 }else{
                     showAlert = true

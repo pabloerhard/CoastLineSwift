@@ -145,26 +145,33 @@ class FirebaseService{
         return alumnos
     }
     
-    /*func updateAlumno(userData: UserData, nombre: String, url: String) async throws -> Alumno {
+    func updateAlumno(alumno: Alumno) async throws -> Alumno {
         let alumnosRef = db.collection("alumnos")
-        let documentRef = alumnosRef.document(userData.curAlumno.Id)
-        let document = try await documentRef.getDocument()
-        
-        
-        
-        if let data = document.data(){
-            var pictogramas = data["Pictogramas"] as? [[String: String]] ?? []
-            let updatedPictogramas = pictogramas.map { pictograma -> [String: String] in
-                var updatedPictograma = pictograma
-                if let docNombre = pictograma["Nombre"], docNombre == nombre {
-                    updatedPictograma["Url"] = url
-                }
-                return updatedPictograma
-            }
-            
+        let documentRef = alumnosRef.document(alumno.Id)
+        var pictogramasData: [[String: Any]] = []
+        for pictograma in alumno.Pictogramas {
+            let data: [String: Any] = [
+                "Nombre": pictograma.Nombre,
+                "Url": pictograma.Image
+            ]
+            pictogramasData.append(data)
         }
-        return Alumno
-    }*/
+        let newData: [String: Any] = [
+            "Nombre": alumno.Nombre,
+            "Apellido": alumno.Apellido,
+            "Nivel": alumno.Nivel,
+            "Pictogramas": pictogramasData,
+            "Tutores": alumno.Tutores
+        ]
+        do {
+            try await documentRef.setData(newData)
+            print("Document updated successfully.")
+            return alumno
+        } catch {
+            print("Error updating document: \(error)")
+            throw error
+        }
+    }
     
     func addImageToStorage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         let filename = UUID().uuidString

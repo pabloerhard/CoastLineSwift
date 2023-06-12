@@ -15,7 +15,7 @@ struct PerfilesView: View {
         GridItem(spacing: 16)
     ]
     //var alumnos : [Alumno]
-    
+    let repository = FirebaseService()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -66,7 +66,7 @@ struct PerfilesView: View {
                     }
                 }
                 ScrollView {
-                    Text("Lista de Alumnos de: \(userData.curTutor.Nombre)")
+                    Text("Lista de los Alumnos actuales de \(userData.curTutor.Nombre)")
                         .font(Font.custom("HelveticaNeue-Thin", size: 50))
                         
                     LazyVGrid(columns: columns, spacing: 16) {
@@ -80,8 +80,30 @@ struct PerfilesView: View {
                 }
                 .background(Color(red:245/255,green:239/255,blue:237/255))
             }
-
-            
+            .onAppear{
+                Task {
+                    do {
+                        let alumnos = try await repository.getAlumnos()
+                        DispatchQueue.main.async {
+                            userData.allAlumnos = alumnos
+                        }
+                        let filteredTutorAlumnos = alumnos.filter { alumno in
+                            return alumno.Tutores.contains(userData.curTutor.Id)
+                        }
+                        userData.tutorAlumnos = filteredTutorAlumnos
+                        print("Alumnos de tutor extraidos correctamente \n")
+                        print("\(userData.tutorAlumnos) \n ")
+                        let filteredOtherAlumnos = alumnos.filter { alumno in
+                            return !alumno.Tutores.contains(userData.curTutor.Id)
+                        }
+                        userData.otherAlumnos = filteredOtherAlumnos
+                        print("Resto de alumnos \n")
+                        print("\(userData.otherAlumnos) \n ")
+                    } catch {
+                        print("Error al obtener alumnos: \(error.localizedDescription)")
+                    }
+                }
+            }
         }
         else{
             MenuView()
@@ -127,14 +149,8 @@ struct ProfileView: View {
                 userData.tutorAlumnos = filteredAlumnos
                 userData.otherAlumnos.append(alumno)
             }) {
-                Label("Eliminar", systemImage: "trash")
+                Label("Quitar de mi lista", systemImage: "trash")
             }
-            Button(action: {
-                // Perform action 2
-            }) {
-                Label("Editar", systemImage: "pencil")
-            }
-            // Add more buttons for additional actions as needed
         }
     }
 }

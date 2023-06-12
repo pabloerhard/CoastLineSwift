@@ -74,7 +74,7 @@ struct AddAlumno: View {
                         .sheet(isPresented: $isAddingPicto, onDismiss: {
                             // Handle data from the sheet here if needed
                         }) {
-                            AddPictogramaView(pictogramas: $pictogramas, usedNames: $usedNames, geo: geo)
+                            AddPictogramaView(pictogramas: $pictogramas, usedNames: $usedNames)
                         }
                         
                         List {
