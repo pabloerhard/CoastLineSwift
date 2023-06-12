@@ -89,17 +89,7 @@ struct SignInView: View {
                                                                 print("Error al obtener alumnos: \(error.localizedDescription)")
                                                             }
                                                         }
-                                                        /*Task {
-                                                            do {
-                                                                let alumnos = try await repository.getAlumnos()
-                                                                DispatchQueue.main.async {
-                                                                    userData.allAlumnos = alumnos
-                                                                }
-                                                                print("Todos alumnos extraidos correctamente: \n (alumnos)")
-                                                            } catch {
-                                                                print("Error al obtener alumnos: \(error.localizedDescription)")
-                                                            }
-                                                        }*/
+
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"
@@ -145,7 +135,7 @@ struct SignInView: View {
                 
                 VStack {
                     ZStack{
-                        Color(red:175/255,green:208/255,blue:213/255)
+                        Color(red:100/255,green:171/255,blue:180/255)
                         VStack{
                             Image(systemName: "sunrise.fill")
                                 .resizable()
