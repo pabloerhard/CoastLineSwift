@@ -48,6 +48,7 @@
 		FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55E4DC2A2EC0A900A0F07C /* UserData.swift */; };
 		FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */; };
 		FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */; };
+		FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FB9352CC2A36976A00D3BA22 /* FirebaseStorage */; };
 		FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */; };
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
@@ -115,6 +116,7 @@
 				BA160FBF2A09ABA5002751F6 /* FirebaseDatabaseSwift in Frameworks */,
 				BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */,
 				FB4F3DA02A1814610072476B /* GoogleSignInSwift in Frameworks */,
+				FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */,
 				BA160FBD2A09ABA5002751F6 /* FirebaseDatabase in Frameworks */,
 				BA160FBB2A09ABA5002751F6 /* FirebaseAuth in Frameworks */,
 			);
@@ -170,6 +172,7 @@
 			children = (
 				FB4909D629F9D771008A4451 /* JUEGO */,
 				FB4909D529F9D771008A4451 /* Products */,
+				FB9352CB2A36976A00D3BA22 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,6 +238,13 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		FB9352CB2A36976A00D3BA22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FBAEF0C52A2152B500E50D16 /* ViewsJuegos */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +279,7 @@
 				BA160FC02A09ABA5002751F6 /* FirebaseFirestore */,
 				FB4F3D9D2A1814610072476B /* GoogleSignIn */,
 				FB4F3D9F2A1814610072476B /* GoogleSignInSwift */,
+				FB9352CC2A36976A00D3BA22 /* FirebaseStorage */,
 			);
 			productName = JUEGO;
 			productReference = FB4909D429F9D771008A4451 /* JUEGO.app */;
@@ -623,6 +634,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB4F3D9C2A1814610072476B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		FB9352CC2A36976A00D3BA22 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA160FB92A09ABA5002751F6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
