@@ -7,11 +7,11 @@
 
 import SwiftUI
 import AVFoundation
-
+import SDWebImageSwiftUI
 
 
 struct JuegoUno: View {
-    let items: [String] // Assuming the array contains String items
+    let items: [String]
     
     init(items: [String]) {
         self.items = items
@@ -21,6 +21,7 @@ struct JuegoUno: View {
     @State private var isToggled = false
     @State private var sizePictogramas = 200
     @StateObject private var speechSynthesizer = SpeechSynthesizer()
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         NavigationView {
@@ -42,15 +43,29 @@ struct JuegoUno: View {
                     LazyVGrid(columns: [
                         GridItem(.adaptive(minimum: 300))
                     ], spacing: 5) {
-                        ForEach(items, id: \.self) {  item in
-                            Image("\(item)")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: CGFloat(sizePictogramas))
-                                .padding(.vertical, 5)
-                                .onTapGesture {
-                                    speechSynthesizer.speak(text: "\(item)")
-                                }
+                        if !items.isEmpty {
+                            ForEach(items, id: \.self) {  item in
+                                Image("\(item)")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: CGFloat(sizePictogramas))
+                                    .padding(.vertical, 5)
+                                    .onTapGesture {
+                                        speechSynthesizer.speak(text: "\(item)")
+                                    }
+                            }
+                        } else {
+                            ForEach(userData.curAlumno.Pictogramas, id: \.Nombre) {  picto in
+                                WebImage(url: URL(string: picto.Image))
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: CGFloat(sizePictogramas))
+                                    .padding(.vertical, 5)
+                                    .cornerRadius(15)
+                                    .onTapGesture {
+                                        speechSynthesizer.speak(text: picto.Nombre)
+                                    }
+                            }
                         }
                     }
                 }

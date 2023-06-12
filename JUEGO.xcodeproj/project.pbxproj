@@ -52,6 +52,7 @@
 		FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */; };
 		FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */; };
 		FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FB9352CC2A36976A00D3BA22 /* FirebaseStorage */; };
+		FB9352D02A36F90E00D3BA22 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */; };
 		FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */; };
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
@@ -122,6 +123,7 @@
 				BA160FBF2A09ABA5002751F6 /* FirebaseDatabaseSwift in Frameworks */,
 				BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */,
 				FB4F3DA02A1814610072476B /* GoogleSignInSwift in Frameworks */,
+				FB9352D02A36F90E00D3BA22 /* SDWebImageSwiftUI in Frameworks */,
 				FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */,
 				BA160FBD2A09ABA5002751F6 /* FirebaseDatabase in Frameworks */,
 				BA160FBB2A09ABA5002751F6 /* FirebaseAuth in Frameworks */,
@@ -289,6 +291,7 @@
 				FB4F3D9D2A1814610072476B /* GoogleSignIn */,
 				FB4F3D9F2A1814610072476B /* GoogleSignInSwift */,
 				FB9352CC2A36976A00D3BA22 /* FirebaseStorage */,
+				FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */,
 			);
 			productName = JUEGO;
 			productReference = FB4909D429F9D771008A4451 /* JUEGO.app */;
@@ -321,6 +324,7 @@
 			packageReferences = (
 				BA160FB92A09ABA5002751F6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FB4F3D9C2A1814610072476B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = FB4909D529F9D771008A4451 /* Products */;
 			projectDirPath = "";
@@ -517,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JUEGO/Preview Content\"";
@@ -524,9 +529,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JUEGO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoastLine;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -548,6 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JUEGO/Preview Content\"";
@@ -555,9 +563,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JUEGO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoastLine;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -614,6 +624,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -651,6 +669,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA160FB92A09ABA5002751F6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
