@@ -145,6 +145,35 @@ class FirebaseService{
         return alumnos
     }
     
+    func insertAlumno(alumno: Alumno) async throws -> Alumno {
+        let alumnosRef = db.collection("alumnos")
+        let documentRef = alumnosRef.document()
+        
+        var pictogramasData: [[String: Any]] = []
+        for pictograma in alumno.Pictogramas {
+            let data: [String: Any] = [
+                "Nombre": pictograma.Nombre,
+                "Url": pictograma.Image
+            ]
+            pictogramasData.append(data)
+        }
+        let data: [String: Any] = [
+            "Nombre": alumno.Nombre,
+            "Apellido": alumno.Apellido,
+            "Nivel": alumno.Nivel,
+            "Pictogramas": pictogramasData,
+            "Tutores": alumno.Tutores
+        ]
+        do {
+            try await documentRef.setData(data)
+            print("Document inserted successfully with id \(documentRef.documentID).")
+            return alumno
+        } catch {
+            print("Error updating document: \(error)")
+            throw error
+        }
+    }
+    
     func updateAlumno(alumno: Alumno) async throws -> Alumno {
         let alumnosRef = db.collection("alumnos")
         let documentRef = alumnosRef.document(alumno.Id)

@@ -135,7 +135,7 @@ struct SignInView: View {
                 
                 VStack {
                     ZStack{
-                        Color(red:175/255,green:208/255,blue:213/255)
+                        Color(red:100/255,green:171/255,blue:180/255)
                         VStack{
                             Image(systemName: "sunrise.fill")
                                 .resizable()

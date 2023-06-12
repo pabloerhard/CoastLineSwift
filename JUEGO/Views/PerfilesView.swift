@@ -26,28 +26,19 @@ struct PerfilesView: View {
                     Text("¡Hola, \(userData.curTutor.Nombre)!")
                         .font(Font.custom("HelveticaNeue-Thin", size: 35))
                         .bold()
-                    Section(header: Text("Tus Datos Personales:")
-                        .font(Font.custom("HelveticaNeue-Thin", size: 30))
-                    ) {
-                        Text("Nombre: \(userData.curTutor.Nombre)")
-                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
-                        Text("Apellido: \(userData.curTutor.Apellido)")
-                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
-                        Text("Cantidad de Alumnos: \(userData.tutorAlumnos.count)")
-                    }
-                    List {
-                        ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
-                            HStack {
-                                Text(alumno.Nombre)
-                                    .foregroundColor(.primary)
-                                Button(action: {
-                                    userData.tutorAlumnos.append(alumno)
-                                    userData.otherAlumnos.removeAll{$0 == alumno}
-                                }) {
-                                    Image(systemName: "plus")
-                    Spacer()
+                        .padding()
+                    //                    Section(header: Text("Tus Datos Personales:")
+                    //                        .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                    //                    ) {
+                    //                        Text("Nombre: \(userData.curTutor.Nombre)")
+                    //                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                    //                        Text("Apellido: \(userData.curTutor.Apellido)")
+                    //                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                    Text("Mi lista de alumnos: \(userData.tutorAlumnos.count)")
+                    //                    }
+                    //                    Spacer()
                     HStack {
-                        TextField("Search", text: $searchText)
+                        TextField("Buscar alumnos", text: $searchText)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 200)
                         
@@ -59,93 +50,180 @@ struct PerfilesView: View {
                         }
                     }
                     .padding()
-                    
-                    ZStack(alignment:.center) {
-                        Color(red: 175/255, green: 208/255, blue: 213/255)
+                    ZStack {
+                        Color(red: 245/255, green: 239/255, blue: 237/255)
+                            .ignoresSafeArea()
                         
                         ScrollView {
                             if searchText == "" {
                                 ForEach(Array(userData.otherAlumnos), id: \.self) { alumno in
+                                    var mutableAlumno = alumno
                                     HStack {
                                         Spacer()
-                                        Text(alumno.Nombre)
+                                        Text(mutableAlumno.Nombre)
                                             .foregroundColor(.primary)
-                                        
-                                        Spacer() // Add spacer to push the button to the right
-                                        
+                                            .padding(.leading, 10)
+                                        Text(mutableAlumno.Apellido)
+                                            .foregroundColor(.primary)
+                                        Spacer()
                                         Button(action: {
-                                            userData.tutorAlumnos.insert(alumno)
-                                            userData.otherAlumnos.remove(alumno)
+                                            userData.tutorAlumnos.append(mutableAlumno)
+                                            userData.otherAlumnos.removeAll{$0 == mutableAlumno}
+                                            mutableAlumno.Tutores.append(userData.curTutor.Id)
+                                            Task {
+                                                do {
+                                                    let updatedAlumno = try await repository.updateAlumno(alumno: mutableAlumno)
+                                                    mutableAlumno = updatedAlumno
+                                                    print(mutableAlumno)
+                                                    Task {
+                                                        do {
+                                                            let alumnos = try await repository.getAlumnos()
+                                                            DispatchQueue.main.async {
+                                                                userData.allAlumnos = alumnos
+                                                            }
+                                                            let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                                return alumno.Tutores.contains(userData.curTutor.Id)
+                                                            }
+                                                            userData.tutorAlumnos = filteredTutorAlumnos
+                                                            print("Alumnos de tutor extraidos correctamente \n")
+                                                            print("\(userData.tutorAlumnos) \n ")
+                                                            let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                                return !alumno.Tutores.contains(userData.curTutor.Id)
+                                                            }
+                                                            userData.otherAlumnos = filteredOtherAlumnos
+                                                            print("Resto de alumnos \n")
+                                                            print("\(userData.otherAlumnos) \n ")
+                                                        } catch {
+                                                            print("Error al obtener alumnos: \(error.localizedDescription)")
+                                                        }
+                                                    }
+                                                } catch {
+                                                    // An error occurred while updating the alumno
+                                                    print("Error updating alumno: \(error)")
+                                                }
+                                            }
                                         }) {
                                             Image(systemName: "plus")
-                                                .padding(.trailing, 25)
+                                                .padding(.trailing, 10)
                                         }
                                         .foregroundColor(.green)
                                     }
-                                    .padding() // Add horizontal padding to the HStack
+                                    .padding()
                                 }
                             } else {
                                 let filteredAlumnos = userData.otherAlumnos.filter { alumno in
-                                    return alumno.Nombre.lowercased().contains(searchText.lowercased())
+                                    return alumno.Nombre.lowercased().contains(searchText.lowercased()) || "\(alumno.Nombre.lowercased() + " " + alumno.Apellido.lowercased())".contains(searchText.lowercased())
                                 }
                                 ForEach(Array(filteredAlumnos), id: \.self) { alumno in
+                                    var mutableAlumno = alumno
                                     HStack {
                                         Spacer()
-                                        Text(alumno.Nombre)
+                                        Text(mutableAlumno.Nombre)
+                                            .foregroundColor(.primary)
+                                            .padding(.leading, 10)
+                                        Text(mutableAlumno.Apellido)
                                             .foregroundColor(.primary)
                                         Spacer()
                                         Button(action: {
-                                            userData.tutorAlumnos.insert(alumno)
-                                            userData.otherAlumnos.remove(alumno)
+                                            userData.tutorAlumnos.append(mutableAlumno)
+                                            userData.otherAlumnos.removeAll{$0 == mutableAlumno}
+                                            mutableAlumno.Tutores.append(userData.curTutor.Id)
+                                            Task {
+                                                do {
+                                                    let updatedAlumno = try await repository.updateAlumno(alumno: mutableAlumno)
+                                                    mutableAlumno = updatedAlumno
+                                                    print(mutableAlumno)
+                                                    Task {
+                                                        do {
+                                                            let alumnos = try await repository.getAlumnos()
+                                                            DispatchQueue.main.async {
+                                                                userData.allAlumnos = alumnos
+                                                            }
+                                                            let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                                return alumno.Tutores.contains(userData.curTutor.Id)
+                                                            }
+                                                            userData.tutorAlumnos = filteredTutorAlumnos
+                                                            print("Alumnos de tutor extraidos correctamente \n")
+                                                            print("\(userData.tutorAlumnos) \n ")
+                                                            let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                                return !alumno.Tutores.contains(userData.curTutor.Id)
+                                                            }
+                                                            userData.otherAlumnos = filteredOtherAlumnos
+                                                            print("Resto de alumnos \n")
+                                                            print("\(userData.otherAlumnos) \n ")
+                                                        } catch {
+                                                            print("Error al obtener alumnos: \(error.localizedDescription)")
+                                                        }
+                                                    }
+                                                } catch {
+                                                    // An error occurred while updating the alumno
+                                                    print("Error updating alumno: \(error)")
+                                                }
+                                            }
+                                            
                                         }) {
                                             Image(systemName: "plus")
-                                                .padding(.trailing, 25)
+                                                .padding(.trailing, 10)
                                         }
                                         .foregroundColor(.green)
                                     }
-                                    .padding() // Add horizontal padding to the HStack
+                                    .padding()
                                 }
-                                
                             }
-                            
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                        .background(Color(red:245/255,green:239/255,blue:237/255))
                     }
-                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .background(Color(red: 245/255, green: 239/255, blue: 237/255))
                     .ignoresSafeArea()
                 }
                 .background(Color(red: 175/255, green: 208/255, blue: 213/255))
-                //.background(Color.clear)
-                
-                
-                
-                
                 .toolbar {
                     Button {
                         mostrarAgregar = true
                     } label: {
                         Image(systemName: "plus")
                     }
-                    .sheet(isPresented: $mostrarAgregar, onDismiss: {
-                        // Handle data from the sheet here if needed
-                    }) {
-                        //AddAlumno(alumnos: alumnos)
+                    .sheet(isPresented: $mostrarAgregar) {
+                        AddAlumnoView()
                     }
                 }
                 .background(Color(red:34/255,green:146/255,blue:164/255))
                 ScrollView {
-                    Text("Lista de los Alumnos actuales de \(userData.curTutor.Nombre)")
+                    Text("Lista de los alumnos de \(userData.curTutor.Nombre)")
                         .font(Font.custom("HelveticaNeue-Thin", size: 50))
                     
                     LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(Array(userData.tutorAlumnos), id: \.self) { alumno in
-                            
-                            ProfileView(alumno: alumno)
+                        ForEach(userData.tutorAlumnos.indices, id: \.self) { index in
+                            ProfileView(alumno: $userData.tutorAlumnos[index])
                         }
+
                     }
                     .background(Color.clear)
                     .padding(16)
+                }
+                .refreshable {
+                    Task {
+                        do {
+                            let alumnos = try await repository.getAlumnos()
+                            DispatchQueue.main.async {
+                                userData.allAlumnos = alumnos
+                            }
+                            let filteredTutorAlumnos = alumnos.filter { alumno in
+                                return alumno.Tutores.contains(userData.curTutor.Id)
+                            }
+                            userData.tutorAlumnos = filteredTutorAlumnos
+                            print("Alumnos de tutor extraidos correctamente \n")
+                            print("\(userData.tutorAlumnos) \n ")
+                            let filteredOtherAlumnos = alumnos.filter { alumno in
+                                return !alumno.Tutores.contains(userData.curTutor.Id)
+                            }
+                            userData.otherAlumnos = filteredOtherAlumnos
+                            print("Resto de alumnos \n")
+                            print("\(userData.otherAlumnos) \n ")
+                        } catch {
+                            print("Error al obtener alumnos: \(error.localizedDescription)")
+                        }
+                    }
                 }
                 .background(Color(red:245/255,green:239/255,blue:237/255))
             }
@@ -174,10 +252,7 @@ struct PerfilesView: View {
                 }
             }
             .background(Color(red: 175/255, green: 208/255, blue: 213/255))
-            
-            
-        }
-        else{
+        } else{
             MenuView()
         }
     }
@@ -185,9 +260,10 @@ struct PerfilesView: View {
 }
 
 struct ProfileView: View {
-    let alumno: Alumno
+    @Binding var alumno: Alumno
     @EnvironmentObject var userData: UserData
-    
+    @State private var edit = false
+    let repository = FirebaseService()
     var body: some View {
         Button {
             userData.curAlumno = alumno
@@ -218,11 +294,53 @@ struct ProfileView: View {
                 let filteredAlumnos = userData.tutorAlumnos.filter { tutorAlumno in
                     return tutorAlumno.Id != alumno.Id
                 }
-                userData.tutorAlumnos = filteredAlumnos
-                userData.otherAlumnos.append(alumno)
+                let filteredTutors = alumno.Tutores.filter { tutor in
+                    return tutor != userData.curTutor.Id
+                }
+                alumno.Tutores = filteredTutors
+                Task {
+                    do {
+                        let updatedAlumno = try await repository.updateAlumno(alumno: alumno)
+                        print(updatedAlumno)
+                        Task {
+                            do {
+                                let alumnos = try await repository.getAlumnos()
+                                DispatchQueue.main.async {
+                                    userData.allAlumnos = alumnos
+                                }
+                                let filteredTutorAlumnos = alumnos.filter { alumno in
+                                    return alumno.Tutores.contains(userData.curTutor.Id)
+                                }
+                                userData.tutorAlumnos = filteredTutorAlumnos
+                                print("Alumnos de tutor extraidos correctamente \n")
+                                print("\(userData.tutorAlumnos) \n ")
+                                let filteredOtherAlumnos = alumnos.filter { alumno in
+                                    return !alumno.Tutores.contains(userData.curTutor.Id)
+                                }
+                                userData.otherAlumnos = filteredOtherAlumnos
+                                print("Resto de alumnos \n")
+                                print("\(userData.otherAlumnos) \n ")
+                            } catch {
+                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                            }
+                        }
+                    } catch {
+                        // An error occurred while updating the alumno
+                        print("Error updating alumno: \(error)")
+                    }
+                }
             }) {
                 Label("Quitar de mi lista", systemImage: "trash")
             }
+            Button(action: {
+                userData.curAlumno = alumno
+                edit = true
+            }) {
+                Label("Editar", systemImage: "pencil")
+            }
+        }
+        .sheet(isPresented: $edit){
+            EditAlumnoView()
         }
     }
 }

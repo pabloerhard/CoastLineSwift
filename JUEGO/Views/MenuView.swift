@@ -346,13 +346,14 @@ struct EditAlumnoView: View {
     @State var image : UIImage?
     @State private var pictogramas = [PictogramaDto]()
     @State private var usedNames: Set<String> = []
-    @State private var isWatchingPictograma = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.dismiss) var dismiss1
     @State private var showAlert = false
     @State private var tempPictogramas = [Pictograma]()
     let repository = FirebaseService()
     @State private var errorMessage = ""
+    @State private var isWatchingPictograma: [String: Bool] = [:]
+    
 
     var body: some View {
         NavigationView {
@@ -401,9 +402,10 @@ struct EditAlumnoView: View {
                             } else{
                                 List {
                                     ForEach(userData.tempCurAlumnoInfo.Pictogramas, id: \.Nombre) { picto in
-                                        VStack{
+                                        VStack {
                                             Button {
-                                                isWatchingPictograma.toggle()
+                                                isWatchingPictograma[picto.Nombre] = false
+                                                isWatchingPictograma[picto.Nombre]?.toggle()
                                             } label: {
                                                 HStack {
                                                     Text(picto.Nombre)
@@ -420,12 +422,15 @@ struct EditAlumnoView: View {
                                                         .cornerRadius(10)
                                                 }
                                             }
-                                            .sheet(isPresented: $isWatchingPictograma) {
-                                                VStack{
+                                            .sheet(isPresented: Binding(
+                                                get: { isWatchingPictograma[picto.Nombre] ?? false },
+                                                set: { isWatchingPictograma[picto.Nombre] = $0 }
+                                            )) {
+                                                VStack {
                                                     Text(picto.Nombre)
                                                         .font(.title2)
                                                         .bold()
-                                                    HStack{
+                                                    HStack {
                                                         Spacer()
                                                         WebImage(url: URL(string: picto.Image))
                                                             .resizable()
@@ -445,10 +450,11 @@ struct EditAlumnoView: View {
                                         userData.tempCurAlumnoInfo.Pictogramas.remove(atOffsets: indices)
                                     }
                                     ForEach(pictogramas, id: \.Nombre) { picto in
-                                        VStack{
+                                        VStack {
                                             if let imagen = picto.Image {
                                                 Button {
-                                                    isWatchingPictograma.toggle()
+                                                    isWatchingPictograma[picto.Nombre] = false
+                                                    isWatchingPictograma[picto.Nombre]?.toggle()
                                                 } label: {
                                                     HStack {
                                                         Text(picto.Nombre)
@@ -465,12 +471,15 @@ struct EditAlumnoView: View {
                                                             .cornerRadius(10)
                                                     }
                                                 }
-                                                .sheet(isPresented: $isWatchingPictograma) {
-                                                    VStack{
+                                                .sheet(isPresented: Binding(
+                                                    get: { isWatchingPictograma[picto.Nombre] ?? false },
+                                                    set: { isWatchingPictograma[picto.Nombre] = $0 }
+                                                )) {
+                                                    VStack {
                                                         Text(picto.Nombre)
                                                             .font(.title2)
                                                             .bold()
-                                                        HStack{
+                                                        HStack {
                                                             Spacer()
                                                             Image(uiImage: imagen)
                                                                 .resizable()
@@ -545,6 +554,28 @@ struct EditAlumnoView: View {
                                         let updatedAlumno = try await repository.updateAlumno(alumno: userData.tempCurAlumnoInfo)
                                         userData.curAlumno = updatedAlumno
                                         print(updatedAlumno)
+                                        Task {
+                                            do {
+                                                let alumnos = try await repository.getAlumnos()
+                                                DispatchQueue.main.async {
+                                                    userData.allAlumnos = alumnos
+                                                }
+                                                let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                    return alumno.Tutores.contains(userData.curTutor.Id)
+                                                }
+                                                userData.tutorAlumnos = filteredTutorAlumnos
+                                                print("Alumnos de tutor extraidos correctamente \n")
+                                                print("\(userData.tutorAlumnos) \n ")
+                                                let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                    return !alumno.Tutores.contains(userData.curTutor.Id)
+                                                }
+                                                userData.otherAlumnos = filteredOtherAlumnos
+                                                print("Resto de alumnos \n")
+                                                print("\(userData.otherAlumnos) \n ")
+                                            } catch {
+                                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                                            }
+                                        }
                                     } catch {
                                         // An error occurred while updating the alumno
                                         print("Error updating alumno: \(error)")

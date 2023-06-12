@@ -13,7 +13,7 @@ struct AddPictogramaView: View {
     @State private var nombre = "Predeterminado"
     @Environment(\.dismiss) var dismiss
     @State private var showAlert = false
-    let imagenes = ["Predeterminado", "Papá", "Mamá", "Herman@1", "Herman@2","Mascota1","Mascota2"]
+    let imagenes = ["Predeterminado", "Papá","Papá1", "Mamá", "Mamá1", "Hermana", "Hermana1", "Hermano", "Hermano1", "Mascota", "Mascota1", "Abuelo", "Abuelo1", "Abuela", "Abuela1", "Gato", "Perro"]
     @State private var shouldShowImagePicker = false
     @State private var isAddingPicto = false
     @State var image : UIImage?
