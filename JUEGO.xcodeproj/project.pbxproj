@@ -17,6 +17,33 @@
 		BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA160FC02A09ABA5002751F6 /* FirebaseFirestore */; };
 		BA160FC52A09AD5A002751F6 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA160FC42A09AD5A002751F6 /* SignUpView.swift */; };
 		BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA40EED12A2E90510048545A /* MenuPictogramasView.swift */; };
+		BA5B66BC2A327AD100D7640A /* CS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66A92A327AD100D7640A /* CS_piano.wav */; };
+		BA5B66BD2A327AD100D7640A /* F_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AA2A327AD100D7640A /* F_piano.wav */; };
+		BA5B66BE2A327AD100D7640A /* FS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AB2A327AD100D7640A /* FS_piano.wav */; };
+		BA5B66BF2A327AD100D7640A /* AS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AC2A327AD100D7640A /* AS_piano.wav */; };
+		BA5B66C02A327AD100D7640A /* A_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AD2A327AD100D7640A /* A_piano.wav */; };
+		BA5B66C12A327AD100D7640A /* G_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AE2A327AD100D7640A /* G_piano.wav */; };
+		BA5B66C22A327AD100D7640A /* DS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66AF2A327AD100D7640A /* DS_piano.wav */; };
+		BA5B66C32A327AD100D7640A /* B_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B02A327AD100D7640A /* B_piano.wav */; };
+		BA5B66C42A327AD100D7640A /* A.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B12A327AD100D7640A /* A.wav */; };
+		BA5B66C52A327AD100D7640A /* C.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B22A327AD100D7640A /* C.wav */; };
+		BA5B66C62A327AD100D7640A /* GS_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B32A327AD100D7640A /* GS_piano.wav */; };
+		BA5B66C72A327AD100D7640A /* B.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B42A327AD100D7640A /* B.wav */; };
+		BA5B66C82A327AD100D7640A /* F.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B52A327AD100D7640A /* F.wav */; };
+		BA5B66C92A327AD100D7640A /* G.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B62A327AD100D7640A /* G.wav */; };
+		BA5B66CA2A327AD100D7640A /* D_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B72A327AD100D7640A /* D_piano.wav */; };
+		BA5B66CB2A327AD100D7640A /* E.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B82A327AD100D7640A /* E.wav */; };
+		BA5B66CC2A327AD100D7640A /* D.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B92A327AD100D7640A /* D.wav */; };
+		BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BA2A327AD100D7640A /* C_piano.wav */; };
+		BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BB2A327AD100D7640A /* E_piano.wav */; };
+		BA5E3E212A36CABE003B4B0D /* JuegoCinco.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */; };
+		BA5E3E232A36CB3A003B4B0D /* EmojiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */; };
+		BA5E3E252A36CC4D003B4B0D /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E242A36CC4D003B4B0D /* Emoji.swift */; };
+		BACCA5502A378DAC00F1022C /* hi-hat.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54B2A378DAC00F1022C /* hi-hat.wav */; };
+		BACCA5512A378DAC00F1022C /* crash.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54C2A378DAC00F1022C /* crash.wav */; };
+		BACCA5522A378DAC00F1022C /* snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54D2A378DAC00F1022C /* snare.wav */; };
+		BACCA5532A378DAC00F1022C /* kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54E2A378DAC00F1022C /* kick.wav */; };
+		BACCA5542A378DAC00F1022C /* tom.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54F2A378DAC00F1022C /* tom.wav */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
@@ -28,11 +55,14 @@
 		FB4F3DA32A181DD20072476B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4F3DA22A181DD20072476B /* Application.swift */; };
 		FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55E4DC2A2EC0A900A0F07C /* UserData.swift */; };
 		FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */; };
+		FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */; };
+		FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FB9352CC2A36976A00D3BA22 /* FirebaseStorage */; };
+		FB9352D02A36F90E00D3BA22 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */; };
 		FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */; };
 		FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */; };
 		FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */; };
 		FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */; };
-		FBB006012A2AA30C00F738C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB006002A2AA30C00F738C4 /* SettingsView.swift */; };
+		FBB006012A2AA30C00F738C4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */; };
 		FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */; };
 		FBEBB0AC2A1C2331009883E9 /* AlumnoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */; };
 		FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEBB0AD2A1C259E009883E9 /* MenuView.swift */; };
@@ -45,6 +75,33 @@
 		BA0070332A271216004A5772 /* PerfilesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilesView.swift; sourceTree = "<group>"; };
 		BA160FC42A09AD5A002751F6 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BA40EED12A2E90510048545A /* MenuPictogramasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPictogramasView.swift; sourceTree = "<group>"; };
+		BA5B66A92A327AD100D7640A /* CS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AA2A327AD100D7640A /* F_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = F_piano.wav; sourceTree = "<group>"; };
+		BA5B66AB2A327AD100D7640A /* FS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AC2A327AD100D7640A /* AS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AS_piano.wav; sourceTree = "<group>"; };
+		BA5B66AD2A327AD100D7640A /* A_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A_piano.wav; sourceTree = "<group>"; };
+		BA5B66AE2A327AD100D7640A /* G_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = G_piano.wav; sourceTree = "<group>"; };
+		BA5B66AF2A327AD100D7640A /* DS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DS_piano.wav; sourceTree = "<group>"; };
+		BA5B66B02A327AD100D7640A /* B_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B_piano.wav; sourceTree = "<group>"; };
+		BA5B66B12A327AD100D7640A /* A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = A.wav; sourceTree = "<group>"; };
+		BA5B66B22A327AD100D7640A /* C.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C.wav; sourceTree = "<group>"; };
+		BA5B66B32A327AD100D7640A /* GS_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GS_piano.wav; sourceTree = "<group>"; };
+		BA5B66B42A327AD100D7640A /* B.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = B.wav; sourceTree = "<group>"; };
+		BA5B66B52A327AD100D7640A /* F.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = F.wav; sourceTree = "<group>"; };
+		BA5B66B62A327AD100D7640A /* G.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = G.wav; sourceTree = "<group>"; };
+		BA5B66B72A327AD100D7640A /* D_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D_piano.wav; sourceTree = "<group>"; };
+		BA5B66B82A327AD100D7640A /* E.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E.wav; sourceTree = "<group>"; };
+		BA5B66B92A327AD100D7640A /* D.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D.wav; sourceTree = "<group>"; };
+		BA5B66BA2A327AD100D7640A /* C_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C_piano.wav; sourceTree = "<group>"; };
+		BA5B66BB2A327AD100D7640A /* E_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E_piano.wav; sourceTree = "<group>"; };
+		BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCinco.swift; sourceTree = "<group>"; };
+		BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewModel.swift; sourceTree = "<group>"; };
+		BA5E3E242A36CC4D003B4B0D /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		BACCA54B2A378DAC00F1022C /* hi-hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "hi-hat.wav"; path = "../../../../../../Downloads/game/hi-hat.wav"; sourceTree = "<group>"; };
+		BACCA54C2A378DAC00F1022C /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crash.wav; path = ../../../../../../Downloads/game/crash.wav; sourceTree = "<group>"; };
+		BACCA54D2A378DAC00F1022C /* snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snare.wav; path = ../../../../../../Downloads/game/snare.wav; sourceTree = "<group>"; };
+		BACCA54E2A378DAC00F1022C /* kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = kick.wav; path = ../../../../../../Downloads/game/kick.wav; sourceTree = "<group>"; };
+		BACCA54F2A378DAC00F1022C /* tom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tom.wav; path = ../../../../../../Downloads/game/tom.wav; sourceTree = "<group>"; };
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
@@ -56,11 +113,12 @@
 		FB4F3DA22A181DD20072476B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		FB55E4DC2A2EC0A900A0F07C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FB92101F2A2A7B94005E0F76 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPictogramaView.swift; sourceTree = "<group>"; };
 		FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoUno.swift; sourceTree = "<group>"; };
 		FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoDos.swift; sourceTree = "<group>"; };
 		FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoTres.swift; sourceTree = "<group>"; };
 		FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCuatro.swift; sourceTree = "<group>"; };
-		FBB006002A2AA30C00F738C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlumno.swift; sourceTree = "<group>"; };
 		FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlumnoModel.swift; sourceTree = "<group>"; };
 		FBEBB0AD2A1C259E009883E9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -75,6 +133,8 @@
 				BA160FBF2A09ABA5002751F6 /* FirebaseDatabaseSwift in Frameworks */,
 				BA160FC12A09ABA5002751F6 /* FirebaseFirestore in Frameworks */,
 				FB4F3DA02A1814610072476B /* GoogleSignInSwift in Frameworks */,
+				FB9352D02A36F90E00D3BA22 /* SDWebImageSwiftUI in Frameworks */,
+				FB9352CD2A36976A00D3BA22 /* FirebaseStorage in Frameworks */,
 				BA160FBD2A09ABA5002751F6 /* FirebaseDatabase in Frameworks */,
 				BA160FBB2A09ABA5002751F6 /* FirebaseAuth in Frameworks */,
 			);
@@ -92,10 +152,42 @@
 				BA160FC42A09AD5A002751F6 /* SignUpView.swift */,
 				FBEBB0AD2A1C259E009883E9 /* MenuView.swift */,
 				FBBA46FC2A27E26500F616D1 /* AddAlumno.swift */,
-				FBB006002A2AA30C00F738C4 /* SettingsView.swift */,
+				FBB006002A2AA30C00F738C4 /* ImagePickerView.swift */,
 				BA40EED12A2E90510048545A /* MenuPictogramasView.swift */,
+				FB9352C92A36635600D3BA22 /* AddPictogramaView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		BA5B66A82A327AD100D7640A /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B66A92A327AD100D7640A /* CS_piano.wav */,
+				BA5B66AA2A327AD100D7640A /* F_piano.wav */,
+				BA5B66AB2A327AD100D7640A /* FS_piano.wav */,
+				BA5B66AC2A327AD100D7640A /* AS_piano.wav */,
+				BA5B66AD2A327AD100D7640A /* A_piano.wav */,
+				BA5B66AE2A327AD100D7640A /* G_piano.wav */,
+				BA5B66AF2A327AD100D7640A /* DS_piano.wav */,
+				BA5B66B02A327AD100D7640A /* B_piano.wav */,
+				BA5B66B12A327AD100D7640A /* A.wav */,
+				BA5B66B22A327AD100D7640A /* C.wav */,
+				BA5B66B32A327AD100D7640A /* GS_piano.wav */,
+				BA5B66B42A327AD100D7640A /* B.wav */,
+				BA5B66B52A327AD100D7640A /* F.wav */,
+				BA5B66B62A327AD100D7640A /* G.wav */,
+				BA5B66B72A327AD100D7640A /* D_piano.wav */,
+				BA5B66B82A327AD100D7640A /* E.wav */,
+				BA5B66B92A327AD100D7640A /* D.wav */,
+				BA5B66BA2A327AD100D7640A /* C_piano.wav */,
+				BA5B66BB2A327AD100D7640A /* E_piano.wav */,
+				BACCA54C2A378DAC00F1022C /* crash.wav */,
+				BACCA54B2A378DAC00F1022C /* hi-hat.wav */,
+				BACCA54E2A378DAC00F1022C /* kick.wav */,
+				BACCA54D2A378DAC00F1022C /* snare.wav */,
+				BACCA54F2A378DAC00F1022C /* tom.wav */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		FB4909CB29F9D771008A4451 = {
@@ -103,6 +195,7 @@
 			children = (
 				FB4909D629F9D771008A4451 /* JUEGO */,
 				FB4909D529F9D771008A4451 /* Products */,
+				FB9352CB2A36976A00D3BA22 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +239,8 @@
 				BA00702D2A27104C004A5772 /* Tutor.swift */,
 				BA00702F2A271053004A5772 /* Pictograma.swift */,
 				FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */,
+				BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */,
+				BA5E3E242A36CC4D003B4B0D /* Emoji.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +248,7 @@
 		FB4F3DA12A181DC00072476B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BA5B66A82A327AD100D7640A /* sounds */,
 				FB4F3DA22A181DD20072476B /* Application.swift */,
 			);
 			path = Components;
@@ -167,6 +263,13 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		FB9352CB2A36976A00D3BA22 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FBAEF0C52A2152B500E50D16 /* ViewsJuegos */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +277,7 @@
 				FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */,
 				FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */,
 				FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */,
+				BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */,
 			);
 			path = ViewsJuegos;
 			sourceTree = "<group>";
@@ -201,6 +305,8 @@
 				BA160FC02A09ABA5002751F6 /* FirebaseFirestore */,
 				FB4F3D9D2A1814610072476B /* GoogleSignIn */,
 				FB4F3D9F2A1814610072476B /* GoogleSignInSwift */,
+				FB9352CC2A36976A00D3BA22 /* FirebaseStorage */,
+				FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */,
 			);
 			productName = JUEGO;
 			productReference = FB4909D429F9D771008A4451 /* JUEGO.app */;
@@ -233,6 +339,7 @@
 			packageReferences = (
 				BA160FB92A09ABA5002751F6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				FB4F3D9C2A1814610072476B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = FB4909D529F9D771008A4451 /* Products */;
 			projectDirPath = "";
@@ -248,9 +355,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5B66BC2A327AD100D7640A /* CS_piano.wav in Resources */,
+				BA5B66C22A327AD100D7640A /* DS_piano.wav in Resources */,
+				BA5B66BF2A327AD100D7640A /* AS_piano.wav in Resources */,
+				BACCA5542A378DAC00F1022C /* tom.wav in Resources */,
+				BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */,
+				BA5B66C12A327AD100D7640A /* G_piano.wav in Resources */,
 				FB4909DF29F9D772008A4451 /* Preview Assets.xcassets in Resources */,
+				BACCA5512A378DAC00F1022C /* crash.wav in Resources */,
+				BA5B66C32A327AD100D7640A /* B_piano.wav in Resources */,
+				BA5B66C92A327AD100D7640A /* G.wav in Resources */,
+				BA5B66C72A327AD100D7640A /* B.wav in Resources */,
+				BA5B66C82A327AD100D7640A /* F.wav in Resources */,
+				BA5B66C52A327AD100D7640A /* C.wav in Resources */,
+				BA5B66C42A327AD100D7640A /* A.wav in Resources */,
 				FB4909DC29F9D772008A4451 /* Assets.xcassets in Resources */,
 				FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */,
+				BA5B66C62A327AD100D7640A /* GS_piano.wav in Resources */,
+				BA5B66BD2A327AD100D7640A /* F_piano.wav in Resources */,
+				BA5B66CA2A327AD100D7640A /* D_piano.wav in Resources */,
+				BACCA5502A378DAC00F1022C /* hi-hat.wav in Resources */,
+				BA5B66C02A327AD100D7640A /* A_piano.wav in Resources */,
+				BA5B66CC2A327AD100D7640A /* D.wav in Resources */,
+				BA5B66CB2A327AD100D7640A /* E.wav in Resources */,
+				BACCA5532A378DAC00F1022C /* kick.wav in Resources */,
+				BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */,
+				BACCA5522A378DAC00F1022C /* snare.wav in Resources */,
+				BA5B66BE2A327AD100D7640A /* FS_piano.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +395,11 @@
 				FBAEF0CD2A21530000E50D16 /* JuegoCuatro.swift in Sources */,
 				BA0070322A271059004A5772 /* Alumno.swift in Sources */,
 				FBEBB0AE2A1C259E009883E9 /* MenuView.swift in Sources */,
-				FBB006012A2AA30C00F738C4 /* SettingsView.swift in Sources */,
+				FBB006012A2AA30C00F738C4 /* ImagePickerView.swift in Sources */,
 				FB4F3DA32A181DD20072476B /* Application.swift in Sources */,
 				FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */,
 				FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */,
+				BA5E3E212A36CABE003B4B0D /* JuegoCinco.swift in Sources */,
 				FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */,
 				FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */,
 				BA0070302A271053004A5772 /* Pictograma.swift in Sources */,
@@ -276,11 +408,14 @@
 				BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */,
 				BA0070342A271217004A5772 /* PerfilesView.swift in Sources */,
 				FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */,
+				BA5E3E232A36CB3A003B4B0D /* EmojiViewModel.swift in Sources */,
 				BA00702E2A27104C004A5772 /* Tutor.swift in Sources */,
+				BA5E3E252A36CC4D003B4B0D /* Emoji.swift in Sources */,
 				FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */,
 				FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */,
 				FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */,
 				FBBA46FD2A27E26500F616D1 /* AddAlumno.swift in Sources */,
+				FB9352CA2A36635600D3BA22 /* AddPictogramaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JUEGO/Preview Content\"";
@@ -413,9 +549,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JUEGO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoastLine;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -437,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JUEGO/Preview Content\"";
@@ -444,9 +583,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JUEGO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoastLine;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -503,6 +644,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -535,6 +684,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB4F3D9C2A1814610072476B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		FB9352CC2A36976A00D3BA22 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA160FB92A09ABA5002751F6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		FB9352CF2A36F90E00D3BA22 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB9352CE2A36F90E00D3BA22 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

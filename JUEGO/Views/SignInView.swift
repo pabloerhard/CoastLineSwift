@@ -46,7 +46,7 @@ struct SignInView: View {
                                     .keyboardType(.emailAddress)
                                     .frame(width: geo.size.width * 0.5)
                                 
-                                TextField("Inserta Contraseña", text: $password)
+                                SecureField("Inserta Contraseña", text: $password)
                                     .padding()
                                     .background(Color.white)
                                     .cornerRadius(15)
@@ -67,6 +67,29 @@ struct SignInView: View {
                                                         userData.curTutor = tutor
                                                         userData.curTutor.Id = uid
                                                         print("Tutor information: \(userData.curTutor)")
+                                                        Task {
+                                                            do {
+                                                                let alumnos = try await repository.getAlumnos()
+                                                                DispatchQueue.main.async {
+                                                                    userData.allAlumnos = alumnos
+                                                                }
+                                                                let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                                    return alumno.Tutores.contains(uid)
+                                                                }
+                                                                userData.tutorAlumnos = filteredTutorAlumnos
+                                                                print("Alumnos de tutor extraidos correctamente \n")
+                                                                print("\(userData.tutorAlumnos) \n ")
+                                                                let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                                    return !alumno.Tutores.contains(uid)
+                                                                }
+                                                                userData.otherAlumnos = filteredOtherAlumnos
+                                                                print("Resto de alumnos \n")
+                                                                print("\(userData.otherAlumnos) \n ")
+                                                            } catch {
+                                                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                                                            }
+                                                        }
+
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"
@@ -83,7 +106,7 @@ struct SignInView: View {
                                     }
                                     .frame(width: 200, height: 50)
                                     .foregroundColor(.white)
-                                    .background(.black)
+                                    .background(Color(red:34/255,green:146/255,blue:164/255))
                                     .cornerRadius(10)
                                     .shadow(color:.gray,radius:4,x:0,y:2)
                                     .alert(isPresented: $alertLogIn) {
@@ -112,8 +135,12 @@ struct SignInView: View {
                 
                 VStack {
                     ZStack{
-                        Color.black
+                        Color(red:100/255,green:171/255,blue:180/255)
                         VStack{
+                            Image(systemName: "sunrise.fill")
+                                .resizable()
+                                .frame(width:200,height:150)
+                                .foregroundColor(.white)
                             Text("¡Bienvenidos a CoastLine!")
                                 .foregroundColor(.white)
                                 .font(Font.custom("HelveticaNeue-Thin", size: 30))
@@ -123,6 +150,8 @@ struct SignInView: View {
                     .ignoresSafeArea(.all)
                 }
             }
+            .ignoresSafeArea()
+            .background(Color(red:245/255,green:239/255,blue:237/255))
         }else{
             PerfilesView()
         }

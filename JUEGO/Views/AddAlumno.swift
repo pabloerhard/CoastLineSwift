@@ -8,112 +8,233 @@
 import SwiftUI
 import Firebase
 
-
-struct AddAlumno: View {
-    
-    @Environment(\.dismiss) var dismiss
-    @ObservedObject var alumnos : AlumnoModel
-    @EnvironmentObject var userData : UserData
-    @State private var nombre : String = ""
-    @State private var apellido : String = ""
-    var nivel : Int = 1
-    
+struct AddAlumnoView: View {
+    @EnvironmentObject var userData: UserData
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionSheet = false
+    @State private var shouldShowImagePicker = false
     @State private var isAddingPicto = false
-    @State private var showAlert = false
-    
-    var tutor : String = Auth.auth().currentUser!.uid
-    //var tutor : Tutor = Tutor(Id: curTutor , Nombre: <#T##String#>, Apellido: <#T##String#>)
+    @State var image : UIImage?
     @State private var pictogramas = [PictogramaDto]()
     @State private var usedNames: Set<String> = []
+    @State private var isWatchingPictograma = false
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss1
+    @State private var showAlert = false
+    @State private var tempPictogramas = [Pictograma]()
+    let repository = FirebaseService()
+    @State private var errorMessage = ""
     
+    
+    @State private var nombre : String = ""
+    @State private var apellido : String = ""
+    @State private var nivel : Int = 1
+
     var body: some View {
         NavigationView {
-            Form{
-                Text("Agrega alumno")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-                Section(header: Text("Datos Personales")){
-                    LabeledContent {
-                        TextField("Nombre", text: $nombre)
-                    } label: {
-                        Text("Nombre: ")
-                    }
-                    LabeledContent {
-                        TextField("Apellido", text: $apellido)
-                    } label: {
-                        Text("Apellido: ")
-                    }
-                }
-                Section(header: Text("Informacion Predeterminada")){
-                    LabeledContent {
-                        TextField("Nivel", text: .constant("\(nivel)"))
-                            .foregroundColor(.gray)
-                            .disabled(true)
-                    } label: {
-                        Text("Nivel Inicial: ")
-                    }
-                    
-                    LabeledContent {
-                        TextField("Tutor", text: .constant("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido) - (Tutor Actual)"))
-                            .foregroundColor(.gray)
-                            .disabled(true)
-                    } label: {
-                        Text("Tutor de \(nombre.count > 4 ? nombre : "Alumno"): ")
-                    }
-                }
-                Section(header: Text("Agregar pictograma (Puedes añadirlos despues)")) {
-                    Button(action: {
-                        isAddingPicto = true
-                    }) {
-                        Text("Agregar")
-                    }
-                    .padding()
-                    .sheet(isPresented: $isAddingPicto, onDismiss: {
-                        // Handle data from the sheet here if needed
-                    }) {
-                        AddPictoView(pictogramas: $pictogramas, usedNames: $usedNames)
-                    }
-                    
-                    List {
-                        ForEach(pictogramas) { picto in
-                            VStack{
-                                Text(picto.Nombre)
-                                Text(picto.Url)
+            GeometryReader { geo in
+                VStack{
+                    Form {
+                        Text("Añadir Alumno")
+                            .font(.largeTitle)
+                            .bold()
+                        Section(header: Text("Datos Personales")) {
+                            LabeledContent {
+                                TextField("Nombre", text: $nombre)
+                            } label: {
+                                Text("Nombre: ")
+                            }
+                            LabeledContent {
+                                TextField("Apellido", text: $apellido)
+                            } label: {
+                                Text("Apellido: ")
                             }
                         }
-                        .onDelete{ indexSet in
-                            for index in indexSet {
-                                let nombre = pictogramas[index].Nombre
-                                deletePictograma(at: indexSet, nombre: nombre)
+                        
+                        Section(header: Text("Informacion General")) {
+                            LabeledContent {
+                                Picker("", selection: $nivel) {
+                                    ForEach(1...6, id: \.self) { nivel in
+                                        Text("\(nivel)")
+                                    }
+                                }
+                            } label: {
+                                Text("Nivel Inicial: ")
+                            }
+                            LabeledContent {
+                                TextField("Tutor", text: .constant("\(userData.curTutor.Nombre) \(userData.curTutor.Apellido) - (Tutor Actual)"))
+                                    .foregroundColor(.gray)
+                                    .disabled(true)
+                            } label: {
+                                Text("Tutor de \(nombre.count > 4 ? nombre : "Alumno"): ")
                             }
                         }
+                        Section(header: Text("Pictogramas")) {
+                            if pictogramas.isEmpty {
+                                Text("Actualmente \(nombre.count > 4 ? nombre : "el Alumno") No Tiene Pictogramas")
+                            } else{
+                                ForEach(pictogramas, id: \.Nombre) { picto in
+                                    VStack{
+                                        if let imagen = picto.Image {
+                                            Button {
+                                                isWatchingPictograma.toggle()
+                                            } label: {
+                                                HStack {
+                                                    Text(picto.Nombre)
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                                        .foregroundColor(.black)
+                                                    Spacer()
+                                                    Text("Pulsa para ver imagen")
+                                                        .font(.caption2)
+                                                        .foregroundColor(.gray)
+                                                    Image(uiImage: imagen)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(width: 50, height: 50)
+                                                        .cornerRadius(10)
+                                                }
+                                            }
+                                            .sheet(isPresented: $isWatchingPictograma) {
+                                                VStack{
+                                                    Text(picto.Nombre)
+                                                        .font(.title2)
+                                                        .bold()
+                                                    HStack{
+                                                        Spacer()
+                                                        Image(uiImage: imagen)
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .cornerRadius(10)
+                                                        Spacer()
+                                                    }
+                                                    Text("Desliza hacia abajo para cerrar vista")
+                                                        .font(.caption2)
+                                                        .foregroundColor(.gray)
+                                                }
+                                                .padding()
+                                            }
+                                        }
+                                    }
+                                }
+                                .onDelete { indices in
+                                    pictogramas.remove(atOffsets: indices)
+                                }
+                            }
+                        }
+                        Section(header: Text("Agregar pictograma")) {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    isAddingPicto.toggle()
+                                } label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(Color(red:34/255,green:100/255,blue:164/255))
+                                        .frame(height: geo.size.height * 0.1)
+                                        .overlay(Text("Formulario de Pictogramas"))
+                                        .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                        .foregroundColor(.white)
+                                }
+                                Spacer()
+                            }
+                        }
+                        
+                    }
+                    .navigationBarItems(trailing:
+                                            Button(action: {
+                        if isValidForm() {
+                            var alumno = Alumno(Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: [userData.curTutor.Id], Pictogramas: [])
+                            var pictos: [Pictograma] = []
+                            let uploadGroup = DispatchGroup()
+                            for pictograma in pictogramas {
+                                uploadGroup.enter() // Notify the group that a task has started
+                                repository.addImageToStorage(image: pictograma.Image!) { result in
+                                    switch result {
+                                    case .success(let urlString):
+                                        print("Image uploaded successfully. URL: \(urlString)")
+                                        pictos.append(Pictograma(Nombre: pictograma.Nombre, Image: urlString))
+                                        // Handle success case
+                                    case .failure(let error):
+                                        errorMessage = "Error subiendo imagen a base de datos. Intente de nuevo"
+                                        showAlert = true
+                                        print("Error uploading image: \(error.localizedDescription)")
+                                        // Handle failure case
+                                    }
+                                    uploadGroup.leave() // Notify the group that a task has completed
+                                }
+                            }
+                            
+                            // Wait for all image uploads to complete
+                            uploadGroup.notify(queue: .main) {
+                                print(pictos)
+                                alumno.Pictogramas = pictos
+                                Task {
+                                    do {
+                                        let insertedAlumno = try await repository.insertAlumno(alumno: alumno)
+                                        print(insertedAlumno)
+                                        Task {
+                                            do {
+                                                let alumnos = try await repository.getAlumnos()
+                                                DispatchQueue.main.async {
+                                                    userData.allAlumnos = alumnos
+                                                }
+                                                let filteredTutorAlumnos = alumnos.filter { alumno in
+                                                    return alumno.Tutores.contains(userData.curTutor.Id)
+                                                }
+                                                userData.tutorAlumnos = filteredTutorAlumnos
+                                                print("Alumnos de tutor extraidos correctamente \n")
+                                                print("\(userData.tutorAlumnos) \n ")
+                                                let filteredOtherAlumnos = alumnos.filter { alumno in
+                                                    return !alumno.Tutores.contains(userData.curTutor.Id)
+                                                }
+                                                userData.otherAlumnos = filteredOtherAlumnos
+                                                print("Resto de alumnos \n")
+                                                print("\(userData.otherAlumnos) \n ")
+                                            } catch {
+                                                print("Error al obtener alumnos: \(error.localizedDescription)")
+                                            }
+                                        }
+                                    } catch {
+                                        // An error occurred while updating the alumno
+                                        print("Error updating alumno: \(error)")
+                                    }
+                                    dismiss()
+                                }
+                            }
+                            
+                        } else {
+                            showAlert = true
+                        }
+                    }) {
+                        Text("Añadir")
+                    }
+                    )
+                    
+                    .navigationBarItems(leading: Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Cancelar")
+                    })
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(errorMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
                     }
                 }
             }
-            .navigationBarItems(trailing: Button(action: {
-                if isValidForm() {
-                    // Add the pictograma
-                    dismiss()
-                } else {
-                    showAlert = true
-                }
-            }) {
-                Text("Add")
-            })
-            .navigationBarItems(leading: Button(action: {
-                dismiss()
-            }) {
-                Text("Cancel")
-            })
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Alert"),
-                    message: Text("This is the alert message."),
-                    dismissButton: .default(Text("OK"))
-                )
+            .onAppear{
+                userData.tempCurAlumnoInfo = userData.curAlumno
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $shouldShowImagePicker) {
+            ImagePicker(image: $image)
+        }
+        .sheet(isPresented: $isAddingPicto){
+            AddPictogramaView(pictogramas: $pictogramas, usedNames: $usedNames)
+        }
+        
     }
     private func deletePictograma(at offsets: IndexSet, nombre: String) {
         pictogramas.remove(atOffsets: offsets)
@@ -121,73 +242,7 @@ struct AddAlumno: View {
     }
     
     private func isValidForm() -> Bool {
-        return false //!nombre.isEmpty && !link.isEmpty && nombre != "Predeterminado"
-    }
-}
-
-struct AddPictoView: View {
-    @Binding var pictogramas: [PictogramaDto]
-    @Binding var usedNames:  Set<String>
-    @State private var nombre = "Predeterminado"
-    @State private var link = ""
-    @Environment(\.dismiss) var dismiss
-    @State private var showAlert = false
-    let imagenes = ["Predeterminado", "Papa", "Mama", "Herman@1", "Herman@2","Mascota1","Mascota2"]
-
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Añadir pictogramas")) {
-                    Picker("Nombre", selection: $nombre) {
-                        ForEach(imagenes, id: \.self) { imagen in
-                            if !usedNames.contains(imagen){
-                                Text(imagen)
-                            }
-                        }
-                    }
-                    TextField("Link de Imagen", text: $link)
-                }
-            }
-            .navigationBarItems(trailing: Button(action: {
-                if isValidForm(){
-                    addPictograma()
-                    dismiss()
-                }else{
-                    showAlert = true
-                }
-                
-            }) {
-                Text("Add")
-            })
-            .navigationBarItems(leading: Button(action: {
-                dismiss()
-            }) {
-                Text("Cancel")
-            })
-            .navigationBarTitle("Add Friends")
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Alert"),
-                    message: Text("This is the alert message."),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
-        }
-    }
-    private func addPictograma() {
-        let pictograma = PictogramaDto(Nombre: nombre, Url: link)
-        pictogramas.append(pictograma)
-        usedNames.insert(pictograma.Nombre)
+        return  !nombre.isEmpty && !apellido.isEmpty
     }
     
-    private func isValidForm() -> Bool {
-        return !nombre.isEmpty && !link.isEmpty && nombre != "Predeterminado"
-    }
 }
-
-struct AddAlumno_Previews: PreviewProvider {
-    static var previews: some View {
-        AddAlumno(alumnos: AlumnoModel())
-    }
-}
-

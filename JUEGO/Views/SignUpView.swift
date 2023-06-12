@@ -17,7 +17,9 @@ struct signUpView: View {
     @State private var alertLogIn = false
     @State private var errorLogIn = ""
     @State private var isLogIn=false
+    @State private var showRegisterSuccess=false
     let repository = FirebaseService()
+    @EnvironmentObject var userData : UserData
     
     var body: some View {
         if !isLogIn{
@@ -66,18 +68,28 @@ struct signUpView: View {
                     .padding()
                     VStack {
                         Button(action: {
-                            repository.register(email: email, password: password, nombre: nombre, apellido: apellido) { result in
-                                switch result {
-                                case .success(let uid):
-                                    isLogIn = true
-                                    print("Tutor registered in with uid: \(uid)")
-                                    repository.insertTutor(tutor: Tutor(Nombre: nombre, Apellido: apellido))
-                                case .failure(let error):
-                                    print("Error registering user in: \(error)")
-                                    errorLogIn = "\(error.localizedDescription)"
-                                    alertLogIn = true
+                            if !email.isEmpty && !password.isEmpty && !apellido.isEmpty && !nombre.isEmpty {
+                                repository.register(email: email, password: password, nombre: nombre, apellido: apellido) { result in
+                                    switch result {
+                                    case .success(let uid):
+                                        userData.isLogIn = true
+                                        isLogIn = true
+                                        showRegisterSuccess=true
+                                        print("Tutor registered in with uid: \(uid)")
+                                        let tut = Tutor(Id:uid, Nombre: nombre, Apellido: apellido)
+                                        repository.insertTutor(tutor: tut)
+                                        userData.curTutor = tut
+                                    case .failure(let error):
+                                        print("Error registering user in: \(error)")
+                                        errorLogIn = "\(error.localizedDescription)"
+                                        alertLogIn = true
+                                    }
                                 }
+                            }else {
+                                errorLogIn="Todos los campos son obligatorios"
+                                alertLogIn=true
                             }
+                            
                         }) {
                             Text("Crear Cuenta")
                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
@@ -92,13 +104,22 @@ struct signUpView: View {
                             Alert(title: Text(errorLogIn))
                         }
                     }
+                    .popover(isPresented: $showRegisterSuccess) {
+                        VStack {
+                            Text("Se ha registrado con exito")
+                            Button("OK") {
+                                showRegisterSuccess = false
+                            }
+                        }
+                    }
+
                 }
                 
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .alignmentGuide(.leading) { _ in geo.size.height / 2 }
             }
         }else{
-            SignInView()
+            PerfilesView()
         }
     }
 }

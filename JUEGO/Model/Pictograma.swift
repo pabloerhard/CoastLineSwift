@@ -6,15 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Pictograma: Codable{
-    var Id: String!
     var Nombre: String
-    var Url: String
+    var Image: String
 }
 
-struct PictogramaDto: Identifiable {
-    let id = UUID()
+struct PictogramaDto {
     let Nombre: String
-    let Url: String
+    let ImageUrl:  String
+    let Image: UIImage?
 }
