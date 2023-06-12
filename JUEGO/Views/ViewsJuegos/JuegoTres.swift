@@ -83,7 +83,7 @@ class GameViewModel: ObservableObject {
 
 struct JuegoTres: View {
     @ObservedObject var viewModel = GameViewModel()
-    
+    @State private var showInstrucciones = true
     var body: some View {
         ZStack {
             Color(red:245/255,green:239/255,blue:237/255)
@@ -121,6 +121,22 @@ struct JuegoTres: View {
                         .font(.largeTitle)
                     }
                 }
+                .sheet(isPresented: $showInstrucciones, content: {
+                    VStack{
+                        Text("Escoge la dificultad y resuleve el rompecabezas")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                            .padding()
+                        Button{
+                            showInstrucciones=false
+                        }label: {
+                            Text("Entendido")
+                                .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                                .padding()
+                        }
+                        
+                    }
+                    .padding()
+                })
                 .padding(.horizontal,380)
                 
                 Button {
@@ -144,6 +160,8 @@ struct JuegoTres: View {
                         .padding()
                 }
             }
+
+            
             .ignoresSafeArea()
         .background(Color(red:245/255,green:239/255,blue:237/255))
         }

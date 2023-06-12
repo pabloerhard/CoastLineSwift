@@ -41,7 +41,7 @@ struct JuegoDos: View {
     @State private var puntaje = 0
     @State private var colorCorrecto = randomColor()
     @State private var opciones: [Color] = []
-    
+    @State private var showInstrucciones = true
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.mint, .cyan, .mint]), startPoint: .trailing, endPoint: .leading)
@@ -73,6 +73,24 @@ struct JuegoDos: View {
                 }
                 .padding()
             }
+            .sheet(isPresented: $showInstrucciones, content: {
+                VStack {
+                    Text("Debes elegir el color que coincida con el texto")
+                        .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                        .padding()
+                    Text("Nota: Puedes dar tap en el texto para escuchar el color")
+                        .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                        .padding()
+                    Button{
+                        showInstrucciones=false
+                    }label: {
+                        Text("Entendido")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 16))
+                            .padding()
+                    }
+                    .padding()
+                }
+            })
             .onAppear {
                 opciones = randomOptions(including: colorCorrecto)
         }
