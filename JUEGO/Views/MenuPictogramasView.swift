@@ -62,7 +62,22 @@ struct MenuPictogramasView: View {
                                     .foregroundColor(.white)
                             }
                         }
+                        
                         Spacer()
+                    }
+                    HStack{
+                        NavigationLink(destination:JuegoUno(items: [])){
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4)
+                                Image(systemName: "photo.stack")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.3)
+                                    .foregroundColor(.white)
+                            }
+                        }
                     }
                     Spacer()
                 }

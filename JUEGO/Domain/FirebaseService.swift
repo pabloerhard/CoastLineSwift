@@ -146,4 +146,16 @@ class FirebaseService{
     func signOut() throws {
             try Auth.auth().signOut()
         }
+    
+    func deleteUser() throws {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+          if let error = error {
+              print("error borrando usuario: \(error.localizedDescription)")
+          } else {
+              print("se borro el usuario: \(user?.email)")
+          }
+        }
+        
+    }
 }

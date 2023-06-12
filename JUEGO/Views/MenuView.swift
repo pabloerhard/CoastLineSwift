@@ -20,13 +20,17 @@ struct MenuView: View {
     @EnvironmentObject var userData : UserData
     @State private var showSignOutAlert = false
     @State private var showPerfilesView = false
+    @State private var showDeleteUserAlert = false
     @State private var image: Image? = Image("pinguino")
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
     @State private var shouldSheetAlumno = false
+    @State private var isDeleteConfirmed = false
+    @State private var showDeleteConfirmation = false
     @State private var nombre : String = ""
     @State private var apellido : String = ""
+    @State private var errorDelete : String = ""
     let repository = FirebaseService()
     
     var body: some View {
@@ -37,7 +41,7 @@ struct MenuView: View {
                         ZStack {
                             HStack {
                                 Button {
-                                    
+                            
                                     sheetPresented = true
                                 } label: {
                                     Image(systemName: "person.2.badge.gearshape.fill")
@@ -128,6 +132,67 @@ struct MenuView: View {
                                                 showSignOutAlert=false
                                             })
                                         }
+                                        
+                                        Button{
+                                            showDeleteConfirmation = true
+                                            if isDeleteConfirmed{
+                                                do {
+                                                    try repository.deleteUser()
+                                                    userData.mostrarMenu = false
+                                                    isCorrect=false
+                                                    userData.isLogIn = false
+                                                }catch let error{
+                                                    errorDelete = error.localizedDescription
+                                                    showDeleteUserAlert = true
+                                                }
+                                            }
+
+                                        } label: {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.1)
+                                                .overlay(Text("Borrar Cuenta"))
+                                                .font(Font.custom("HelveticaNeue-Thin", size: 24))
+                                                .foregroundColor(.white)
+                                        }.alert(isPresented: $showDeleteUserAlert) {
+                                            Alert(title: Text("Error"),message:Text(errorDelete),
+                                                  dismissButton: .default(Text("OK")){
+                                                showDeleteUserAlert=false
+                                            })
+                                        }
+                                        .popover(isPresented: $showDeleteConfirmation) {
+                                            VStack {
+                                                    Text("Confirmar Eliminacion de Cuenta")
+                                                        .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                                                        .padding()
+                                                    
+                                                    Text("¿Estas seguro?")
+                                                        .font(Font.custom("HelveticaNeue-Thin", size: 16))
+                                                        .padding()
+                                                    
+                                                    HStack {
+                                                        Button(action: {
+                                                            showDeleteConfirmation = false
+                                                            isDeleteConfirmed = true
+                                                        }) {
+                                                            Text("Delete")
+                                                                .font(Font.custom("HelveticaNeue-Thin", size: 16))
+                                                                .foregroundColor(.red)
+                                                        }
+                                                        .padding()
+                                                        
+                                                        Button(action: {
+                                                            showDeleteConfirmation = false
+                                                        }) {
+                                                            Text("Cancel")
+                                                                .font(Font.custom("HelveticaNeue-Thin", size: 16))
+                                                        }
+                                                        .padding()
+                                                    }
+                                                }
+                                                .padding()
+                                        }
+                                        
                                         Button {
                                             isCorrect = false
                                             userData.mostrarMenu = false
@@ -139,6 +204,8 @@ struct MenuView: View {
                                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
                                                 .foregroundColor(.white)
                                         }
+                                        
+                                 
                                         
                                         Button {
                                             //self.shouldPresentActionScheet = true
@@ -236,13 +303,15 @@ struct MenuView: View {
         if index == 1 {
             return AnyView(JuegoDos())
         }
-        if index == 3{
-            return AnyView(JuegoTres())
-        }
         if index == 2{
             return AnyView(JuegoCuatro())
+        }
+        if index == 3{
+            return AnyView(EmojiMatchingGameView())
+        }
+        if index==4{
+            return AnyView(JuegoTres())
         }else {
-            
             return AnyView(MenuView())
         }
     }
