@@ -85,63 +85,69 @@ struct JuegoTres: View {
     @ObservedObject var viewModel = GameViewModel()
     
     var body: some View {
-        VStack {
-            Text("Rompecabezas")
-                .font(Font.custom("HelveticaNeue-Thin", size: 50))
+        ZStack {
+            Color(red:245/255,green:239/255,blue:237/255)
+            VStack {
+                Text("Rompecabezas")
+                    .font(Font.custom("HelveticaNeue-Thin", size: 50))
+                    .padding()
+                
+                Picker("Difficulty", selection: $viewModel.difficulty) {
+                    Text("Facil").tag(Difficulty.easy)
+                    Text("Medio").tag(Difficulty.medium)
+                    Text("Dificil").tag(Difficulty.hard)
+                }
+                .frame(width: 300)
+                .pickerStyle(SegmentedPickerStyle())
                 .padding()
-            
-            Picker("Difficulty", selection: $viewModel.difficulty) {
-                Text("Facil").tag(Difficulty.easy)
-                Text("Medio").tag(Difficulty.medium)
-                Text("Dificil").tag(Difficulty.hard)
-            }
-            .frame(width: 300)
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 1) {
-                ForEach(viewModel.tiles.indices, id: \.self) { index in
-                    Button(action: {
-                        viewModel.moveTile(at: index)
-                    }) {
-                        if viewModel.tiles[index].isCorrectPosition {
-                            Rectangle()
-                                .fill(Color.blue)
-                        } else {
-                            Image("image\(viewModel.tiles[index].id)")
-                                .resizable()
-                                .frame(width: 200, height: 200)
+                
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 1) {
+                    ForEach(viewModel.tiles.indices, id: \.self) { index in
+                        Button(action: {
+                            viewModel.moveTile(at: index)
+                        }) {
+                            if viewModel.tiles[index].isCorrectPosition {
+                                Rectangle()
+                                    .fill(Color.blue)
+                            } else {
+                                Image("image\(viewModel.tiles[index].id)")
+                                    .resizable()
+                                    .frame(width: 200, height: 200)
+                            }
                         }
+                        .frame(width: 200, height: 200)
+                        .background(Color.black)
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
                     }
-                    .frame(width: 200, height: 200)
-                    .background(Color.black)
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
+                }
+                .padding(.horizontal,380)
+                
+                Button {
+                    viewModel.shuffleTiles()
+                }label:{
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: 200,height: 50)
+                        .foregroundColor(.black)
+                        .overlay {
+                            Text("Mezclar")
+                                .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                                .foregroundColor(.white)
+                        }
+                }
+                .padding()
+                
+                if viewModel.won {
+                    Text("¡Has ganado!")
+                        .font(Font.custom("HelveticaNeue-Thin", size: 30))
+                        .foregroundColor(.red)
+                        .padding()
                 }
             }
-            .padding(.horizontal,380)
-            
-            Button {
-                viewModel.shuffleTiles()
-            }label:{
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 200,height: 50)
-                    .foregroundColor(.black)
-                    .overlay {
-                        Text("Mezclar")
-                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
-                            .foregroundColor(.white)
-                    }
-            }
-            .padding()
-            
-            if viewModel.won {
-                Text("¡Has ganado!")
-                    .font(Font.custom("HelveticaNeue-Thin", size: 30))
-                    .foregroundColor(.red)
-                    .padding()
-            }
+            .ignoresSafeArea()
+        .background(Color(red:245/255,green:239/255,blue:237/255))
         }
+        .ignoresSafeArea()
     }
 }
 
