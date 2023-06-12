@@ -217,7 +217,7 @@ struct DrumButton: View {
 struct JuegoCuatro: View {
     @State private var selectedTab = 0
     @State private var showMainMenu = false
-    
+    @State private var showInstrucciones = true
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -235,6 +235,7 @@ struct JuegoCuatro: View {
                 
                 CustomTabBar(selectedTab: $selectedTab)
             }
+   
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)

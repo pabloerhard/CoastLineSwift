@@ -61,6 +61,7 @@ struct DraggableEmoji: View {
 
 struct EmojiMatchingGameView: View {
     @StateObject private var viewModel = EmojiViewModel()
+    @State private var showInstrucciones = true
     let gridItems = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -81,7 +82,15 @@ struct EmojiMatchingGameView: View {
     }
     
     var body: some View {
+        
         VStack {
+            Button{
+                //
+            }label: {
+                Text("")
+            }
+           
+            
             ZStack {
                 
                 Text("Puntos: \(viewModel.score)")
@@ -96,6 +105,25 @@ struct EmojiMatchingGameView: View {
                         )
                     }
                 }
+                .sheet(isPresented: $showInstrucciones, content: {
+                    VStack{
+                        Text("Deberas arrastar el emoji a su posicion indicada")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                            .padding()
+                        Text("La posicion indicada es aquella donde se encuentra el mismo emoji")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                        Button{
+                            showInstrucciones=false
+                        }label: {
+                            Text("Entendido")
+                                .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                                .padding()
+                        }
+                        
+                    }
+                    .padding()
+                    .presentationDetents([.fraction(0.4)])
+                })
                 .padding()
                 if let currentEmoji = viewModel.currentEmoji {
                     DraggableEmoji(
@@ -106,6 +134,7 @@ struct EmojiMatchingGameView: View {
 
                     }
                 }
+            
             .frame(
                   minWidth: 0,
                   maxWidth: .infinity,
@@ -120,14 +149,16 @@ struct EmojiMatchingGameView: View {
                 }) {
                     Text("Reiniciar")
                         .padding(20)
-                        .background(Color.blue)
+                        .background(Color(red:34/255,green:146/255,blue:164/255))
                         .foregroundColor(.white)
                         .font(.title)
                 }
-                .foregroundColor(Color(red:34/255,green:146/255,blue:164/255))
+                
             .cornerRadius(20)
             .offset(y:-50)
+            
         }
+
         .ignoresSafeArea()
         .background(Color(red:245/255,green:239/255,blue:237/255))
         

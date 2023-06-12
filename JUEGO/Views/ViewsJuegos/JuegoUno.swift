@@ -17,46 +17,66 @@ struct JuegoUno: View {
         self.items = items
     }
     
-    
+    @State private var showInstrucciones = true
     @State private var isToggled = false
     @State private var sizePictogramas = 200
     @StateObject private var speechSynthesizer = SpeechSynthesizer()
     
     var body: some View {
-        VStack {
-            Toggle(isOn:$isToggled){
-                HStack{
-                    Spacer()
-                    Text("Tamaño")
-                        .font(Font.custom("HelveticaNeue-Thin", size: 24))
-                }
-            }
-            .onChange(of: isToggled) { newValue in
-                sizePictogramas = newValue ? 300 : 200
-            }
-            .toggleStyle(SwitchToggleStyle(tint: .red))
-            .padding()
-            
-            ScrollView(.vertical){
-                LazyVGrid(columns: [
-                    GridItem(.adaptive(minimum: 300))
-                ], spacing: 5) {
-                    ForEach(items, id: \.self) {  item in
-                        Image("\(item)")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: CGFloat(sizePictogramas))
-                            .padding(.vertical, 5)
-                            .onTapGesture {
-                                speechSynthesizer.speak(text: "\(item)")
-                            }
+        NavigationView {
+            VStack {
+                Toggle(isOn:$isToggled){
+                    HStack{
+                        Spacer()
+                        Text("Tamaño")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 24))
                     }
                 }
+                .onChange(of: isToggled) { newValue in
+                    sizePictogramas = newValue ? 300 : 200
+                }
+                .toggleStyle(SwitchToggleStyle(tint: .red))
+                .padding()
+                
+                ScrollView(.vertical){
+                    LazyVGrid(columns: [
+                        GridItem(.adaptive(minimum: 300))
+                    ], spacing: 5) {
+                        ForEach(items, id: \.self) {  item in
+                            Image("\(item)")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: CGFloat(sizePictogramas))
+                                .padding(.vertical, 5)
+                                .onTapGesture {
+                                    speechSynthesizer.speak(text: "\(item)")
+                                }
+                        }
+                    }
+                }
+                .sheet(isPresented: $showInstrucciones, content: {
+                    VStack {
+                        
+                        Text("Da click en cualquiera de los pictogramas para escuchar su representacion")
+                            .font(Font.custom("HelveticaNeue-Thin", size: 20))
+                            .padding()
+                        Button{
+                            showInstrucciones=false
+                        }label: {
+                            Text("Entendido")
+                                .font(Font.custom("HelveticaNeue-Thin", size: 16))
+                                
+                        }
+                        .padding()
+                    }
+                })
             }
-        }
-        
-        .navigationBarBackButtonHidden(true)
+
+            
         .background(Color(red:245/255,green:239/255,blue:237/255))
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationViewStyle(.stack)
         
     }
     
