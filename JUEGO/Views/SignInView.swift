@@ -89,17 +89,7 @@ struct SignInView: View {
                                                                 print("Error al obtener alumnos: \(error.localizedDescription)")
                                                             }
                                                         }
-                                                        /*Task {
-                                                            do {
-                                                                let alumnos = try await repository.getAlumnos()
-                                                                DispatchQueue.main.async {
-                                                                    userData.allAlumnos = alumnos
-                                                                }
-                                                                print("Todos alumnos extraidos correctamente: \n (alumnos)")
-                                                            } catch {
-                                                                print("Error al obtener alumnos: \(error.localizedDescription)")
-                                                            }
-                                                        }*/
+
                                                     case .failure(let error):
                                                         print("Error retriving tutor information: \(error)")
                                                         errorLogIn = "\(error.localizedDescription)"

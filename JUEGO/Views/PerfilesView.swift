@@ -38,8 +38,8 @@ struct PerfilesView: View {
                                 Text(alumno.Nombre)
                                     .foregroundColor(.primary)
                                 Button(action: {
-                                    userData.tutorAlumnos.insert(alumno)
-                                    userData.otherAlumnos.remove(alumno)
+                                    userData.tutorAlumnos.append(alumno)
+                                    userData.otherAlumnos.removeAll{$0 == alumno}
                                 }) {
                                     Image(systemName: "plus")
                                 }
@@ -125,7 +125,7 @@ struct ProfileView: View {
                     return tutorAlumno.Id != alumno.Id
                 }
                 userData.tutorAlumnos = filteredAlumnos
-                userData.otherAlumnos.insert(alumno)
+                userData.otherAlumnos.append(alumno)
             }) {
                 Label("Eliminar", systemImage: "trash")
             }

@@ -78,10 +78,9 @@ struct AddAlumno: View {
                         }
                         
                         List {
-                            ForEach(pictogramas) { picto in
+                            ForEach(pictogramas, id: \.Nombre) { picto in
                                 VStack{
                                     Text(picto.Nombre)
-                                    Text(picto.Url)
                                 }
                             }
                             .onDelete{ indexSet in

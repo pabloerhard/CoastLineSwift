@@ -8,10 +8,13 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
+
 
 
 class FirebaseService{
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     
     func signIn(email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
@@ -81,12 +84,12 @@ class FirebaseService{
         }
     }
     
-    func getTutorAlumnos(tutorId: String) async throws -> Set<Alumno> {
+    func getTutorAlumnos(tutorId: String) async throws -> [Alumno] {
         let alumnosRef = db.collection("alumnos")
         let query = alumnosRef.whereField("Tutores", arrayContains: tutorId)
         let querySnapshot = try await query.getDocuments()
         let documents = querySnapshot.documents
-        var alumnos = Set<Alumno>()
+        var alumnos = [Alumno]()
         
         for document in documents {
             let data = document.data()
@@ -100,23 +103,23 @@ class FirebaseService{
                 pictogramas.forEach { pictoData in
                     if let nombre = pictoData["Nombre"],
                        let url = pictoData["Url"] {
-                        let picto = Pictograma(Nombre: nombre, Url: url)
+                        let picto = Pictograma(Nombre: nombre, Image: url)
                         pictos.append(picto)
                         print(picto)
                     }
                 }
                 let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
-                alumnos.insert(alumno)
+                alumnos.append(alumno)
             }
         }
         return alumnos
     }
     
-    func getAlumnos() async throws -> Set<Alumno> {
+    func getAlumnos() async throws -> [Alumno] {
         let alumnosRef = db.collection("alumnos")
         let querySnapshot = try await alumnosRef.getDocuments()
         let documents = querySnapshot.documents
-        var alumnos = Set<Alumno>()
+        var alumnos = [Alumno]()
         
         for document in documents {
             let data = document.data()
@@ -130,16 +133,58 @@ class FirebaseService{
                 pictogramas.forEach { pictoData in
                     if let nombre = pictoData["Nombre"],
                        let url = pictoData["Url"] {
-                        let picto = Pictograma(Nombre: nombre, Url: url)
+                        let picto = Pictograma(Nombre: nombre, Image:url)
                         pictos.append(picto)
                         print(picto)
                     }
                 }
                 let alumno = Alumno(Id: document.documentID, Nombre: nombre, Apellido: apellido, Nivel: nivel, Tutores: tutores, Pictogramas: pictos)
-                alumnos.insert(alumno)
+                alumnos.append(alumno)
             }
         }
         return alumnos
+    }
+    
+    /*func updateAlumno(userData: UserData, nombre: String, url: String) async throws -> Alumno {
+        let alumnosRef = db.collection("alumnos")
+        let documentRef = alumnosRef.document(userData.curAlumno.Id)
+        let document = try await documentRef.getDocument()
+        
+        
+        
+        if let data = document.data(){
+            var pictogramas = data["Pictogramas"] as? [[String: String]] ?? []
+            let updatedPictogramas = pictogramas.map { pictograma -> [String: String] in
+                var updatedPictograma = pictograma
+                if let docNombre = pictograma["Nombre"], docNombre == nombre {
+                    updatedPictograma["Url"] = url
+                }
+                return updatedPictograma
+            }
+            
+        }
+        return Alumno
+    }*/
+    
+    func addImageToStorage(image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let filename = UUID().uuidString
+        let ref = storage.reference(withPath: filename)
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+        ref.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            ref.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(url?.absoluteString ?? ""))
+            }
+            
+        }
     }
     
     

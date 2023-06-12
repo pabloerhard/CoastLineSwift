@@ -13,7 +13,7 @@ struct Alumno: Hashable, Codable {
     var Apellido: String
     var Nivel: Int
     var Tutores: [String]
-    var Pictogramas: [Pictograma]!
+    var Pictogramas: [Pictograma]
     
     static func == (lhs: Alumno, rhs: Alumno) -> Bool {
         return lhs.Id == rhs.Id
