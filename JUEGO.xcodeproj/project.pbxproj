@@ -36,6 +36,9 @@
 		BA5B66CC2A327AD100D7640A /* D.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66B92A327AD100D7640A /* D.wav */; };
 		BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BA2A327AD100D7640A /* C_piano.wav */; };
 		BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = BA5B66BB2A327AD100D7640A /* E_piano.wav */; };
+		BA5E3E212A36CABE003B4B0D /* JuegoCinco.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */; };
+		BA5E3E232A36CB3A003B4B0D /* EmojiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */; };
+		BA5E3E252A36CC4D003B4B0D /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E242A36CC4D003B4B0D /* Emoji.swift */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
@@ -85,6 +88,9 @@
 		BA5B66B92A327AD100D7640A /* D.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = D.wav; sourceTree = "<group>"; };
 		BA5B66BA2A327AD100D7640A /* C_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = C_piano.wav; sourceTree = "<group>"; };
 		BA5B66BB2A327AD100D7640A /* E_piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = E_piano.wav; sourceTree = "<group>"; };
+		BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCinco.swift; sourceTree = "<group>"; };
+		BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewModel.swift; sourceTree = "<group>"; };
+		BA5E3E242A36CC4D003B4B0D /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 				BA00702D2A27104C004A5772 /* Tutor.swift */,
 				BA00702F2A271053004A5772 /* Pictograma.swift */,
 				FBEBB0AB2A1C2331009883E9 /* AlumnoModel.swift */,
+				BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */,
+				BA5E3E242A36CC4D003B4B0D /* Emoji.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 				FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */,
 				FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */,
 				FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */,
+				BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */,
 			);
 			path = ViewsJuegos;
 			sourceTree = "<group>";
@@ -366,6 +375,7 @@
 				FB4F3DA32A181DD20072476B /* Application.swift in Sources */,
 				FB4F3D9B2A1811120072476B /* AuthenticationViewModel.swift in Sources */,
 				FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */,
+				BA5E3E212A36CABE003B4B0D /* JuegoCinco.swift in Sources */,
 				FBAEF0C92A2152DF00E50D16 /* JuegoDos.swift in Sources */,
 				FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */,
 				BA0070302A271053004A5772 /* Pictograma.swift in Sources */,
@@ -374,7 +384,9 @@
 				BA40EED22A2E90510048545A /* MenuPictogramasView.swift in Sources */,
 				BA0070342A271217004A5772 /* PerfilesView.swift in Sources */,
 				FBAEF0CB2A2152F200E50D16 /* JuegoTres.swift in Sources */,
+				BA5E3E232A36CB3A003B4B0D /* EmojiViewModel.swift in Sources */,
 				BA00702E2A27104C004A5772 /* Tutor.swift in Sources */,
+				BA5E3E252A36CC4D003B4B0D /* Emoji.swift in Sources */,
 				FB9210202A2A7B94005E0F76 /* FirebaseService.swift in Sources */,
 				FBAEF0C72A2152D100E50D16 /* JuegoUno.swift in Sources */,
 				FB55E4DD2A2EC0A900A0F07C /* UserData.swift in Sources */,
