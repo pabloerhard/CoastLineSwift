@@ -159,24 +159,34 @@ struct PianoView: View {
 }
 
 struct DrumView: View {
-    let drumSounds: [String] = ["Kick", "Snare", "Hi-Hat", "Tom", "Crash"]
+    let drumSounds: [String] = ["kick", "snare", "hi-hat", "tom", "crash"]
     let drumColors: [Color] = [.red, .blue, .green, .yellow, .orange]
     
     var body: some View {
-        ZStack {
-            DrumButton(sound: drumSounds[0], color: drumColors[0]) // Kick
-                .offset(x: -100, y: 100)
-            DrumButton(sound: drumSounds[1], color: drumColors[1]) // Snare
-                .offset(x: 0, y: 100)
-            DrumButton(sound: drumSounds[2], color: drumColors[2]) // Hi-Hat
-                .offset(x: 100, y: 100)
-            DrumButton(sound: drumSounds[3], color: drumColors[3]) // Tom
-                .offset(x: -50, y: 0)
-            DrumButton(sound: drumSounds[4], color: drumColors[4]) // Crash
-                .offset(x: 50, y: 0)
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                VStack {
+                    DrumButton(sound: drumSounds[3], color: drumColors[3])
+                    DrumButton(sound: drumSounds[4], color: drumColors[4])
+                }
+                Spacer()
+                VStack {
+                    DrumButton(sound: drumSounds[2], color: drumColors[2])
+                    DrumButton(sound: drumSounds[1], color: drumColors[1])
+                }
+                Spacer()
+            }
+            Spacer()
+            HStack {
+                Spacer()
+                DrumButton(sound: drumSounds[0], color: drumColors[0])
+                Spacer()
+            }
+            Spacer()
         }
-        .padding(30)
-        .background(LinearGradient(gradient: Gradient(colors: [.purple, .cyan]), startPoint: .top, endPoint: .bottom))
+        .background(LinearGradient(gradient: Gradient(colors: [.purple, .cyan]), startPoint: .leading, endPoint: .trailing))
     }
 }
 
@@ -189,20 +199,22 @@ struct DrumButton: View {
             playSound(sound: sound)
         }) {
             ZStack {
-                Circle()
-                    .foregroundColor(color)
-                    .frame(width: 80, height: 80)
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(color)
+                    .frame(width: 200, height: 120)
                     .overlay(
-                        Circle()
+                        RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.white, lineWidth: 3)
                     )
                     .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)
                 
-                Text(sound)
+                Text(sound.prefix(1).uppercased() + sound.dropFirst())
                     .foregroundColor(.white)
                     .fontWeight(.bold)
+                    .font(.system(size: 18))
             }
         }
+        .padding(.horizontal, 20)
     }
     
     func playSound(sound: String) {
@@ -217,7 +229,7 @@ struct DrumButton: View {
 struct JuegoCuatro: View {
     @State private var selectedTab = 0
     @State private var showMainMenu = false
-    @State private var showInstrucciones = true
+    
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
@@ -235,7 +247,6 @@ struct JuegoCuatro: View {
                 
                 CustomTabBar(selectedTab: $selectedTab)
             }
-   
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)
@@ -289,4 +300,6 @@ struct JuegoCuatro_Previews: PreviewProvider {
         JuegoCuatro()
     }
 }
+
+
 
