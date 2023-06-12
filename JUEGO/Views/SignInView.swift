@@ -46,7 +46,7 @@ struct SignInView: View {
                                     .keyboardType(.emailAddress)
                                     .frame(width: geo.size.width * 0.5)
                                 
-                                TextField("Inserta Contraseña", text: $password)
+                                SecureField("Inserta Contraseña", text: $password)
                                     .padding()
                                     .background(Color.white)
                                     .cornerRadius(15)

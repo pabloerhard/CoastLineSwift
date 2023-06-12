@@ -39,6 +39,11 @@
 		BA5E3E212A36CABE003B4B0D /* JuegoCinco.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */; };
 		BA5E3E232A36CB3A003B4B0D /* EmojiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */; };
 		BA5E3E252A36CC4D003B4B0D /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E3E242A36CC4D003B4B0D /* Emoji.swift */; };
+		BACCA5502A378DAC00F1022C /* hi-hat.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54B2A378DAC00F1022C /* hi-hat.wav */; };
+		BACCA5512A378DAC00F1022C /* crash.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54C2A378DAC00F1022C /* crash.wav */; };
+		BACCA5522A378DAC00F1022C /* snare.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54D2A378DAC00F1022C /* snare.wav */; };
+		BACCA5532A378DAC00F1022C /* kick.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54E2A378DAC00F1022C /* kick.wav */; };
+		BACCA5542A378DAC00F1022C /* tom.wav in Resources */ = {isa = PBXBuildFile; fileRef = BACCA54F2A378DAC00F1022C /* tom.wav */; };
 		FB24B5282A27FE6900DA871A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */; };
 		FB4909D829F9D771008A4451 /* JUEGOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D729F9D771008A4451 /* JUEGOApp.swift */; };
 		FB4909DA29F9D771008A4451 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4909D929F9D771008A4451 /* SignInView.swift */; };
@@ -92,6 +97,11 @@
 		BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCinco.swift; sourceTree = "<group>"; };
 		BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewModel.swift; sourceTree = "<group>"; };
 		BA5E3E242A36CC4D003B4B0D /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		BACCA54B2A378DAC00F1022C /* hi-hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "hi-hat.wav"; path = "../../../../../../Downloads/game/hi-hat.wav"; sourceTree = "<group>"; };
+		BACCA54C2A378DAC00F1022C /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crash.wav; path = ../../../../../../Downloads/game/crash.wav; sourceTree = "<group>"; };
+		BACCA54D2A378DAC00F1022C /* snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snare.wav; path = ../../../../../../Downloads/game/snare.wav; sourceTree = "<group>"; };
+		BACCA54E2A378DAC00F1022C /* kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = kick.wav; path = ../../../../../../Downloads/game/kick.wav; sourceTree = "<group>"; };
+		BACCA54F2A378DAC00F1022C /* tom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tom.wav; path = ../../../../../../Downloads/game/tom.wav; sourceTree = "<group>"; };
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
@@ -171,6 +181,11 @@
 				BA5B66B92A327AD100D7640A /* D.wav */,
 				BA5B66BA2A327AD100D7640A /* C_piano.wav */,
 				BA5B66BB2A327AD100D7640A /* E_piano.wav */,
+				BACCA54C2A378DAC00F1022C /* crash.wav */,
+				BACCA54B2A378DAC00F1022C /* hi-hat.wav */,
+				BACCA54E2A378DAC00F1022C /* kick.wav */,
+				BACCA54D2A378DAC00F1022C /* snare.wav */,
+				BACCA54F2A378DAC00F1022C /* tom.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -343,9 +358,11 @@
 				BA5B66BC2A327AD100D7640A /* CS_piano.wav in Resources */,
 				BA5B66C22A327AD100D7640A /* DS_piano.wav in Resources */,
 				BA5B66BF2A327AD100D7640A /* AS_piano.wav in Resources */,
+				BACCA5542A378DAC00F1022C /* tom.wav in Resources */,
 				BA5B66CD2A327AD100D7640A /* C_piano.wav in Resources */,
 				BA5B66C12A327AD100D7640A /* G_piano.wav in Resources */,
 				FB4909DF29F9D772008A4451 /* Preview Assets.xcassets in Resources */,
+				BACCA5512A378DAC00F1022C /* crash.wav in Resources */,
 				BA5B66C32A327AD100D7640A /* B_piano.wav in Resources */,
 				BA5B66C92A327AD100D7640A /* G.wav in Resources */,
 				BA5B66C72A327AD100D7640A /* B.wav in Resources */,
@@ -357,10 +374,13 @@
 				BA5B66C62A327AD100D7640A /* GS_piano.wav in Resources */,
 				BA5B66BD2A327AD100D7640A /* F_piano.wav in Resources */,
 				BA5B66CA2A327AD100D7640A /* D_piano.wav in Resources */,
+				BACCA5502A378DAC00F1022C /* hi-hat.wav in Resources */,
 				BA5B66C02A327AD100D7640A /* A_piano.wav in Resources */,
 				BA5B66CC2A327AD100D7640A /* D.wav in Resources */,
 				BA5B66CB2A327AD100D7640A /* E.wav in Resources */,
+				BACCA5532A378DAC00F1022C /* kick.wav in Resources */,
 				BA5B66CE2A327AD100D7640A /* E_piano.wav in Resources */,
+				BACCA5522A378DAC00F1022C /* snare.wav in Resources */,
 				BA5B66BE2A327AD100D7640A /* FS_piano.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
