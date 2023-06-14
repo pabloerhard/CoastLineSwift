@@ -63,7 +63,7 @@ struct AddPictogramaView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .foregroundColor(Color(red:34/255,green:100/255,blue:164/255))
                                     .frame(height: geo.size.height * 0.1)
-                                    .overlay(Text("seleccionar Imagen"))
+                                    .overlay(Text("Seleccionar Imagen"))
                                     .font(Font.custom("HelveticaNeue-Thin", size: 24))
                                     .foregroundColor(.white)
                             }
@@ -98,7 +98,10 @@ struct AddPictogramaView: View {
             }
         }
         .onAppear {
-            for pictograma in userData.curAlumno.Pictogramas {
+            print(usedNames)
+            print(userData.curAlumno.Pictogramas)
+            print(userData.tempCurAlumnoInfo.Pictogramas)
+            for pictograma in userData.tempCurAlumnoInfo.Pictogramas {
                 usedNames.insert(pictograma.Nombre)
             }
         }

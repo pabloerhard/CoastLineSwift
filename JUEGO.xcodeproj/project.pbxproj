@@ -97,11 +97,11 @@
 		BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoCinco.swift; sourceTree = "<group>"; };
 		BA5E3E222A36CB3A003B4B0D /* EmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiViewModel.swift; sourceTree = "<group>"; };
 		BA5E3E242A36CC4D003B4B0D /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		BACCA54B2A378DAC00F1022C /* hi-hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "hi-hat.wav"; path = "../../../../../../Downloads/game/hi-hat.wav"; sourceTree = "<group>"; };
-		BACCA54C2A378DAC00F1022C /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = crash.wav; path = ../../../../../../Downloads/game/crash.wav; sourceTree = "<group>"; };
-		BACCA54D2A378DAC00F1022C /* snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snare.wav; path = ../../../../../../Downloads/game/snare.wav; sourceTree = "<group>"; };
-		BACCA54E2A378DAC00F1022C /* kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = kick.wav; path = ../../../../../../Downloads/game/kick.wav; sourceTree = "<group>"; };
-		BACCA54F2A378DAC00F1022C /* tom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tom.wav; path = ../../../../../../Downloads/game/tom.wav; sourceTree = "<group>"; };
+		BACCA54B2A378DAC00F1022C /* hi-hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hi-hat.wav"; sourceTree = "<group>"; };
+		BACCA54C2A378DAC00F1022C /* crash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = crash.wav; sourceTree = "<group>"; };
+		BACCA54D2A378DAC00F1022C /* snare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = snare.wav; sourceTree = "<group>"; };
+		BACCA54E2A378DAC00F1022C /* kick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick.wav; sourceTree = "<group>"; };
+		BACCA54F2A378DAC00F1022C /* tom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tom.wav; sourceTree = "<group>"; };
 		FB24B5272A27FE6900DA871A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB4909D429F9D771008A4451 /* JUEGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JUEGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4909D729F9D771008A4451 /* JUEGOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JUEGOApp.swift; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				FBAEF0C62A2152D100E50D16 /* JuegoUno.swift */,
-				FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */,
 				FBAEF0CA2A2152F200E50D16 /* JuegoTres.swift */,
+				FBAEF0C82A2152DF00E50D16 /* JuegoDos.swift */,
 				FBAEF0CC2A21530000E50D16 /* JuegoCuatro.swift */,
 				BA5E3E202A36CABE003B4B0D /* JuegoCinco.swift */,
 			);
