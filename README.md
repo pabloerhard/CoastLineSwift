@@ -70,7 +70,7 @@ service firebase.storage {
 4. Build and run the project on your iPad.
 
 # License
-This project is licensed under the MIT License. See the [LICENSE](/License) file for details.
+This project is licensed under the MIT License. See the [LICENSE](/LICENSE) file for details.
 
 # Contact
 For any inquiries, please contact the project maintainers:
