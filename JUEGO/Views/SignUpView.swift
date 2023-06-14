@@ -95,7 +95,7 @@ struct signUpView: View {
                                 .font(Font.custom("HelveticaNeue-Thin", size: 24))
                                 .foregroundColor(.white)
                                 .frame(width: geo.size.width * 0.5, height: 50)
-                                .background(Color.black)
+                                .background(Color(red:34/255,green:146/255,blue:164/255))
                                 .cornerRadius(10)
                                 .shadow(color: .gray, radius: 4, x: 0, y: 2)
                         }
