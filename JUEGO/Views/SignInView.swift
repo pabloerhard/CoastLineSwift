@@ -13,8 +13,8 @@ import FirebaseCore
 import GoogleSignInSwift
 
 struct SignInView: View {
-    @State private var email = "admin@a.com"
-    @State private var password = "123456"
+    @State private var email = ""
+    @State private var password = ""
     @StateObject private var vm = AuthenticationViewModel()
     @State private var alertLogIn = false
     @State private var errorLogIn = ""

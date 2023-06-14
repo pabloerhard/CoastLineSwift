@@ -524,26 +524,22 @@ struct EditAlumnoView: View {
                                             Button(action: {
                         if isValidForm() {
                             var pictos: [Pictograma] = []
-                            // Create a dispatch group to track the completion of image uploads
                             let uploadGroup = DispatchGroup()
                             for pictograma in pictogramas {
-                                uploadGroup.enter() // Notify the group that a task has started
+                                uploadGroup.enter()
                                 repository.addImageToStorage(image: pictograma.Image!) { result in
                                     switch result {
                                     case .success(let urlString):
                                         print("Image uploaded successfully. URL: \(urlString)")
                                         pictos.append(Pictograma(Nombre: pictograma.Nombre, Image: urlString))
-                                        // Handle success case
                                     case .failure(let error):
                                         errorMessage = "Error subiendo imagen a base de datos. Intente de nuevo"
                                         showAlert = true
                                         print("Error uploading image: \(error.localizedDescription)")
-                                        // Handle failure case
                                     }
-                                    uploadGroup.leave() // Notify the group that a task has completed
+                                    uploadGroup.leave()
                                 }
                             }
-                            // Wait for all image uploads to complete
                             uploadGroup.notify(queue: .main) {
                                 for picto in pictos {
                                     userData.tempCurAlumnoInfo.Pictogramas.append(Pictograma(Nombre: picto.Nombre, Image: picto.Image))
