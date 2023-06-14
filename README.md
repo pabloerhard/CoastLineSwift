@@ -74,8 +74,14 @@ This project is licensed under the MIT License. See the [LICENSE](/LICENSE) file
 
 # Contact
 For any inquiries, please contact the project maintainers:
-- Pablo Erhard: mailto:A01721124@tec.mx
-- Nicolas Aguirre: mailto:nico03aguirre@gmail.com
+- Pablo Erhard: A01721124@tec.mx
+- Nicolas Aguirre: nico03aguirre@gmail.com
 
+# Authors
+- Pablo Erhard
+- Nicolás Aguirre
+- Leonardo Gonzalez
+- Marcelo De Luna
+- Fernando Cabrera
 
 Created on: 12/06/2023
